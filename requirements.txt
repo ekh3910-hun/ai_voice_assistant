@@ -1,0 +1,8 @@
+streamlit
+faster-whisper
+edge-tts
+av
+pandas
+python-dotenv
+psycopg[binary]
+scikit-learn
