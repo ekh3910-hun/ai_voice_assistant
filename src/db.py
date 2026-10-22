@@ -59,11 +59,9 @@ def insert_task(title, due_date=None, content=None):
     return _fetch_one('add_task.sql', (title, due_date, content))
 
 def get_tasks_by_date(target_date):
-    """특정 날짜 할 일 조회 (음성 비서 명령용)"""
     return _fetch_all('list_task.sql', (target_date,))
 
 def get_all_tasks(limit=100):
-    """전체 할 일 목록 조회 (화면 UI용)"""
     return _fetch_all('list_all_tasks.sql', (limit,))
 
 def update_task(task_id, title=None, content=None, due_date=None, completed=None):
@@ -78,17 +76,5 @@ def insert_voice_run(transcript, intent, status, response_text=None, latency_ms=
     return _fetch_one('insert_voice_run.sql', params)
 
 def list_voice_runs(limit=100):
-    """이력 화면용 최근 음성 처리 로그 조회"""
     return _fetch_all('list_voice_runs.sql', (limit,))
 
-# 5. 팀원 코드 호환용 별칭 (Alias)
-save_memo = insert_memo
-add_memo = insert_memo
-list_memos = get_recent_memos
-
-save_task = insert_task
-add_task = insert_task
-list_tasks = get_all_tasks
-
-save_voice_run = insert_voice_run
-create_table = init_db
