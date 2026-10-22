@@ -72,6 +72,14 @@ def list_task(due_date):
             cur.execute(sql, (due_date,))
             return cur.fetchall()
 
+# 전체 할 일 목록 조회 (화면 UI용)
+def list_all_tasks(limit=100):
+    sql = load_sql('list_all_tasks.sql')
+    with get_connection() as conn:
+        with conn.cursor(row_factory=dict_row) as cur:
+            cur.execute(sql, (limit,))
+            return cur.fetchall()
+
 # 할 일 수정 및 완료 처리
 def update_task(data_id, due_date=None, content=None, completed=None):
     sql = load_sql('update_task.sql')
