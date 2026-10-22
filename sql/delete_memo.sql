@@ -1,0 +1,1 @@
+DELETE FROM memos WHERE id = %s RETURNING id;
