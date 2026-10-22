@@ -6,3 +6,6 @@ pandas
 python-dotenv
 psycopg[binary]
 scikit-learn
+numpy
+soundfile
+scipy
