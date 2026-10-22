@@ -30,8 +30,3 @@ CREATE TABLE IF NOT EXISTS voice_runs (
     latency_ms DOUBLE PRECISION,
     error_message TEXT
 );
-
--- 기존 Neon DB에 옛날 스키마로 생성되어 있을 경우를 대비한 컬럼 추가 안전장치
-ALTER TABLE tasks ADD COLUMN IF NOT EXISTS content TEXT;
-ALTER TABLE tasks ADD COLUMN IF NOT EXISTS updated_at TIMESTAMPTZ DEFAULT NOW();
-ALTER TABLE voice_runs ADD COLUMN IF NOT EXISTS error_message TEXT;

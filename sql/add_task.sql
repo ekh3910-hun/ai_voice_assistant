@@ -1,1 +1,3 @@
-INSERT INTO tasks (title, due_date, content) VALUES (%s, %s, %s) RETURNING id;
+INSERT INTO tasks (title, content, due_date)
+VALUES (%s, %s, %s)
+RETURNING id;
