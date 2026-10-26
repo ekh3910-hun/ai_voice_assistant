@@ -1,11 +1,13 @@
-streamlit
-faster-whisper
+
+faster-whisper>=1.1
 edge-tts
 av
-pandas
+pandas>=2.2
 python-dotenv
 psycopg[binary]
-scikit-learn
 numpy
 soundfile
 scipy
+streamlit>=1.40
+joblib
+scikit-learn
