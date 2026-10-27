@@ -507,35 +507,70 @@ if page=='대화하기':
     if selected_audio is not None:
         audio_bytes = selected_audio
         audio_key = hashlib.sha256(audio_bytes).hexdigest()
-        if st.session_state.get('last_audio_hash') != audio_key:
+
+        if st.session_state.get("last_audio_hash") != audio_key:
             if len(audio_bytes) > 10 * 1024 * 1024:
-                st.warning('음성 파일은 10MB 이하만 업로드할 수 있어요.')
+                st.warning("음성 파일은 10MB 이하만 업로드할 수 있어요.")
+
             else:
-                st.session_state.last_audio_hash = audio_key
                 started = perf_counter()
                 stt_ms = 0.0
+                progress_box = st.empty()
+
                 try:
+                    progress_box.info("음성 인식 모듈 준비 중...")
+
                     from src.stt import transcript_wav
 
-                    with st.spinner('음성 인식 중...'):
-                        recognized, elapsed = transcript_wav(
-                            audio_bytes,
-                            model_size='base'
-                        )
-                        stt_ms = elapsed * 1000
-                except ImportError as exc:
-                    st.error(f"음성 인식 모듈 불러오기 실패: {exc}")
-                    st.exception(exc)
-                    log_voice_failure(
-                            str(exc), stt_ms, started, "ImportError"
-                        )
+                    recognized, elapsed = transcript_wav(
+                        audio_bytes,
+                        model_size="tiny",
+                        progress_callback=progress_box.info,
+                    )
+
+                    stt_ms = elapsed * 1000
 
                 except Exception as exc:
-                    st.error(f"음성 인식 오류: {exc}")
+                    progress_box.empty()
+
+                    st.error(f"음성 인식 실패: {exc}")
                     st.exception(exc)
+
                     log_voice_failure(
-                        str(exc), stt_ms, started, type(exc).__name__
+                        str(exc),
+                        stt_ms,
+                        started,
+                        type(exc).__name__,
                     )
+
+                else:
+                    progress_box.success(
+                        f"인식 완료: {recognized}"
+                    )
+
+                    # 인식 결과를 실제 대화 / 명령 처리에 연결
+                    # 명령 처리 전에 표시해 중복 처리를 방지
+                    st.session_state.last_audio_hash = audio_key
+
+                    try:
+                        add_message(
+                            recognized,
+                            input_type=selected_kind,
+                            stt_ms=stt_ms,
+                            started_at=started,
+                        )
+
+                    except Exception as exc:
+                        st.error(
+                            "음성 인식은 완료됐지만 "
+                            "명령 처리 중 오류가 발생했습니다. "
+                            "저장 목록을 확인해주세요."
+                        )
+                        st.exception(exc)
+
+                    else:
+                        st.rerun()
+
 
 elif page=='메모 관리':
     hero('📝','메모 관리','저장한 메모를 한눈에 확인하세요. 음성으로 만든 메모도 여기서 관리할 수 있어요.')
