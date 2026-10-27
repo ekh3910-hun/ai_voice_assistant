@@ -6,7 +6,7 @@ import time
 import unicodedata
 from functools import lru_cache
 from pathlib import Path
-
+from faster_whisper.audio import decode_audio
 
 # 상위 폴더 경로 추가 (모듈 인식용)
 sys.path.append(str(Path(__file__).resolve().parent.parent))
@@ -36,7 +36,27 @@ def transcript_wav(audio, model_size="base"):
         audio_bytes = audio
 
     # audio.py 전처리
-    preprocess_audio, info = preprocess(audio_bytes, check_duplicate=False)
+    # 브라우저 녹음 데이터를 16kHz 모노 음성으로 디코딩
+    decoded_audio = decode_audio(
+        io.BytesIO(audio_bytes),
+        sampling_rate=16000,
+    )
+
+    # 기존 audio.py가 받을 수 있는 WAV bytes로 변환
+    wav_buffer = io.BytesIO()
+    sf.write(
+        wav_buffer,
+        decoded_audio,
+        16000,
+        format="WAV",
+        subtype="PCM_16",
+    )
+
+    # 기존 전처리 실행
+    preprocess_audio, info = preprocess(
+        wav_buffer.getvalue(),
+        check_duplicate=False,
+    )
 
     # 16kHz float32 NumPy 배열 변환
     audio_data, _ = sf.read(io.BytesIO(preprocess_audio), dtype="float32")
