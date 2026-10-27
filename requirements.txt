@@ -1,7 +1,7 @@
 librosa
-faster-whisper>=1.1
+faster-whisper==1.2.1
+av==18.1.0
 edge-tts
-av
 pandas>=2.2
 python-dotenv
 psycopg[binary]
