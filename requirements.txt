@@ -11,3 +11,4 @@ scipy
 streamlit>=1.40
 joblib
 scikit-learn
+jiwer
