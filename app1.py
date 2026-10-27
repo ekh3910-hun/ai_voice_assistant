@@ -523,12 +523,19 @@ if page=='대화하기':
                             model_size='base'
                         )
                         stt_ms = elapsed * 1000
-                except ImportError:
-                    st.error('음성 인식을 사용하려면 `python -m pip install faster-whisper`를 실행하세요.')
-                    log_voice_failure('faster-whisper 미설치', stt_ms, started, 'ImportError')
+                except ImportError as exc:
+                    st.error(f"음성 인식 모듈 불러오기 실패: {exc}")
+                    st.exception(exc)
+                    log_voice_failure(
+                            str(exc), stt_ms, started, "ImportError"
+                        )
+
                 except Exception as exc:
-                    st.error(f'음성 인식 오류: {exc}')
-                    log_voice_failure(str(exc), stt_ms, started, type(exc).__name__)
+                    st.error(f"음성 인식 오류: {exc}")
+                    st.exception(exc)
+                    log_voice_failure(
+                        str(exc), stt_ms, started, type(exc).__name__
+                    )
 
 elif page=='메모 관리':
     hero('📝','메모 관리','저장한 메모를 한눈에 확인하세요. 음성으로 만든 메모도 여기서 관리할 수 있어요.')
