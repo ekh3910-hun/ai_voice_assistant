@@ -113,8 +113,11 @@ def transcript_wav(
     segments, _ = model.transcribe(
         audio_data,
         language="ko",
-        beam_size=1,
-        vad_filter=False,
+        beam_size=5,
+        vad_filter=True,
+        vad_parameters={
+            "min_silence_duration_ms": 500,
+        },
         condition_on_previous_text=False,
         temperature=0,
     )

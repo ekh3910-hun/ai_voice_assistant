@@ -524,7 +524,7 @@ if page=='대화하기':
 
                     recognized, elapsed = transcript_wav(
                         audio_bytes,
-                        model_size="tiny",
+                        model_size="base",
                         progress_callback=progress_box.info,
                     )
 
