@@ -10,6 +10,13 @@ from pathlib import Path
 load_dotenv()
 
 DATABASE_URL = os.getenv("DATABASE_URL")
+if not DATABASE_URL:
+    try:
+        import streamlit as st
+        DATABASE_URL = st.secrets.get("DATABASE_URL")
+    except Exception:
+        pass
+
 
 # sql 폴더
 SQL_DIR = Path(__file__).resolve().parent.parent / 'sql'
@@ -29,7 +36,7 @@ def has_database_url():
 def get_connection():
     if not has_database_url():
         raise ValueError('DATABASE_URL이 설정되지 않았습니다')
-    return psycopg.connect(DATABASE_URL)
+    return psycopg.connect(DATABASE_URL, row_factory=dict_row, connect_timeout=5)
 
 # 테이블 생성
 def create_table():
@@ -46,7 +53,7 @@ def add_memo(content):
     with get_connection() as conn:
         with conn.cursor() as cur:
             cur.execute(sql, (content,))
-            return cur.fetchone()[0]
+            return cur.fetchone()['id']
 
 # 할 일 생성
 def add_task(title, content=None, due_date=None):
@@ -54,7 +61,7 @@ def add_task(title, content=None, due_date=None):
     with get_connection() as conn:
         with conn.cursor() as cur:
             cur.execute(sql, (title, content, due_date))
-            return cur.fetchone()[0]
+            return cur.fetchone()['id']
 
 # 최근 메모 조회
 def list_memo(limit=10):
@@ -81,11 +88,19 @@ def list_all_tasks(limit=100):
             return cur.fetchall()
 
 # 할 일 수정 및 완료 처리
-def update_task(data_id, due_date=None, content=None, completed=None):
+def update_task(data_id, due_date=None, content=None, completed=None, title=None):
     sql = load_sql('update_task.sql')
     with get_connection() as conn:
         with conn.cursor() as cur:
-            cur.execute(sql, (due_date, content, completed, data_id))
+            cur.execute(sql, (due_date, content, completed, title, data_id))
+            return cur.rowcount
+
+# 메모 수정
+def update_memo(data_id, content):
+    sql = load_sql('update_memo.sql')
+    with get_connection() as conn:
+        with conn.cursor() as cur:
+            cur.execute(sql, (content, data_id))
             return cur.rowcount
 
 # 메모 삭제
@@ -105,12 +120,14 @@ def delete_task(data_id):
             return cur.rowcount
 
 # 음성 명령 처리 이력 입력
-def add_voice_runs(transcript, intent, status, response_text=None, latency_ms=None, error_message=None):
+def add_voice_runs(transcript, intent, status, response_text=None, latency_ms=None, error_message=None,
+                   input_type=None):  # [수정] input_type 인자 추가
     sql = load_sql('add_voice_run.sql')
     with get_connection() as conn:
         with conn.cursor() as cur:
-            cur.execute(sql, (transcript, intent, status, response_text, latency_ms, error_message))
-            return cur.fetchone()[0]
+            cur.execute(sql, (transcript, intent, status, response_text, latency_ms, error_message,
+                              input_type))  # [수정] input_type 전달
+            return cur.fetchone()['id']
 
 # 음성 명령 처리 이력 조회
 def list_voice_runs(limit=100):

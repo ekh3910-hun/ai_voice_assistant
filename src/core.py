@@ -1,3 +1,5 @@
+# core.py
+
 import time
 import sys
 from functools import lru_cache
@@ -5,99 +7,22 @@ from pathlib import Path
 from datetime import date, timedelta
 import re
 import joblib
-import matplotlib.pyplot as plt
-import pandas as pd
 from src.db import *
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import (accuracy_score, f1_score, precision_score,
-                             recall_score, precision_recall_fscore_support,
-                             ConfusionMatrixDisplay)
-from sklearn.model_selection import train_test_split
-from sklearn.pipeline import Pipeline
-from sklearn.svm import LinearSVC
-
 BASE = Path(__file__).resolve().parent.parent
-CSV_PATH = BASE / 'data' / 'intent_train.csv'
-REPORT_PATH = BASE / 'reports'
-MODEL_PATH = BASE / 'models' / 'intent_model.joblib'
-TOKEN_PATTERN = r'(?u)\b\w+\b'
+if str(BASE) not in sys.path:
+    sys.path.insert(0, str(BASE))
+MODEL_PATH = BASE / 'models' / 'intent_model.pkl'
 
 
 @lru_cache(maxsize=1)
-def train_model(csv_path=CSV_PATH):
-    df = pd.read_csv(csv_path, encoding='utf-8-sig')
-    X, y = df['text'], df['intent']
-
-    X_train, X_test, y_train, y_test = train_test_split(
-        X, y, test_size=0.2, random_state=42, stratify=y
-    )
-
-    logistic = Pipeline([
-        ('tfidf', TfidfVectorizer(token_pattern=TOKEN_PATTERN, ngram_range=(1, 2))),
-        ('model', LogisticRegression(max_iter=1000, random_state=42))
-    ])
-    linear = Pipeline([
-        ('tfidf', TfidfVectorizer(token_pattern=TOKEN_PATTERN, ngram_range=(1, 2))),
-        ('model', LinearSVC(max_iter=1000, random_state=42, dual=False))
-    ])
-
-    results = []
-    trained = {}
-    for name, candidate in [('LogisticRegression', logistic), ('LinearSVC', linear)]:
-        candidate.fit(X_train, y_train)
-        pred = candidate.predict(X_test)
-        trained[name] = candidate
-        results.append({
-            'model': name,
-            'Accuracy': accuracy_score(y_test, pred),
-            'Precision': precision_score(y_test, pred, average='macro', zero_division=0),
-            'Recall': recall_score(y_test, pred, average='macro', zero_division=0),
-            'F1': f1_score(y_test, pred, average='macro', zero_division=0)
-        })
-
-    print('[모델 비교 평가 (8:2)]')
-    print(pd.DataFrame(results).round(4).to_string(index=False))
-
-    best = max(results, key=lambda r: (r['Accuracy'], r['F1']))
-    model_name = best['model']
-    model = trained[model_name]
-    print('선택 모델:', model_name)
-
-    predicted = model.predict(X_test)
-    print('테스트 Accuracy:', round(accuracy_score(y_test, predicted), 4))
-    print('테스트 Macro F1:', round(f1_score(y_test, predicted, average='macro'), 4))
-
-    p, r, f, support = precision_recall_fscore_support(
-        y_test, predicted, labels=model.classes_, zero_division=0
-    )
-    print('\n[의도별 테스트 성능]')
-    metrics_df = pd.DataFrame({
-        'intent': model.classes_, 'Precision': p, 'Recall': r,
-        'F1': f, 'count': support
-    }).round(4)
-    print(metrics_df.to_string(index=False))
-
-    # 리포트 및 모델 저장
-    REPORT_PATH.mkdir(parents=True, exist_ok=True)
-    MODEL_PATH.parent.mkdir(parents=True, exist_ok=True)
-    metrics_df.to_csv(REPORT_PATH / 'intent_metrics.csv', index=False, encoding='utf-8-sig')
-
-    ConfusionMatrixDisplay.from_predictions(y_test, predicted, xticks_rotation=90)
-    plt.tight_layout()
-    plt.savefig(REPORT_PATH / 'confusion_matrix.png', bbox_inches='tight')
-    plt.close()
-
-    errors = pd.DataFrame({
-        'text': X_test.to_numpy(), 'intent': y_test.to_numpy(), 'predict': predicted
-    })
-    errors = errors[errors['intent'] != errors['predict']]
-    print('\n오분류 건수:', len(errors))
-    if not errors.empty:
-        print(errors.to_string(index=False))
-
-    model.fit(X, y)
-    joblib.dump(model, MODEL_PATH)
+def load_intent_model():
+    """학습되어 저장된 intent_model.pkl 로드 (없을 경우 1회 자동 학습)"""
+    if not MODEL_PATH.exists():
+        from models.model import train_model
+        return train_model()
+    model = joblib.load(MODEL_PATH)
+    clf = model.named_steps.get('model', model)
+    model_name = clf.__class__.__name__
     return model, model_name
 
 
@@ -162,9 +87,11 @@ def convert_date(date_text, today=None):
 
 def clean_title(value):
     value = value.strip(' ,，.!?')
-    value = re.sub(r'^(?:할\s*일(?:에|에서|중에|로)?|메모(?:에|장에)?)\s*', '', value)
+    value = re.sub(r'^(?:할\s*일(?:에|에서|중에|로|을|이)?|메모(?:에|장에)?)\s*', '', value)
     value = re.sub(r'^(?:에|를|을|은|는)\s+', '', value)
     value = re.sub(r'\s*(?:을|를|은|는|이|가|에|로|으로|까지)$', '', value)
+    value = re.sub(r'\s*(?:추가\s*(?:해줘|해달라|해주세요|해라|해|해주|하기|할래|좀)?|등록\s*(?:해줘|해달라|해주세요|해라|해|해주|하기|할래|좀)?|넣어\s*(?:줘|주세요|달라|라)?|추가|등록).*$', '', value)
+    value = re.sub(r'^(?:추가|등록|할\s*일)\s*', '', value)
     return value.strip(' ,，.!?')
 
 
@@ -186,7 +113,9 @@ def extract_slots(text, intent):
     elif intent in {'LIST_MEMO', 'DELETE_MEMO'} and dates:
         slots['MEMO_DATE'] = convert_date(dates[0].group())
 
-    working = DATE_PATTERN.sub(' ', working)
+    # 메모 본문에 포함된 날짜는 사용자 데이터이므로 보존합니다.
+    if intent != 'ADD_MEMO':
+        working = DATE_PATTERN.sub(' ', working)
     working = re.sub(r'\s+', ' ', working).strip()
     working = re.sub(r'^(?:까지|에|부터)\s+', '', working)
 
@@ -196,7 +125,7 @@ def extract_slots(text, intent):
     if intent == 'LIST_TASK':
         m = re.search(r'안\s*끝낸|미완료|완료한|완료된', working)
         if m:
-            slots['STATUS'] = m.group()
+            slots['STATUS'] = re.sub(r'안\s*끝낸', '안 끝낸', m.group())
         return {k: v for k, v in slots.items() if v is not None}
 
     if intent in {'LIST_MEMO', 'DELETE_MEMO'}:
@@ -209,8 +138,7 @@ def extract_slots(text, intent):
 
     if intent == 'ADD_MEMO':
         patterns = [
-            r'^(?:메모장|메모)(?:에)?\s+(.+?)\s*(?:추가|등록|저장)(?:해줘|해|해주세요)?[.!?]?$',
-            r'^(.+?)\s*이라고\s*(?:메모|적어)',
+            r'^(.+?)\s*(?:이라고|라고)\s*(?:메모|적어)',
             r'^메모\s*추가\s*[,，:]\s*(.+)$',
             r'^(?:메모장|메모)(?:에)?\s*(.+?)\s*(?:남겨|적어|써)',
             r'^(.+?)\s*[,，]?\s*메모해',
@@ -219,7 +147,7 @@ def extract_slots(text, intent):
         for pattern in patterns:
             m = re.search(pattern, working)
             if m:
-                slots['MEMO_CONTENT'] = clean_title(m.group(1))
+                slots['MEMO_CONTENT'] = m.group(1).strip(' ,，.!?')
                 break
         return slots
 
@@ -239,23 +167,28 @@ def extract_slots(text, intent):
         return {k: v for k, v in slots.items() if v is not None}
 
     if intent == 'ADD_TASK':
+        action_verbs = r'(?:추가\s*(?:해줘|해주세요|해달라|해라|해|해주|하기|할래|좀)?|등록\s*(?:해줘|해주세요|해달라|해라|해|해주|하기|할래|좀)?|넣어\s*(?:줘|주세요|달라|라|줄래)?|추가|등록)'
         patterns = [
-            r'할\s*일(?:에|로)?\s*(.+?)\s*(?:추가해|넣어|등록해)',
+            rf'할\s*일(?:에|로|을)?\s*(.+?)\s*{action_verbs}',
+            rf'(.+?)\s*할\s*일(?:에|로|을)?\s*{action_verbs}',
+            rf'^(.+?)\s*{action_verbs}',
+            rf'할\s*일\s*(?:추가|등록)\s*[,，:\s]\s*(.+)$',
+            rf'^(?:추가|등록)\s*(.+)$',
             r'^(.+?)\s*(?:해야\s*돼|끝내야).*?(?:할\s*일에|등록해|넣어)',
-            r'^(.+?)\s*(?:할\s*일로\s*)?(?:등록해|추가해|넣어)',
-            r'^할\s*일\s*추가\s*[,，:]\s*(.+)$'
         ]
     elif intent == 'COMPLETE_TASK':
+        complete_verbs = r'(?:완료\s*(?:해줘|했어|처리|됐어|로)?|끝\s*(?:났어|냈어|남)?|다\s*했어)'
         patterns = [
-            r'할\s*일\s*중에\s*(.+?)\s*(?:완료|끝)',
-            r'^(.+?)\s*(?:완료|끝났어|다\s*했어)',
-            r'^(.+?)\s*(?:완료로|완료\s*처리)'
+            rf'할\s*일\s*중에\s*(.+?)\s*{complete_verbs}',
+            rf'^(.+?)\s*{complete_verbs}',
+            rf'(.+?)\s*할\s*일\s*{complete_verbs}'
         ]
     elif intent == 'DELETE_TASK':
+        delete_verbs = r'(?:지워\s*(?:줘)?|삭제\s*(?:해줘|해)?|빼\s*(?:줘)?)'
         patterns = [
-            r'할\s*일에서\s*(.+?)\s*(?:지워|삭제|빼)',
-            r'^(.+?)\s*할\s*일\s*(?:삭제|지워)',
-            r'^(.+?)\s*(?:안\s*해도\s*돼|삭제|지워|빼)'
+            rf'할\s*일에서\s*(.+?)\s*{delete_verbs}',
+            rf'^(.+?)\s*할\s*일\s*{delete_verbs}',
+            rf'^(.+?)\s*{delete_verbs}'
         ]
     else:
         patterns = []
@@ -273,7 +206,7 @@ def extract_slots(text, intent):
 def predict_intent(text):
     if not isinstance(text, str) or not text.strip():
         raise ValueError('텍스트를 입력하세요')
-    model, model_name = train_model()
+    model, model_name = load_intent_model()
     intent = model.predict([text])[0]
     if model_name == 'LogisticRegression':
         score = float(model.predict_proba([text]).max())
@@ -282,16 +215,37 @@ def predict_intent(text):
         score = float(model.decision_function([text]).max())
         score_type = 'decision_score'
 
-    if re.fullmatch(
-            r'\s*(?:메모장|메모)(?:에)?\s+.+?\s*'
-            r'(?:추가|등록|저장)(?:해줘|해|해주세요)?[.!?]?\s*',
-            text
-    ):
+    # 명확한 의도 키워드 기반 오분류 보정 (하이브리드 NLU)
+    add_kw = ['추가', '등록', '넣어']
+    complete_kw = ['완료', '다 했어', '끝났어', '끝냈어']
+    delete_kw = ['삭제', '지워', '빼줘', '빼']
+    list_kw = ['목록', '보여줘', '알려줘', '조회', '뭐 있어', '확인']
+
+    compact = re.sub(r'\s+', '', text)
+    rule_matched = True
+    if re.search(r'도움말|사용할수있는명령|사용법', compact):
+        intent = 'HELP'
+    elif re.search(r'메모(?:해|장에)|메모추가[:：,，]', compact) and not re.search(r'삭제|지워|조회|보여', compact):
         intent = 'ADD_MEMO'
+    elif '메모' not in text and re.search(r'바꿔|변경해|수정해|미뤄|옮겨', compact):
+        intent = 'UPDATE_TASK'
+    elif ('메모' not in text and any(k in compact for k in ['미완료', '완료한', '완료된', '안끝낸'])
+          and any(k in compact for k in ['보여', '알려', '조회', '목록', '뭐있어', '확인'])):
+        intent = 'LIST_TASK'
+    elif any(k in text for k in add_kw) and not any(k in text for k in complete_kw + delete_kw + list_kw):
+        intent = 'ADD_MEMO' if '메모' in text else 'ADD_TASK'
+    elif any(k in text for k in complete_kw) and not any(k in text for k in add_kw + delete_kw):
+        intent = 'COMPLETE_TASK'
+    elif any(k in text for k in delete_kw) and not any(k in text for k in add_kw + complete_kw):
+        intent = 'DELETE_MEMO' if '메모' in text else 'DELETE_TASK'
+    elif any(k in text for k in list_kw) and not any(k in text for k in add_kw + complete_kw + delete_kw):
+        intent = 'LIST_MEMO' if '메모' in text else 'LIST_TASK'
+    else:
+        rule_matched = False
 
     slots = extract_slots(text, intent)
     needs_confirm = (
-        (score < 0.4)
+        (not rule_matched and score < 0.4)
         or (intent in {'ADD_TASK', 'COMPLETE_TASK', 'DELETE_TASK', 'UPDATE_TASK'} and 'TITLE' not in slots)
         or (intent == 'ADD_MEMO' and 'MEMO_CONTENT' not in slots)
     )
@@ -357,8 +311,17 @@ def execute(intent, slots):
         if not title:
             return '추가할 할 일의 제목을 말씀해주세요', None
 
+        # 중복 체크: 동일한 제목과 마감일을 가진 미완료 할 일이 이미 있는지 확인
+        existing_tasks = list_all_tasks()
+        for t in existing_tasks:
+            if not t.get('completed') and t.get('title', '').strip() == title.strip():
+                t_due = str(t.get('due_date')) if t.get('due_date') else None
+                new_due = str(due_date) if due_date else None
+                if t_due == new_due:
+                    return f'이미 등록된 할 일입니다: {title}', {'id': str(t['id']), 'already_exists': True}
+
         task_id = add_task(title, title, due_date)
-        return f'할 일: {title}을 추가했습니다', {'id': str(task_id)}
+        return f'할 일: {title}을(를) 추가했습니다', {'id': str(task_id)}
 
     if intent == 'LIST_TASK':
         tasks = list_all_tasks()
@@ -372,9 +335,9 @@ def execute(intent, slots):
             tasks = [row for row in tasks if not row.get('completed')]
         if not tasks:
             return '조회된 할 일이 없습니다', []
-        lines = [f"{row['title']} ({'완료' if row.get('completed') else '미완료'}, "
-                 f"마감: {row.get('due_date') or '미지정'})" for row in tasks]
-        return '\n'.join(lines), tasks
+        lines = [f"{i}. {row['title']} ({'완료' if row.get('completed') else '미완료'}, 마감: {row.get('due_date') or '미지정'})"
+                 for i, row in enumerate(tasks, start=1)]
+        return '\n\n'.join(lines), tasks
 
     if intent in ('UPDATE_TASK', 'COMPLETE_TASK', 'DELETE_TASK'):
         if not title:
@@ -408,6 +371,7 @@ def execute(intent, slots):
             row['id'],
             due_date=new_due or row.get('due_date'),
             content=new_title or row.get('content'),
+            title=new_title,
             completed=True if intent == 'COMPLETE_TASK' else row.get('completed')
         )
 
@@ -435,27 +399,33 @@ def execute(intent, slots):
         if not content:
             return '메모 내용을 입력해주세요', None
 
+        # 중복 체크: 동일한 내용의 메모가 이미 있는지 확인
+        existing_memos = list_memo(limit=50)
+        for m in existing_memos:
+            if m.get('content', '').strip() == content.strip():
+                return f'이미 저장된 메모입니다: {content}', {'id': str(m['id']), 'already_exists': True}
+
         memo_id = add_memo(content)
         return '메모를 저장했습니다', {'id': str(memo_id)}
 
-    if intent in ('LIST_MEMO', 'DELETE_MEMO'):
+    if intent == 'LIST_MEMO':
         keyword = slots.get('KEYWORD')
         memo_date = slots.get('MEMO_DATE')
-
-        if intent == 'DELETE_MEMO' and not (keyword or memo_date):
-            return '삭제할 메모의 내용이나 날짜를 알려주세요', None
-
         memos = memo_matches(keyword, memo_date)
+        if not memos:
+            return '조회할 메모가 없습니다', []
+        lines = [f"{i}. {row['content']}" for i, row in enumerate(memos, start=1)]
+        return '\n\n'.join(lines), memos
 
-        if intent == 'LIST_MEMO':
-            if not memos:
-                return '조회할 메모가 없습니다', []
-            return '\n'.join(f"- {row['content']}" for row in memos), memos
-
+    if intent == 'DELETE_MEMO':
+        keyword = slots.get('KEYWORD')
+        memo_date = slots.get('MEMO_DATE')
+        if not (keyword or memo_date):
+            return '삭제할 메모의 내용이나 날짜를 알려주세요', None
+        memos = memo_matches(keyword, memo_date)
         row, error = select_one(memos, '메모')
         if error:
             return error, None
-
         count = delete_memo(row['id'])
         if count:
             return f'{count}개 메모를 삭제했습니다', {'count': count}
@@ -463,27 +433,39 @@ def execute(intent, slots):
 
     return f'작업을 수행할 수 없습니다: {intent}', None
 
+@lru_cache(maxsize=1)
+def init_db():
+    if has_database_url():
+        create_table()
 
-def process_text(text):
+def process_text(text, input_type='텍스트'):  # [수정] input_type 인자 추가 (텍스트 / 직접 녹음 / 파일 업로드)
     t0 = time.perf_counter()
-    result = predict_intent(text)
-
-    intent = result['intent']
-    slots = result['slots']
+    result = {'model_name': None, 'intent': 'UNKNOWN', 'slots': {},
+              'needs_confirmation': False, 'confidence_or_score': 0.0,
+              'score_type': 'unavailable'}
+    intent = 'UNKNOWN'
 
     try:
-        response, data = execute(intent, slots)
-
-        if intent == 'HELP':
-            status = '안내'
-        elif data is None:
-            status = '실패'
-        elif isinstance(data, dict) and 'count' in data:
-            status = '성공' if data['count'] > 0 else '실패'
+        if not isinstance(text, str) or not text.strip():
+            raise ValueError('텍스트를 입력하세요')
+        result = predict_intent(text)
+        intent = result['intent']
+        if any(convert_date(m.group()) is None for m in DATE_PATTERN.finditer(text)) and intent != 'ADD_MEMO':
+            result['needs_confirmation'] = True
+            response, data, status = '유효한 날짜를 입력해 주세요.', None, '확인 필요'
+        elif result['needs_confirmation']:
+            response, data, status = '명령을 확실히 이해하지 못했습니다. 제목과 내용을 확인해 다시 입력해 주세요.', None, '확인 필요'
         else:
-            status = '성공'
-    except Exception as e:
-        response = f'DB 처리 중 오류 발생, {e}'
+            if intent != 'HELP':
+                init_db()
+            response, data = execute(intent, result['slots'])
+            status = '성공' if data is not None or intent == 'HELP' else '확인 필요'
+    except ValueError as exc:
+        response = str(exc)
+        data = None
+        status = '실패'
+    except Exception:
+        response = '명령 처리에 실패했습니다. 모델 및 DB 연결 상태를 확인한 후 다시 시도해 주세요.'
         data = None
         status = '실패'
 
@@ -497,10 +479,11 @@ def process_text(text):
                 status=status,
                 response_text=response,
                 latency_ms=elapsed_ms,
-                error_message=None if status == '성공' else response
+                error_message=None if status == '성공' else response,
+                input_type=input_type  # [수정] 처리 이력에 입력 방식 저장
             )
-    except Exception:
-        pass
+    except Exception as e:
+        print(f"[voice_runs 저장 오류] {type(e).__name__}: {e}")
 
     return {
         **result,
@@ -508,7 +491,8 @@ def process_text(text):
         'response': response,
         'data': data,
         'status': status,
-        'latency_ms': elapsed_ms
+        'latency_ms': elapsed_ms,
+        'input_type': input_type  # [수정]
     }
 
 

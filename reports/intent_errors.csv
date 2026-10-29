@@ -1,0 +1,8 @@
+﻿text,true_intent,predict_intent
+저장한 메모를 모아서 읽어줘,LIST_MEMO,DELETE_MEMO
+내일 저녁 회의 일정을 추가해줄 수 있니,ADD_TASK,DELETE_TASK
+메모함의 병원 연락처를 지워줘,DELETE_MEMO,DELETE_TASK
+내 메모함에는 어떤 내용이 남아 있어,LIST_MEMO,HELP
+육일에 있는 과제 제출 일정 구일로 옮겨줘,UPDATE_TASK,ADD_TASK
+오늘 오전 일정 있따면 알려줄래,LIST_TASK,ADD_TASK
+이번주 일정 모두 다음주로 미뤄 줄 수 있니,UPDATE_TASK,DELETE_TASK

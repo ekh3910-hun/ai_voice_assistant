@@ -1,7 +1,0 @@
-{
-  "rows": 991,
-  "holdout_rows": 199,
-  "accuracy": 0.9899497487437185,
-  "macro_f1": 0.9801404781053904,
-  "note": "Random stratified split; similar expressions can inflate evaluation."
-}

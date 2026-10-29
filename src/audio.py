@@ -3,10 +3,11 @@
 
 import hashlib
 import io
-import librosa
+import math
 import numpy as np
 import pandas as pd
 import soundfile as sf
+from scipy import signal
 
 TARGET_SR = 16000
 TARGET_SUBTYPE = "PCM_16"
@@ -19,6 +20,47 @@ CLIP_RATIO = 0.001
 RECENT_LIMIT = 100
 
 _recent_hashes = {}
+
+
+def _resample(mono: np.ndarray, orig_sr: int, target_sr: int) -> np.ndarray:
+    """오디오 리샘플링 (scipy polyphase 필터 사용)"""
+    if orig_sr == target_sr:
+        return mono
+    gcd = math.gcd(int(orig_sr), int(target_sr))
+    up = target_sr // gcd
+    down = orig_sr // gcd
+    return signal.resample_poly(mono, up, down).astype(np.float32)
+
+
+def _trim_silence(y: np.ndarray, top_db: float = TOP_DB, frame_length: int = 2048, hop_length: int = 512):
+    """
+    무음 구간 제거 (librosa/numba 의존성 없이 순수 NumPy로 동작)
+    """
+    if len(y) <= frame_length:
+        return y, np.array([0, len(y)])
+
+    num_frames = 1 + (len(y) - frame_length) // hop_length
+    frames = np.lib.stride_tricks.as_strided(
+        y,
+        shape=(num_frames, frame_length),
+        strides=(y.strides[0] * hop_length, y.strides[0])
+    )
+    # RMS 에너지 및 상대 dB 계산
+    rms = np.sqrt(np.mean(frames ** 2, axis=-1) + 1e-10)
+    max_rms = float(np.max(rms))
+    if max_rms < 1e-6:
+        return y, np.array([0, len(y)])
+
+    rms_db = 20 * np.log10(rms / max_rms + 1e-10)
+    non_silent = np.where(rms_db >= -top_db)[0]
+
+    if len(non_silent) == 0:
+        return y, np.array([0, len(y)])
+
+    start = max(0, int(non_silent[0] * hop_length))
+    end = min(len(y), int(non_silent[-1] * hop_length + frame_length))
+    return y[start:end], np.array([start, end])
+
 
 # 검사
 def validate_wav(audio):
@@ -56,17 +98,14 @@ def prepare(audio):
 
     clip_ratio = float(np.mean(np.abs(y) >= 0.999))
     mono = y.mean(axis=1, dtype=np.float32)
-    resampled = (
-        librosa.resample(mono, orig_sr=sr, target_sr=TARGET_SR)
-        if sr != TARGET_SR else mono
-    )
+    resampled = _resample(mono, orig_sr=sr, target_sr=TARGET_SR)
 
     if resampled.size == 0 or not np.isfinite(resampled).all():
         raise ValueError("전처리된 음성 데이터가 유효하지 않습니다.")
     if np.max(np.abs(resampled)) < 1e-6:
         raise ValueError("소리가 들리지 않습니다. 다시 말씀해 주세요.")
 
-    trimmed, interval = librosa.effects.trim(resampled, top_db=TOP_DB)
+    trimmed, interval = _trim_silence(resampled, top_db=TOP_DB)
     if trimmed.size == 0:
         raise ValueError("음성 구간을 찾지 못했습니다.")
     return trimmed, interval, clip_ratio

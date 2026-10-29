@@ -1,0 +1,16 @@
+﻿text,expected,model_only,after_keywords,changed,model_correct,final_correct
+오늘 할 일에 운동 추가해줘,ADD_TASK,ADD_TASK,ADD_TASK,False,True,True
+메모에 장보기 추가해줘,ADD_MEMO,ADD_TASK,ADD_MEMO,True,False,True
+저장한 메모 보여줘,LIST_MEMO,LIST_MEMO,LIST_MEMO,False,True,True
+내일 할 일 목록 알려줘,LIST_TASK,LIST_TASK,LIST_TASK,False,True,True
+운동 할 일 삭제해줘,DELETE_TASK,DELETE_TASK,DELETE_TASK,False,True,True
+장보기 메모 삭제해줘,DELETE_MEMO,DELETE_TASK,DELETE_MEMO,True,False,True
+운동 완료 처리해줘,COMPLETE_TASK,COMPLETE_TASK,COMPLETE_TASK,False,True,True
+운동 시간을 오후 3시로 변경해줘,UPDATE_TASK,UPDATE_TASK,UPDATE_TASK,False,True,True
+사용 방법 알려줘,HELP,LIST_TASK,LIST_TASK,False,False,False
+메모 추가하는 방법 알려줘,HELP,LIST_TASK,LIST_TASK,False,False,False
+할 일 삭제하는 방법 알려줘,HELP,LIST_TASK,DELETE_TASK,True,False,False
+메모 말고 할 일에 운동 추가해줘,ADD_TASK,ADD_TASK,ADD_MEMO,True,True,False
+운동을 추가한 할 일 목록 보여줘,LIST_TASK,LIST_TASK,LIST_TASK,False,True,True
+완료한 할 일 목록 보여줘,LIST_TASK,LIST_TASK,COMPLETE_TASK,True,True,False
+저장된 메모를 모아서 읽어줘,LIST_MEMO,LIST_MEMO,LIST_MEMO,False,True,True

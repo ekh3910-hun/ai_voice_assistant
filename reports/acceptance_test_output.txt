@@ -1,0 +1,32 @@
+test_tc01_stereo_resampling (test_acceptance.AcceptanceTests.test_tc01_stereo_resampling) ... ok
+test_tc01_valid_wav (test_acceptance.AcceptanceTests.test_tc01_valid_wav) ... ok
+test_tc02_empty_transcript (test_acceptance.AcceptanceTests.test_tc02_empty_transcript) ... ok
+test_tc02_stt_contract (test_acceptance.AcceptanceTests.test_tc02_stt_contract) ... ok
+test_tc03_completion_filter_is_list (test_acceptance.AcceptanceTests.test_tc03_completion_filter_is_list) ... ok
+test_tc03_confirmation_blocks_execution (test_acceptance.AcceptanceTests.test_tc03_confirmation_blocks_execution) ... ok
+test_tc03_help_is_not_task_list (test_acceptance.AcceptanceTests.test_tc03_help_is_not_task_list) ... ok
+test_tc03_invalid_date_blocks_execution (test_acceptance.AcceptanceTests.test_tc03_invalid_date_blocks_execution) ... ok
+test_tc03_memo_preserves_date_and_content (test_acceptance.AcceptanceTests.test_tc03_memo_preserves_date_and_content) ... ok
+test_tc03_missing_match_not_success (test_acceptance.AcceptanceTests.test_tc03_missing_match_not_success) ... ok
+test_tc03_saved_model_scenarios (test_acceptance.AcceptanceTests.test_tc03_saved_model_scenarios) ... ok
+test_tc03_status_spacing (test_acceptance.AcceptanceTests.test_tc03_status_spacing) ... ok
+test_tc04_emoji_only_rejected (test_acceptance.AcceptanceTests.test_tc04_emoji_only_rejected) ... ok
+test_tc04_tts (test_acceptance.AcceptanceTests.test_tc04_tts) ... ok
+test_tc04_tts_in_running_loop (test_acceptance.AcceptanceTests.test_tc04_tts_in_running_loop) ... ok
+test_tc05_history_written (test_acceptance.AcceptanceTests.test_tc05_history_written) ... ok
+test_tc05_sql_parameter_order (test_acceptance.AcceptanceTests.test_tc05_sql_parameter_order) ... ok
+test_tc05_title_update (test_acceptance.AcceptanceTests.test_tc05_title_update) ... ok
+test_tc06_invalid_wav (test_acceptance.AcceptanceTests.test_tc06_invalid_wav) ... ok
+test_tc07_empty_text (test_acceptance.AcceptanceTests.test_tc07_empty_text) ... ok
+test_tc07_silence (test_acceptance.AcceptanceTests.test_tc07_silence) ... ok
+test_tc08_audio_ui_recovers (test_acceptance.AcceptanceTests.test_tc08_audio_ui_recovers) ... ok
+test_tc08_db_initialization_failure (test_acceptance.AcceptanceTests.test_tc08_db_initialization_failure) ... ok
+test_tc08_memo_failure_preserves_state (test_acceptance.AcceptanceTests.test_tc08_memo_failure_preserves_state) ... ok
+test_tc08_memo_update_failure_preserves_content (test_acceptance.AcceptanceTests.test_tc08_memo_update_failure_preserves_content) ... ok
+test_tc08_model_failure (test_acceptance.AcceptanceTests.test_tc08_model_failure) ... ok
+test_tc08_tts_api_failure (test_acceptance.AcceptanceTests.test_tc08_tts_api_failure) ... ok
+
+----------------------------------------------------------------------
+Ran 27 tests in 0.250s
+
+OK

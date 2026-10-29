@@ -1,181 +1,901 @@
-id,intent,text,slots,sql_file,template_id
-cmd_0001,ADD_TASK,내일 할 일에 운동 추가해 줘,"[{""slot"": ""DUE_DATE"", ""value"": ""내일"", ""start"": 0, ""end"": 2}, {""slot"": ""TITLE"", ""value"": ""운동"", ""start"": 8, ""end"": 10}]",add_task.sql,ADD_TASK_00
-cmd_0002,ADD_TASK,"10월 30일까지 택배 보내기 해야 돼, 할 일에 넣어 줘","[{""slot"": ""DUE_DATE"", ""value"": ""10월 30일"", ""start"": 0, ""end"": 7}, {""slot"": ""TITLE"", ""value"": ""택배 보내기"", ""start"": 10, ""end"": 16}]",add_task.sql,ADD_TASK_01
-cmd_0003,ADD_TASK,택배 보내기를 오늘 할 일로 등록해 주세요,"[{""slot"": ""TITLE"", ""value"": ""택배 보내기"", ""start"": 0, ""end"": 6}, {""slot"": ""DUE_DATE"", ""value"": ""오늘"", ""start"": 8, ""end"": 10}]",add_task.sql,ADD_TASK_02
-cmd_0004,ADD_TASK,다음 달 3일까지 장보기 끝내야 하니까 등록해 줘,"[{""slot"": ""DUE_DATE"", ""value"": ""다음 달 3일"", ""start"": 0, ""end"": 7}, {""slot"": ""TITLE"", ""value"": ""장보기"", ""start"": 10, ""end"": 13}]",add_task.sql,ADD_TASK_03
-cmd_0005,ADD_TASK,"할 일 추가, 보고서 작성","[{""slot"": ""TITLE"", ""value"": ""보고서 작성"", ""start"": 8, ""end"": 14}]",add_task.sql,ADD_TASK_04
-cmd_0006,ADD_TASK,오늘 할 일에 장보기 추가해 줘,"[{""slot"": ""DUE_DATE"", ""value"": ""오늘"", ""start"": 0, ""end"": 2}, {""slot"": ""TITLE"", ""value"": ""장보기"", ""start"": 8, ""end"": 11}]",add_task.sql,ADD_TASK_00
-cmd_0007,ADD_TASK,"이번 주 금요일까지 과제 제출 해야 돼, 할 일에 넣어 줘","[{""slot"": ""DUE_DATE"", ""value"": ""이번 주 금요일"", ""start"": 0, ""end"": 8}, {""slot"": ""TITLE"", ""value"": ""과제 제출"", ""start"": 11, ""end"": 16}]",add_task.sql,ADD_TASK_01
-cmd_0008,ADD_TASK,보고서 작성을 10월 30일 할 일로 등록해 주세요,"[{""slot"": ""TITLE"", ""value"": ""보고서 작성"", ""start"": 0, ""end"": 6}, {""slot"": ""DUE_DATE"", ""value"": ""10월 30일"", ""start"": 8, ""end"": 15}]",add_task.sql,ADD_TASK_02
-cmd_0009,ADD_TASK,다음 달 3일까지 팀플 자료 조사 끝내야 하니까 등록해 줘,"[{""slot"": ""DUE_DATE"", ""value"": ""다음 달 3일"", ""start"": 0, ""end"": 7}, {""slot"": ""TITLE"", ""value"": ""팀플 자료 조사"", ""start"": 10, ""end"": 18}]",add_task.sql,ADD_TASK_03
-cmd_0010,ADD_TASK,"할 일 추가, 과제 제출","[{""slot"": ""TITLE"", ""value"": ""과제 제출"", ""start"": 8, ""end"": 13}]",add_task.sql,ADD_TASK_04
-cmd_0011,ADD_TASK,이번 주 금요일 할 일에 회의 자료 정리 추가해 줘,"[{""slot"": ""DUE_DATE"", ""value"": ""이번 주 금요일"", ""start"": 0, ""end"": 8}, {""slot"": ""TITLE"", ""value"": ""회의 자료 정리"", ""start"": 14, ""end"": 22}]",add_task.sql,ADD_TASK_00
-cmd_0012,ADD_TASK,"모레까지 발표 준비 해야 돼, 할 일에 넣어 줘","[{""slot"": ""DUE_DATE"", ""value"": ""모레"", ""start"": 0, ""end"": 2}, {""slot"": ""TITLE"", ""value"": ""발표 준비"", ""start"": 5, ""end"": 10}]",add_task.sql,ADD_TASK_01
-cmd_0013,ADD_TASK,팀플 자료 조사를 다음 달 3일 할 일로 등록해 주세요,"[{""slot"": ""TITLE"", ""value"": ""팀플 자료 조사"", ""start"": 0, ""end"": 8}, {""slot"": ""DUE_DATE"", ""value"": ""다음 달 3일"", ""start"": 10, ""end"": 17}]",add_task.sql,ADD_TASK_02
-cmd_0014,ADD_TASK,10월 30일까지 발표 준비 끝내야 하니까 등록해 줘,"[{""slot"": ""DUE_DATE"", ""value"": ""10월 30일"", ""start"": 0, ""end"": 7}, {""slot"": ""TITLE"", ""value"": ""발표 준비"", ""start"": 10, ""end"": 15}]",add_task.sql,ADD_TASK_03
-cmd_0015,ADD_TASK,"할 일 추가, 택배 보내기","[{""slot"": ""TITLE"", ""value"": ""택배 보내기"", ""start"": 8, ""end"": 14}]",add_task.sql,ADD_TASK_04
-cmd_0016,ADD_TASK,이번 주 금요일 할 일에 과제 제출 추가해 줘,"[{""slot"": ""DUE_DATE"", ""value"": ""이번 주 금요일"", ""start"": 0, ""end"": 8}, {""slot"": ""TITLE"", ""value"": ""과제 제출"", ""start"": 14, ""end"": 19}]",add_task.sql,ADD_TASK_00
-cmd_0017,ADD_TASK,"다음 주 월요일까지 팀플 자료 조사 해야 돼, 할 일에 넣어 줘","[{""slot"": ""DUE_DATE"", ""value"": ""다음 주 월요일"", ""start"": 0, ""end"": 8}, {""slot"": ""TITLE"", ""value"": ""팀플 자료 조사"", ""start"": 11, ""end"": 19}]",add_task.sql,ADD_TASK_01
-cmd_0018,ADD_TASK,과제 제출을 다음 주 월요일 할 일로 등록해 주세요,"[{""slot"": ""TITLE"", ""value"": ""과제 제출"", ""start"": 0, ""end"": 5}, {""slot"": ""DUE_DATE"", ""value"": ""다음 주 월요일"", ""start"": 7, ""end"": 15}]",add_task.sql,ADD_TASK_02
-cmd_0019,ADD_TASK,이번 주 금요일까지 과제 제출 끝내야 하니까 등록해 줘,"[{""slot"": ""DUE_DATE"", ""value"": ""이번 주 금요일"", ""start"": 0, ""end"": 8}, {""slot"": ""TITLE"", ""value"": ""과제 제출"", ""start"": 11, ""end"": 16}]",add_task.sql,ADD_TASK_03
-cmd_0020,ADD_TASK,"할 일 추가, 회의 자료 정리","[{""slot"": ""TITLE"", ""value"": ""회의 자료 정리"", ""start"": 8, ""end"": 16}]",add_task.sql,ADD_TASK_04
-cmd_0021,LIST_TASK,오늘 할 일 알려 줘,"[{""slot"": ""DUE_DATE"", ""value"": ""오늘"", ""start"": 0, ""end"": 2}]",list_task.sql,LIST_TASK_00
-cmd_0022,LIST_TASK,다음 주 월요일 할 일 뭐 있어?,"[{""slot"": ""DUE_DATE"", ""value"": ""다음 주 월요일"", ""start"": 0, ""end"": 8}]",list_task.sql,LIST_TASK_01
-cmd_0023,LIST_TASK,다음 달 3일까지 해야 할 일 보여 주세요,"[{""slot"": ""DUE_DATE"", ""value"": ""다음 달 3일"", ""start"": 0, ""end"": 7}]",list_task.sql,LIST_TASK_02
-cmd_0024,LIST_TASK,안 끝낸 할 일 목록 읽어 줘,"[{""slot"": ""STATUS"", ""value"": ""안 끝낸"", ""start"": 0, ""end"": 4}]",list_task.sql,LIST_TASK_03
-cmd_0025,LIST_TASK,이번 주 토요일 안 끝낸 할 일 뭐야?,"[{""slot"": ""DUE_DATE"", ""value"": ""이번 주 토요일"", ""start"": 0, ""end"": 8}, {""slot"": ""STATUS"", ""value"": ""안 끝낸"", ""start"": 9, ""end"": 13}]",list_task.sql,LIST_TASK_04
-cmd_0026,LIST_TASK,할 일 전체 목록 보여 줘,[],list_task.sql,LIST_TASK_05
-cmd_0027,LIST_TASK,이번 주 토요일 할 일 알려 줘,"[{""slot"": ""DUE_DATE"", ""value"": ""이번 주 토요일"", ""start"": 0, ""end"": 8}]",list_task.sql,LIST_TASK_00
-cmd_0028,LIST_TASK,내일 할 일 뭐 있어?,"[{""slot"": ""DUE_DATE"", ""value"": ""내일"", ""start"": 0, ""end"": 2}]",list_task.sql,LIST_TASK_01
-cmd_0029,LIST_TASK,모레까지 해야 할 일 보여 주세요,"[{""slot"": ""DUE_DATE"", ""value"": ""모레"", ""start"": 0, ""end"": 2}]",list_task.sql,LIST_TASK_02
-cmd_0030,LIST_TASK,완료한 할 일 목록 읽어 줘,"[{""slot"": ""STATUS"", ""value"": ""완료한"", ""start"": 0, ""end"": 3}]",list_task.sql,LIST_TASK_03
-cmd_0031,LIST_TASK,내일 안 끝낸 할 일 뭐야?,"[{""slot"": ""DUE_DATE"", ""value"": ""내일"", ""start"": 0, ""end"": 2}, {""slot"": ""STATUS"", ""value"": ""안 끝낸"", ""start"": 3, ""end"": 7}]",list_task.sql,LIST_TASK_04
-cmd_0032,LIST_TASK,다음 달 3일 할 일 알려 줘,"[{""slot"": ""DUE_DATE"", ""value"": ""다음 달 3일"", ""start"": 0, ""end"": 7}]",list_task.sql,LIST_TASK_00
-cmd_0033,LIST_TASK,모레 할 일 뭐 있어?,"[{""slot"": ""DUE_DATE"", ""value"": ""모레"", ""start"": 0, ""end"": 2}]",list_task.sql,LIST_TASK_01
-cmd_0034,LIST_TASK,오늘까지 해야 할 일 보여 주세요,"[{""slot"": ""DUE_DATE"", ""value"": ""오늘"", ""start"": 0, ""end"": 2}]",list_task.sql,LIST_TASK_02
-cmd_0035,LIST_TASK,끝낸 할 일 목록 읽어 줘,"[{""slot"": ""STATUS"", ""value"": ""끝낸"", ""start"": 0, ""end"": 2}]",list_task.sql,LIST_TASK_03
-cmd_0036,LIST_TASK,다음 달 3일 아직 못 한 할 일 뭐야?,"[{""slot"": ""DUE_DATE"", ""value"": ""다음 달 3일"", ""start"": 0, ""end"": 7}, {""slot"": ""STATUS"", ""value"": ""아직 못 한"", ""start"": 8, ""end"": 14}]",list_task.sql,LIST_TASK_04
-cmd_0037,LIST_TASK,이번 주 금요일 할 일 알려 줘,"[{""slot"": ""DUE_DATE"", ""value"": ""이번 주 금요일"", ""start"": 0, ""end"": 8}]",list_task.sql,LIST_TASK_00
-cmd_0038,LIST_TASK,이번 주 금요일 할 일 뭐 있어?,"[{""slot"": ""DUE_DATE"", ""value"": ""이번 주 금요일"", ""start"": 0, ""end"": 8}]",list_task.sql,LIST_TASK_01
-cmd_0039,LIST_TASK,다음 주 월요일까지 해야 할 일 보여 주세요,"[{""slot"": ""DUE_DATE"", ""value"": ""다음 주 월요일"", ""start"": 0, ""end"": 8}]",list_task.sql,LIST_TASK_02
-cmd_0040,LIST_TASK,아직 못 한 할 일 목록 읽어 줘,"[{""slot"": ""STATUS"", ""value"": ""아직 못 한"", ""start"": 0, ""end"": 6}]",list_task.sql,LIST_TASK_03
-cmd_0041,UPDATE_TASK,택배 보내기 오늘로 미뤄 줘,"[{""slot"": ""TITLE"", ""value"": ""택배 보내기"", ""start"": 0, ""end"": 6}, {""slot"": ""NEW_DUE_DATE"", ""value"": ""오늘"", ""start"": 7, ""end"": 9}]",update_task.sql,UPDATE_TASK_00
-cmd_0042,UPDATE_TASK,운동 마감을 이번 주 금요일로 바꿔 줘,"[{""slot"": ""TITLE"", ""value"": ""운동"", ""start"": 0, ""end"": 2}, {""slot"": ""NEW_DUE_DATE"", ""value"": ""이번 주 금요일"", ""start"": 7, ""end"": 15}]",update_task.sql,UPDATE_TASK_01
-cmd_0043,UPDATE_TASK,내일 보고서 작성 이번 주 금요일로 옮겨 주세요,"[{""slot"": ""DUE_DATE"", ""value"": ""내일"", ""start"": 0, ""end"": 2}, {""slot"": ""TITLE"", ""value"": ""보고서 작성"", ""start"": 3, ""end"": 9}, {""slot"": ""NEW_DUE_DATE"", ""value"": ""이번 주 금요일"", ""start"": 10, ""end"": 18}]",update_task.sql,UPDATE_TASK_02
-cmd_0044,UPDATE_TASK,택배 보내기 이름을 헬스장 가기로 바꿔 줘,"[{""slot"": ""TITLE"", ""value"": ""택배 보내기"", ""start"": 0, ""end"": 6}, {""slot"": ""NEW_TITLE"", ""value"": ""헬스장 가기"", ""start"": 11, ""end"": 17}]",update_task.sql,UPDATE_TASK_03
-cmd_0045,UPDATE_TASK,회의 자료 정리를 최종 보고서 제출로 수정해 주세요,"[{""slot"": ""TITLE"", ""value"": ""회의 자료 정리"", ""start"": 0, ""end"": 8}, {""slot"": ""NEW_TITLE"", ""value"": ""최종 보고서 제출"", ""start"": 10, ""end"": 19}]",update_task.sql,UPDATE_TASK_04
-cmd_0046,UPDATE_TASK,병원 예약 10월 30일로 미뤄 줘,"[{""slot"": ""TITLE"", ""value"": ""병원 예약"", ""start"": 0, ""end"": 5}, {""slot"": ""NEW_DUE_DATE"", ""value"": ""10월 30일"", ""start"": 6, ""end"": 13}]",update_task.sql,UPDATE_TASK_00
-cmd_0047,UPDATE_TASK,회의 자료 정리 마감을 이번 주 토요일로 바꿔 줘,"[{""slot"": ""TITLE"", ""value"": ""회의 자료 정리"", ""start"": 0, ""end"": 8}, {""slot"": ""NEW_DUE_DATE"", ""value"": ""이번 주 토요일"", ""start"": 13, ""end"": 21}]",update_task.sql,UPDATE_TASK_01
-cmd_0048,UPDATE_TASK,이번 주 토요일 과제 제출 이번 주 금요일로 옮겨 주세요,"[{""slot"": ""DUE_DATE"", ""value"": ""이번 주 토요일"", ""start"": 0, ""end"": 8}, {""slot"": ""TITLE"", ""value"": ""과제 제출"", ""start"": 9, ""end"": 14}, {""slot"": ""NEW_DUE_DATE"", ""value"": ""이번 주 금요일"", ""start"": 15, ""end"": 23}]",update_task.sql,UPDATE_TASK_02
-cmd_0049,UPDATE_TASK,택배 보내기 이름을 중간고사 대비로 바꿔 줘,"[{""slot"": ""TITLE"", ""value"": ""택배 보내기"", ""start"": 0, ""end"": 6}, {""slot"": ""NEW_TITLE"", ""value"": ""중간고사 대비"", ""start"": 11, ""end"": 18}]",update_task.sql,UPDATE_TASK_03
-cmd_0050,UPDATE_TASK,시험 공부를 최종 보고서 제출로 수정해 주세요,"[{""slot"": ""TITLE"", ""value"": ""시험 공부"", ""start"": 0, ""end"": 5}, {""slot"": ""NEW_TITLE"", ""value"": ""최종 보고서 제출"", ""start"": 7, ""end"": 16}]",update_task.sql,UPDATE_TASK_04
-cmd_0051,UPDATE_TASK,운동 오늘로 미뤄 줘,"[{""slot"": ""TITLE"", ""value"": ""운동"", ""start"": 0, ""end"": 2}, {""slot"": ""NEW_DUE_DATE"", ""value"": ""오늘"", ""start"": 3, ""end"": 5}]",update_task.sql,UPDATE_TASK_00
-cmd_0052,UPDATE_TASK,택배 보내기 마감을 내일로 바꿔 줘,"[{""slot"": ""TITLE"", ""value"": ""택배 보내기"", ""start"": 0, ""end"": 6}, {""slot"": ""NEW_DUE_DATE"", ""value"": ""내일"", ""start"": 11, ""end"": 13}]",update_task.sql,UPDATE_TASK_01
-cmd_0053,UPDATE_TASK,다음 달 3일 회의 자료 정리 모레로 옮겨 주세요,"[{""slot"": ""DUE_DATE"", ""value"": ""다음 달 3일"", ""start"": 0, ""end"": 7}, {""slot"": ""TITLE"", ""value"": ""회의 자료 정리"", ""start"": 8, ""end"": 16}, {""slot"": ""NEW_DUE_DATE"", ""value"": ""모레"", ""start"": 17, ""end"": 19}]",update_task.sql,UPDATE_TASK_02
-cmd_0054,UPDATE_TASK,시험 공부 이름을 발표 리허설로 바꿔 줘,"[{""slot"": ""TITLE"", ""value"": ""시험 공부"", ""start"": 0, ""end"": 5}, {""slot"": ""NEW_TITLE"", ""value"": ""발표 리허설"", ""start"": 10, ""end"": 16}]",update_task.sql,UPDATE_TASK_03
-cmd_0055,UPDATE_TASK,과제 제출을 최종 보고서 제출로 수정해 주세요,"[{""slot"": ""TITLE"", ""value"": ""과제 제출"", ""start"": 0, ""end"": 5}, {""slot"": ""NEW_TITLE"", ""value"": ""최종 보고서 제출"", ""start"": 7, ""end"": 16}]",update_task.sql,UPDATE_TASK_04
-cmd_0056,UPDATE_TASK,발표 준비 10월 30일로 미뤄 줘,"[{""slot"": ""TITLE"", ""value"": ""발표 준비"", ""start"": 0, ""end"": 5}, {""slot"": ""NEW_DUE_DATE"", ""value"": ""10월 30일"", ""start"": 6, ""end"": 13}]",update_task.sql,UPDATE_TASK_00
-cmd_0057,UPDATE_TASK,시험 공부 마감을 이번 주 금요일로 바꿔 줘,"[{""slot"": ""TITLE"", ""value"": ""시험 공부"", ""start"": 0, ""end"": 5}, {""slot"": ""NEW_DUE_DATE"", ""value"": ""이번 주 금요일"", ""start"": 10, ""end"": 18}]",update_task.sql,UPDATE_TASK_01
-cmd_0058,UPDATE_TASK,이번 주 토요일 팀플 자료 조사 오늘로 옮겨 주세요,"[{""slot"": ""DUE_DATE"", ""value"": ""이번 주 토요일"", ""start"": 0, ""end"": 8}, {""slot"": ""TITLE"", ""value"": ""팀플 자료 조사"", ""start"": 9, ""end"": 17}, {""slot"": ""NEW_DUE_DATE"", ""value"": ""오늘"", ""start"": 18, ""end"": 20}]",update_task.sql,UPDATE_TASK_02
-cmd_0059,UPDATE_TASK,병원 예약 이름을 최종 보고서 제출로 바꿔 줘,"[{""slot"": ""TITLE"", ""value"": ""병원 예약"", ""start"": 0, ""end"": 5}, {""slot"": ""NEW_TITLE"", ""value"": ""최종 보고서 제출"", ""start"": 10, ""end"": 19}]",update_task.sql,UPDATE_TASK_03
-cmd_0060,UPDATE_TASK,팀플 자료 조사를 헬스장 가기로 수정해 주세요,"[{""slot"": ""TITLE"", ""value"": ""팀플 자료 조사"", ""start"": 0, ""end"": 8}, {""slot"": ""NEW_TITLE"", ""value"": ""헬스장 가기"", ""start"": 10, ""end"": 16}]",update_task.sql,UPDATE_TASK_04
-cmd_0061,COMPLETE_TASK,보고서 작성 완료했어,"[{""slot"": ""TITLE"", ""value"": ""보고서 작성"", ""start"": 0, ""end"": 6}]",update_task.sql,COMPLETE_TASK_00
-cmd_0062,COMPLETE_TASK,"장보기 끝났어, 체크해 줘","[{""slot"": ""TITLE"", ""value"": ""장보기"", ""start"": 0, ""end"": 3}]",update_task.sql,COMPLETE_TASK_01
-cmd_0063,COMPLETE_TASK,오늘 할 일 중에 팀플 자료 조사 완료 처리해 줘,"[{""slot"": ""DUE_DATE"", ""value"": ""오늘"", ""start"": 0, ""end"": 2}, {""slot"": ""TITLE"", ""value"": ""팀플 자료 조사"", ""start"": 10, ""end"": 18}]",update_task.sql,COMPLETE_TASK_02
-cmd_0064,COMPLETE_TASK,발표 준비 다 했어,"[{""slot"": ""TITLE"", ""value"": ""발표 준비"", ""start"": 0, ""end"": 5}]",update_task.sql,COMPLETE_TASK_03
-cmd_0065,COMPLETE_TASK,과제 제출 완료로 바꿔 주세요,"[{""slot"": ""TITLE"", ""value"": ""과제 제출"", ""start"": 0, ""end"": 5}]",update_task.sql,COMPLETE_TASK_04
-cmd_0066,COMPLETE_TASK,팀플 자료 조사 완료했어,"[{""slot"": ""TITLE"", ""value"": ""팀플 자료 조사"", ""start"": 0, ""end"": 8}]",update_task.sql,COMPLETE_TASK_00
-cmd_0067,COMPLETE_TASK,"병원 예약 끝났어, 체크해 줘","[{""slot"": ""TITLE"", ""value"": ""병원 예약"", ""start"": 0, ""end"": 5}]",update_task.sql,COMPLETE_TASK_01
-cmd_0068,COMPLETE_TASK,다음 주 월요일 할 일 중에 시험 공부 완료 처리해 줘,"[{""slot"": ""DUE_DATE"", ""value"": ""다음 주 월요일"", ""start"": 0, ""end"": 8}, {""slot"": ""TITLE"", ""value"": ""시험 공부"", ""start"": 16, ""end"": 21}]",update_task.sql,COMPLETE_TASK_02
-cmd_0069,COMPLETE_TASK,운동 다 했어,"[{""slot"": ""TITLE"", ""value"": ""운동"", ""start"": 0, ""end"": 2}]",update_task.sql,COMPLETE_TASK_03
-cmd_0070,COMPLETE_TASK,장보기 완료로 바꿔 주세요,"[{""slot"": ""TITLE"", ""value"": ""장보기"", ""start"": 0, ""end"": 3}]",update_task.sql,COMPLETE_TASK_04
-cmd_0071,COMPLETE_TASK,과제 제출 완료했어,"[{""slot"": ""TITLE"", ""value"": ""과제 제출"", ""start"": 0, ""end"": 5}]",update_task.sql,COMPLETE_TASK_00
-cmd_0072,COMPLETE_TASK,"운동 끝났어, 체크해 줘","[{""slot"": ""TITLE"", ""value"": ""운동"", ""start"": 0, ""end"": 2}]",update_task.sql,COMPLETE_TASK_01
-cmd_0073,COMPLETE_TASK,이번 주 토요일 할 일 중에 운동 완료 처리해 줘,"[{""slot"": ""DUE_DATE"", ""value"": ""이번 주 토요일"", ""start"": 0, ""end"": 8}, {""slot"": ""TITLE"", ""value"": ""운동"", ""start"": 16, ""end"": 18}]",update_task.sql,COMPLETE_TASK_02
-cmd_0074,COMPLETE_TASK,과제 제출 다 했어,"[{""slot"": ""TITLE"", ""value"": ""과제 제출"", ""start"": 0, ""end"": 5}]",update_task.sql,COMPLETE_TASK_03
-cmd_0075,COMPLETE_TASK,병원 예약 완료로 바꿔 주세요,"[{""slot"": ""TITLE"", ""value"": ""병원 예약"", ""start"": 0, ""end"": 5}]",update_task.sql,COMPLETE_TASK_04
-cmd_0076,COMPLETE_TASK,운동 완료했어,"[{""slot"": ""TITLE"", ""value"": ""운동"", ""start"": 0, ""end"": 2}]",update_task.sql,COMPLETE_TASK_00
-cmd_0077,COMPLETE_TASK,"팀플 자료 조사 끝났어, 체크해 줘","[{""slot"": ""TITLE"", ""value"": ""팀플 자료 조사"", ""start"": 0, ""end"": 8}]",update_task.sql,COMPLETE_TASK_01
-cmd_0078,COMPLETE_TASK,다음 달 3일 할 일 중에 회의 자료 정리 완료 처리해 줘,"[{""slot"": ""DUE_DATE"", ""value"": ""다음 달 3일"", ""start"": 0, ""end"": 7}, {""slot"": ""TITLE"", ""value"": ""회의 자료 정리"", ""start"": 15, ""end"": 23}]",update_task.sql,COMPLETE_TASK_02
-cmd_0079,COMPLETE_TASK,장보기 다 했어,"[{""slot"": ""TITLE"", ""value"": ""장보기"", ""start"": 0, ""end"": 3}]",update_task.sql,COMPLETE_TASK_03
-cmd_0080,COMPLETE_TASK,발표 준비 완료로 바꿔 주세요,"[{""slot"": ""TITLE"", ""value"": ""발표 준비"", ""start"": 0, ""end"": 5}]",update_task.sql,COMPLETE_TASK_04
-cmd_0081,DELETE_TASK,과제 제출 할 일 삭제해 줘,"[{""slot"": ""TITLE"", ""value"": ""과제 제출"", ""start"": 0, ""end"": 5}]",delete_task.sql,DELETE_TASK_00
-cmd_0082,DELETE_TASK,이번 주 금요일 할 일에서 택배 보내기 빼 줘,"[{""slot"": ""DUE_DATE"", ""value"": ""이번 주 금요일"", ""start"": 0, ""end"": 8}, {""slot"": ""TITLE"", ""value"": ""택배 보내기"", ""start"": 15, ""end"": 21}]",delete_task.sql,DELETE_TASK_01
-cmd_0083,DELETE_TASK,할 일에서 택배 보내기 지워 주세요,"[{""slot"": ""TITLE"", ""value"": ""택배 보내기"", ""start"": 6, ""end"": 12}]",delete_task.sql,DELETE_TASK_02
-cmd_0084,DELETE_TASK,"팀플 자료 조사는 안 해도 돼, 지워 줘","[{""slot"": ""TITLE"", ""value"": ""팀플 자료 조사"", ""start"": 0, ""end"": 8}]",delete_task.sql,DELETE_TASK_03
-cmd_0085,DELETE_TASK,병원 예약 할 일 삭제해 줘,"[{""slot"": ""TITLE"", ""value"": ""병원 예약"", ""start"": 0, ""end"": 5}]",delete_task.sql,DELETE_TASK_00
-cmd_0086,DELETE_TASK,10월 30일 할 일에서 장보기 빼 줘,"[{""slot"": ""DUE_DATE"", ""value"": ""10월 30일"", ""start"": 0, ""end"": 7}, {""slot"": ""TITLE"", ""value"": ""장보기"", ""start"": 14, ""end"": 17}]",delete_task.sql,DELETE_TASK_01
-cmd_0087,DELETE_TASK,할 일에서 과제 제출 지워 주세요,"[{""slot"": ""TITLE"", ""value"": ""과제 제출"", ""start"": 6, ""end"": 11}]",delete_task.sql,DELETE_TASK_02
-cmd_0088,DELETE_TASK,"발표 준비는 안 해도 돼, 지워 줘","[{""slot"": ""TITLE"", ""value"": ""발표 준비"", ""start"": 0, ""end"": 5}]",delete_task.sql,DELETE_TASK_03
-cmd_0089,DELETE_TASK,운동 할 일 삭제해 줘,"[{""slot"": ""TITLE"", ""value"": ""운동"", ""start"": 0, ""end"": 2}]",delete_task.sql,DELETE_TASK_00
-cmd_0090,DELETE_TASK,내일 할 일에서 운동 빼 줘,"[{""slot"": ""DUE_DATE"", ""value"": ""내일"", ""start"": 0, ""end"": 2}, {""slot"": ""TITLE"", ""value"": ""운동"", ""start"": 9, ""end"": 11}]",delete_task.sql,DELETE_TASK_01
-cmd_0091,DELETE_TASK,할 일에서 팀플 자료 조사 지워 주세요,"[{""slot"": ""TITLE"", ""value"": ""팀플 자료 조사"", ""start"": 6, ""end"": 14}]",delete_task.sql,DELETE_TASK_02
-cmd_0092,DELETE_TASK,"운동은 안 해도 돼, 지워 줘","[{""slot"": ""TITLE"", ""value"": ""운동"", ""start"": 0, ""end"": 2}]",delete_task.sql,DELETE_TASK_03
-cmd_0093,DELETE_TASK,회의 자료 정리 할 일 삭제해 줘,"[{""slot"": ""TITLE"", ""value"": ""회의 자료 정리"", ""start"": 0, ""end"": 8}]",delete_task.sql,DELETE_TASK_00
-cmd_0094,DELETE_TASK,내일 할 일에서 보고서 작성 빼 줘,"[{""slot"": ""DUE_DATE"", ""value"": ""내일"", ""start"": 0, ""end"": 2}, {""slot"": ""TITLE"", ""value"": ""보고서 작성"", ""start"": 9, ""end"": 15}]",delete_task.sql,DELETE_TASK_01
-cmd_0095,DELETE_TASK,할 일에서 장보기 지워 주세요,"[{""slot"": ""TITLE"", ""value"": ""장보기"", ""start"": 6, ""end"": 9}]",delete_task.sql,DELETE_TASK_02
-cmd_0096,DELETE_TASK,"장보기는 안 해도 돼, 지워 줘","[{""slot"": ""TITLE"", ""value"": ""장보기"", ""start"": 0, ""end"": 3}]",delete_task.sql,DELETE_TASK_03
-cmd_0097,DELETE_TASK,장보기 할 일 삭제해 줘,"[{""slot"": ""TITLE"", ""value"": ""장보기"", ""start"": 0, ""end"": 3}]",delete_task.sql,DELETE_TASK_00
-cmd_0098,DELETE_TASK,이번 주 금요일 할 일에서 발표 준비 빼 줘,"[{""slot"": ""DUE_DATE"", ""value"": ""이번 주 금요일"", ""start"": 0, ""end"": 8}, {""slot"": ""TITLE"", ""value"": ""발표 준비"", ""start"": 15, ""end"": 20}]",delete_task.sql,DELETE_TASK_01
-cmd_0099,DELETE_TASK,할 일에서 시험 공부 지워 주세요,"[{""slot"": ""TITLE"", ""value"": ""시험 공부"", ""start"": 6, ""end"": 11}]",delete_task.sql,DELETE_TASK_02
-cmd_0100,DELETE_TASK,"회의 자료 정리는 안 해도 돼, 지워 줘","[{""slot"": ""TITLE"", ""value"": ""회의 자료 정리"", ""start"": 0, ""end"": 8}]",delete_task.sql,DELETE_TASK_03
-cmd_0101,ADD_MEMO,다음 발표 주제는 음성 인식이라고 메모해 줘,"[{""slot"": ""MEMO_CONTENT"", ""value"": ""다음 발표 주제는 음성 인식"", ""start"": 0, ""end"": 15}]",add_memo.sql,ADD_MEMO_00
-cmd_0102,ADD_MEMO,"메모 추가, 프린터 잉크 사야 함","[{""slot"": ""MEMO_CONTENT"", ""value"": ""프린터 잉크 사야 함"", ""start"": 7, ""end"": 18}]",add_memo.sql,ADD_MEMO_01
-cmd_0103,ADD_MEMO,"프린터 잉크 사야 함, 메모해 둬","[{""slot"": ""MEMO_CONTENT"", ""value"": ""프린터 잉크 사야 함"", ""start"": 0, ""end"": 11}]",add_memo.sql,ADD_MEMO_02
-cmd_0104,ADD_MEMO,다음 발표 주제는 음성 인식이라고 적어 줘,"[{""slot"": ""MEMO_CONTENT"", ""value"": ""다음 발표 주제는 음성 인식"", ""start"": 0, ""end"": 15}]",add_memo.sql,ADD_MEMO_03
-cmd_0105,ADD_MEMO,메모장에 프린터 잉크 사야 함 남겨 주세요,"[{""slot"": ""MEMO_CONTENT"", ""value"": ""프린터 잉크 사야 함"", ""start"": 5, ""end"": 16}]",add_memo.sql,ADD_MEMO_04
-cmd_0106,ADD_MEMO,프린터 잉크 사야 함이라고 메모해 줘,"[{""slot"": ""MEMO_CONTENT"", ""value"": ""프린터 잉크 사야 함"", ""start"": 0, ""end"": 11}]",add_memo.sql,ADD_MEMO_00
-cmd_0107,ADD_MEMO,"메모 추가, 우유랑 계란 사기","[{""slot"": ""MEMO_CONTENT"", ""value"": ""우유랑 계란 사기"", ""start"": 7, ""end"": 16}]",add_memo.sql,ADD_MEMO_01
-cmd_0108,ADD_MEMO,"교수님 면담은 목요일, 메모해 둬","[{""slot"": ""MEMO_CONTENT"", ""value"": ""교수님 면담은 목요일"", ""start"": 0, ""end"": 11}]",add_memo.sql,ADD_MEMO_02
-cmd_0109,ADD_MEMO,회의실 예약 확인 필요라고 적어 줘,"[{""slot"": ""MEMO_CONTENT"", ""value"": ""회의실 예약 확인 필요"", ""start"": 0, ""end"": 12}]",add_memo.sql,ADD_MEMO_03
-cmd_0110,ADD_MEMO,메모장에 우유랑 계란 사기 남겨 주세요,"[{""slot"": ""MEMO_CONTENT"", ""value"": ""우유랑 계란 사기"", ""start"": 5, ""end"": 14}]",add_memo.sql,ADD_MEMO_04
-cmd_0111,ADD_MEMO,우유랑 계란 사기라고 메모해 줘,"[{""slot"": ""MEMO_CONTENT"", ""value"": ""우유랑 계란 사기"", ""start"": 0, ""end"": 9}]",add_memo.sql,ADD_MEMO_00
-cmd_0112,ADD_MEMO,"메모 추가, 주차 위치 지하 2층","[{""slot"": ""MEMO_CONTENT"", ""value"": ""주차 위치 지하 2층"", ""start"": 7, ""end"": 18}]",add_memo.sql,ADD_MEMO_01
-cmd_0113,ADD_MEMO,"주차 위치 지하 2층, 메모해 둬","[{""slot"": ""MEMO_CONTENT"", ""value"": ""주차 위치 지하 2층"", ""start"": 0, ""end"": 11}]",add_memo.sql,ADD_MEMO_02
-cmd_0114,ADD_MEMO,주차 위치 지하 2층이라고 적어 줘,"[{""slot"": ""MEMO_CONTENT"", ""value"": ""주차 위치 지하 2층"", ""start"": 0, ""end"": 11}]",add_memo.sql,ADD_MEMO_03
-cmd_0115,ADD_MEMO,메모장에 교수님 면담은 목요일 남겨 주세요,"[{""slot"": ""MEMO_CONTENT"", ""value"": ""교수님 면담은 목요일"", ""start"": 5, ""end"": 16}]",add_memo.sql,ADD_MEMO_04
-cmd_0116,ADD_MEMO,주차 위치 지하 2층이라고 메모해 줘,"[{""slot"": ""MEMO_CONTENT"", ""value"": ""주차 위치 지하 2층"", ""start"": 0, ""end"": 11}]",add_memo.sql,ADD_MEMO_00
-cmd_0117,ADD_MEMO,"메모 추가, 다음 발표 주제는 음성 인식","[{""slot"": ""MEMO_CONTENT"", ""value"": ""다음 발표 주제는 음성 인식"", ""start"": 7, ""end"": 22}]",add_memo.sql,ADD_MEMO_01
-cmd_0118,ADD_MEMO,"다음 발표 주제는 음성 인식, 메모해 둬","[{""slot"": ""MEMO_CONTENT"", ""value"": ""다음 발표 주제는 음성 인식"", ""start"": 0, ""end"": 15}]",add_memo.sql,ADD_MEMO_02
-cmd_0119,ADD_MEMO,교수님 면담은 목요일이라고 적어 줘,"[{""slot"": ""MEMO_CONTENT"", ""value"": ""교수님 면담은 목요일"", ""start"": 0, ""end"": 11}]",add_memo.sql,ADD_MEMO_03
-cmd_0120,ADD_MEMO,메모장에 다음 발표 주제는 음성 인식 남겨 주세요,"[{""slot"": ""MEMO_CONTENT"", ""value"": ""다음 발표 주제는 음성 인식"", ""start"": 5, ""end"": 20}]",add_memo.sql,ADD_MEMO_04
-cmd_0121,LIST_MEMO,과제 관련 메모 보여 줘,"[{""slot"": ""KEYWORD"", ""value"": ""과제"", ""start"": 0, ""end"": 2}]",list_memo.sql,LIST_MEMO_00
-cmd_0122,LIST_MEMO,아이디어 메모 찾아 줘,"[{""slot"": ""KEYWORD"", ""value"": ""아이디어"", ""start"": 0, ""end"": 4}]",list_memo.sql,LIST_MEMO_01
-cmd_0123,LIST_MEMO,시험 메모 뭐 있었지?,"[{""slot"": ""KEYWORD"", ""value"": ""시험"", ""start"": 0, ""end"": 2}]",list_memo.sql,LIST_MEMO_02
-cmd_0124,LIST_MEMO,오늘 쓴 메모 알려 줘,"[{""slot"": ""MEMO_DATE"", ""value"": ""오늘"", ""start"": 0, ""end"": 2}]",list_memo.sql,LIST_MEMO_03
-cmd_0125,LIST_MEMO,지난주 금요일 적어 둔 메모 보여 줘,"[{""slot"": ""MEMO_DATE"", ""value"": ""지난주 금요일"", ""start"": 0, ""end"": 7}]",list_memo.sql,LIST_MEMO_04
-cmd_0126,LIST_MEMO,메모 전부 읽어 주세요,[],list_memo.sql,LIST_MEMO_05
-cmd_0127,LIST_MEMO,아이디어 관련 메모 보여 줘,"[{""slot"": ""KEYWORD"", ""value"": ""아이디어"", ""start"": 0, ""end"": 4}]",list_memo.sql,LIST_MEMO_00
-cmd_0128,LIST_MEMO,회의 메모 찾아 줘,"[{""slot"": ""KEYWORD"", ""value"": ""회의"", ""start"": 0, ""end"": 2}]",list_memo.sql,LIST_MEMO_01
-cmd_0129,LIST_MEMO,장보기 메모 뭐 있었지?,"[{""slot"": ""KEYWORD"", ""value"": ""장보기"", ""start"": 0, ""end"": 3}]",list_memo.sql,LIST_MEMO_02
-cmd_0130,LIST_MEMO,10월 15일 쓴 메모 알려 줘,"[{""slot"": ""MEMO_DATE"", ""value"": ""10월 15일"", ""start"": 0, ""end"": 7}]",list_memo.sql,LIST_MEMO_03
-cmd_0131,LIST_MEMO,오늘 적어 둔 메모 보여 줘,"[{""slot"": ""MEMO_DATE"", ""value"": ""오늘"", ""start"": 0, ""end"": 2}]",list_memo.sql,LIST_MEMO_04
-cmd_0132,LIST_MEMO,장보기 관련 메모 보여 줘,"[{""slot"": ""KEYWORD"", ""value"": ""장보기"", ""start"": 0, ""end"": 3}]",list_memo.sql,LIST_MEMO_00
-cmd_0133,LIST_MEMO,장보기 메모 찾아 줘,"[{""slot"": ""KEYWORD"", ""value"": ""장보기"", ""start"": 0, ""end"": 3}]",list_memo.sql,LIST_MEMO_01
-cmd_0134,LIST_MEMO,발표 메모 뭐 있었지?,"[{""slot"": ""KEYWORD"", ""value"": ""발표"", ""start"": 0, ""end"": 2}]",list_memo.sql,LIST_MEMO_02
-cmd_0135,LIST_MEMO,지난주 금요일 쓴 메모 알려 줘,"[{""slot"": ""MEMO_DATE"", ""value"": ""지난주 금요일"", ""start"": 0, ""end"": 7}]",list_memo.sql,LIST_MEMO_03
-cmd_0136,LIST_MEMO,그저께 적어 둔 메모 보여 줘,"[{""slot"": ""MEMO_DATE"", ""value"": ""그저께"", ""start"": 0, ""end"": 3}]",list_memo.sql,LIST_MEMO_04
-cmd_0137,LIST_MEMO,시험 관련 메모 보여 줘,"[{""slot"": ""KEYWORD"", ""value"": ""시험"", ""start"": 0, ""end"": 2}]",list_memo.sql,LIST_MEMO_00
-cmd_0138,LIST_MEMO,과제 메모 찾아 줘,"[{""slot"": ""KEYWORD"", ""value"": ""과제"", ""start"": 0, ""end"": 2}]",list_memo.sql,LIST_MEMO_01
-cmd_0139,LIST_MEMO,회의 메모 뭐 있었지?,"[{""slot"": ""KEYWORD"", ""value"": ""회의"", ""start"": 0, ""end"": 2}]",list_memo.sql,LIST_MEMO_02
-cmd_0140,LIST_MEMO,그저께 쓴 메모 알려 줘,"[{""slot"": ""MEMO_DATE"", ""value"": ""그저께"", ""start"": 0, ""end"": 3}]",list_memo.sql,LIST_MEMO_03
-cmd_0141,DELETE_MEMO,과제 메모 삭제해 줘,"[{""slot"": ""KEYWORD"", ""value"": ""과제"", ""start"": 0, ""end"": 2}]",delete_memo.sql,DELETE_MEMO_00
-cmd_0142,DELETE_MEMO,시험 관련 메모 지워 줘,"[{""slot"": ""KEYWORD"", ""value"": ""시험"", ""start"": 0, ""end"": 2}]",delete_memo.sql,DELETE_MEMO_01
-cmd_0143,DELETE_MEMO,시험 들어간 메모 다 지워 줘,"[{""slot"": ""KEYWORD"", ""value"": ""시험"", ""start"": 0, ""end"": 2}]",delete_memo.sql,DELETE_MEMO_02
-cmd_0144,DELETE_MEMO,그저께 쓴 메모 삭제해 주세요,"[{""slot"": ""MEMO_DATE"", ""value"": ""그저께"", ""start"": 0, ""end"": 3}]",delete_memo.sql,DELETE_MEMO_03
-cmd_0145,DELETE_MEMO,방금 쓴 메모 지워 줘,[],delete_memo.sql,DELETE_MEMO_04
-cmd_0146,DELETE_MEMO,발표 메모 삭제해 줘,"[{""slot"": ""KEYWORD"", ""value"": ""발표"", ""start"": 0, ""end"": 2}]",delete_memo.sql,DELETE_MEMO_00
-cmd_0147,DELETE_MEMO,회의 관련 메모 지워 줘,"[{""slot"": ""KEYWORD"", ""value"": ""회의"", ""start"": 0, ""end"": 2}]",delete_memo.sql,DELETE_MEMO_01
-cmd_0148,DELETE_MEMO,회의 들어간 메모 다 지워 줘,"[{""slot"": ""KEYWORD"", ""value"": ""회의"", ""start"": 0, ""end"": 2}]",delete_memo.sql,DELETE_MEMO_02
-cmd_0149,DELETE_MEMO,오늘 쓴 메모 삭제해 주세요,"[{""slot"": ""MEMO_DATE"", ""value"": ""오늘"", ""start"": 0, ""end"": 2}]",delete_memo.sql,DELETE_MEMO_03
-cmd_0150,DELETE_MEMO,회의 메모 삭제해 줘,"[{""slot"": ""KEYWORD"", ""value"": ""회의"", ""start"": 0, ""end"": 2}]",delete_memo.sql,DELETE_MEMO_00
-cmd_0151,DELETE_MEMO,아이디어 관련 메모 지워 줘,"[{""slot"": ""KEYWORD"", ""value"": ""아이디어"", ""start"": 0, ""end"": 4}]",delete_memo.sql,DELETE_MEMO_01
-cmd_0152,DELETE_MEMO,장보기 들어간 메모 다 지워 줘,"[{""slot"": ""KEYWORD"", ""value"": ""장보기"", ""start"": 0, ""end"": 3}]",delete_memo.sql,DELETE_MEMO_02
-cmd_0153,DELETE_MEMO,10월 15일 쓴 메모 삭제해 주세요,"[{""slot"": ""MEMO_DATE"", ""value"": ""10월 15일"", ""start"": 0, ""end"": 7}]",delete_memo.sql,DELETE_MEMO_03
-cmd_0154,DELETE_MEMO,장보기 메모 삭제해 줘,"[{""slot"": ""KEYWORD"", ""value"": ""장보기"", ""start"": 0, ""end"": 3}]",delete_memo.sql,DELETE_MEMO_00
-cmd_0155,DELETE_MEMO,과제 관련 메모 지워 줘,"[{""slot"": ""KEYWORD"", ""value"": ""과제"", ""start"": 0, ""end"": 2}]",delete_memo.sql,DELETE_MEMO_01
-cmd_0156,DELETE_MEMO,아이디어 들어간 메모 다 지워 줘,"[{""slot"": ""KEYWORD"", ""value"": ""아이디어"", ""start"": 0, ""end"": 4}]",delete_memo.sql,DELETE_MEMO_02
-cmd_0157,DELETE_MEMO,지난주 금요일 쓴 메모 삭제해 주세요,"[{""slot"": ""MEMO_DATE"", ""value"": ""지난주 금요일"", ""start"": 0, ""end"": 7}]",delete_memo.sql,DELETE_MEMO_03
-cmd_0158,DELETE_MEMO,시험 메모 삭제해 줘,"[{""slot"": ""KEYWORD"", ""value"": ""시험"", ""start"": 0, ""end"": 2}]",delete_memo.sql,DELETE_MEMO_00
-cmd_0159,DELETE_MEMO,장보기 관련 메모 지워 줘,"[{""slot"": ""KEYWORD"", ""value"": ""장보기"", ""start"": 0, ""end"": 3}]",delete_memo.sql,DELETE_MEMO_01
-cmd_0160,DELETE_MEMO,과제 들어간 메모 다 지워 줘,"[{""slot"": ""KEYWORD"", ""value"": ""과제"", ""start"": 0, ""end"": 2}]",delete_memo.sql,DELETE_MEMO_02
-cmd_0161,HELP,사용할 수 있는 명령 알려 줘,[],,HELP_00
-cmd_0162,HELP,지원하는 명령을 알려 주세요,[],,HELP_00
-cmd_0163,HELP,어떤 명령을 사용할 수 있어?,[],,HELP_00
-cmd_0164,HELP,여기서 가능한 명령이 뭐야?,[],,HELP_00
-cmd_0165,HELP,사용 방법 알려 줘,[],,HELP_01
-cmd_0166,HELP,이 음성 비서는 어떻게 사용해?,[],,HELP_01
-cmd_0167,HELP,처음 사용하는데 사용법 설명해 주세요,[],,HELP_01
-cmd_0168,HELP,이 서비스 이용 방법을 안내해 줘,[],,HELP_01
-cmd_0169,HELP,메모를 추가하려면 어떻게 말해야 해?,[],,HELP_02
-cmd_0170,HELP,할 일을 등록하는 명령 예시 알려 줘,[],,HELP_02
-cmd_0171,HELP,저장된 메모는 어떻게 조회해?,[],,HELP_02
-cmd_0172,HELP,할 일을 삭제하려면 무슨 말을 해야 해?,[],,HELP_02
-cmd_0173,HELP,도움말 보여 줘,[],,HELP_03
-cmd_0174,HELP,도움말 읽어 주세요,[],,HELP_03
-cmd_0175,HELP,도움말을 확인하고 싶어,[],,HELP_03
-cmd_0176,HELP,도움말 좀 안내해 줘,[],,HELP_03
-cmd_0177,HELP,메모 기능으로 무엇을 할 수 있어?,[],,HELP_04
-cmd_0178,HELP,할 일 관리 기능을 설명해 줘,[],,HELP_04
-cmd_0179,HELP,이 음성 비서가 할 수 있는 일을 소개해 줘,[],,HELP_04
-cmd_0180,HELP,지원하는 기능 목록을 보여 주세요,[],,HELP_04
+﻿text,intent
+다음주 월요일 언니 연주회 일정 추가해줘,ADD_TASK
+책 읽기 일정 완료했다고 기록해 줘,COMPLETE_TASK
+다음달 출장 일정 취소해줄래,DELETE_TASK
+영어 공부 일정 완료했다고 기록해 줘,COMPLETE_TASK
+내가 저장한 회의 메모를 없애줘,DELETE_MEMO
+세탁하기 할 일 다 했어 완료로 바꿔 줘,COMPLETE_TASK
+여기서 가능한 명령이 뭐야?,HELP
+우유 사기 할 일 기한을 오늘로 바꿔 줘,UPDATE_TASK
+자료 정리 할 일 다 했어 완료로 바꿔 줘,COMPLETE_TASK
+장보기 들어간 메모 다 지워 줘,DELETE_MEMO
+이번주 토요일 워너원 콘서트 관람 일정 추가해줘,ADD_TASK
+다음주 수요일에 발표 일정 추가해줘,ADD_TASK
+과제 기한 이번주 까지라고 기록해줄래,ADD_MEMO
+팔일에 있는 일정 전부 삭제해줘,DELETE_TASK
+내일 일정 모레로 미뤄줘,UPDATE_TASK
+내가 쓴 메모를 한번 훑어봐 줘,LIST_MEMO
+할 일 수정 도움말 보여 줘,HELP
+회의 참석 끝냈으니 완료로 표시해 줘,COMPLETE_TASK
+운동하기 할 일 기한을 일요일로 바꿔 줘,UPDATE_TASK
+발표 연습 작업 끝났다고 체크해 줘,COMPLETE_TASK
+오늘 남은 일정 전부 삭제해줘,DELETE_TASK
+이번 주 토요일 할 일 중에 운동 완료 처리해 줘,COMPLETE_TASK
+메모 추가 어떻게 해,HELP
+발표 내용라고 메모해 줘,ADD_MEMO
+식단 계획 적어 둔 메모 읽어 줘,LIST_MEMO
+이번 주 토요일 과제 제출 이번 주 금요일로 옮겨 주세요,UPDATE_TASK
+운동하기 할 일 날짜를 수요일로 변경해 줘,UPDATE_TASK
+내일 일정에 친구 만나기 추가해주겠니,ADD_TASK
+주차 위치 지하 2층이라고 적어 줘,ADD_MEMO
+운동하기 일정을 오늘로 수정해 줘,UPDATE_TASK
+메모에 남긴 발표 준비 내용을 없애줘,DELETE_MEMO
+빨래 개기 할 일 항목을 목록에서 빼줘,DELETE_TASK
+친구 연락처 메모 찾아 줘,LIST_MEMO
+친구에게 전화하기 할 일 다 했어 완료로 바꿔 줘,COMPLETE_TASK
+사용 방법 도움말 보여 줘,HELP
+지난 일정 모두 삭제해줘,DELETE_TASK
+다음 주 월요일까지 해야 할 일 보여 주세요,LIST_TASK
+새 메모로 병원 방문 추가해 줘,ADD_MEMO
+도움말 명령어 예시 알려 줘,HELP
+과제 제출 완료했어,COMPLETE_TASK
+사용 방법 명령어 예시 알려 줘,HELP
+칠월 삼십일 오후 일정이 뭐야,LIST_TASK
+도움말 사용법 설명해 줘,HELP
+프로젝트 아이디어라고 메모해 줘,ADD_MEMO
+택배 보내기 할 일 다 했어 완료로 바꿔 줘,COMPLETE_TASK
+저장한 메모를 모아서 읽어줘,LIST_MEMO
+"회의 자료 정리는 안 해도 돼, 지워 줘",DELETE_TASK
+새 메모로 업무 인수인계 추가해 줘,ADD_MEMO
+발표 메모 뭐 있었지?,LIST_MEMO
+운동 기록 메모 내용 알려 줘,LIST_MEMO
+이번주 학교 중요 일정 알려줘,LIST_TASK
+발표 연습 끝냈으니 완료로 표시해 줘,COMPLETE_TASK
+장보기 작업 끝났다고 체크해 줘,COMPLETE_TASK
+팀플 자료 조사 완료했어,COMPLETE_TASK
+다음 달 십오일에 생일파티 일정 추가해줄수있니,ADD_TASK
+내일 오전 열시에 과외 일정 추가해줘,ADD_TASK
+주차 위치 지하 2층이라고 메모해 줘,ADD_MEMO
+모레까지 해야 할 일 보여 주세요,LIST_TASK
+할 일 수정 어떻게 해,HELP
+할 일 관리에서 보고서 제출을 지워줘,DELETE_TASK
+병원 방문 메모 기록 없애 줘,DELETE_MEMO
+발표 준비 완료로 바꿔 주세요,COMPLETE_TASK
+우유 사기 할 일 날짜를 내일로 변경해 줘,UPDATE_TASK
+할 일 조회 사용법 설명해 줘,HELP
+발표 내용라고 적은 메모 지워 줘,DELETE_MEMO
+메모에 장보기 목록 적어 줘,ADD_MEMO
+독서 기록 메모를 삭제해줘,DELETE_MEMO
+기능 목록 기능 안내해 줘,HELP
+프로젝트 점검 작업 끝났다고 체크해 줘,COMPLETE_TASK
+메모 삭제 어떻게 해,HELP
+모레 정오에 돌잔치 일정 추가해줘,ADD_TASK
+내일 열시에 가족사진촬영 일정 추가해줘,ADD_TASK
+메모장에 교수님 면담은 목요일 남겨 주세요,ADD_MEMO
+팔일에 있는 회의 일정 취소해줘,DELETE_TASK
+내일 오후에 등산 일정 추가해줘,ADD_TASK
+할 일 삭제 방법 알려 줘,HELP
+팀플 자료 조사를 헬스장 가기로 수정해 주세요,UPDATE_TASK
+내일 가족모임 일정 취소해라,DELETE_TASK
+할 일 완료 명령어 예시 알려 줘,HELP
+끝낸 할 일 목록 읽어 줘,LIST_TASK
+이번 주 토요일에 갈 애견샵 일정을 취소해줘,DELETE_TASK
+발표 내용 적어 둔 메모 읽어 줘,LIST_MEMO
+청소하기 작업 끝났다고 체크해 줘,COMPLETE_TASK
+운동하기 작업 끝났다고 체크해 줘,COMPLETE_TASK
+시험 메모 삭제해 줘,DELETE_MEMO
+수업 필기 관련해서 적어 놓은 게 있나 확인해줘,LIST_MEMO
+내일 오전에 있는 모든 일정을 취소해줘,DELETE_TASK
+집 청소 할 일 항목을 목록에서 빼줘,DELETE_TASK
+회의 자료 정리 할 일 삭제해 줘,DELETE_TASK
+내일 일정 모두 확인해주겠니,LIST_TASK
+운동하기 할 일 기한을 수요일로 바꿔 줘,UPDATE_TASK
+발표 내용 메모 내용 알려 줘,LIST_MEMO
+장보기 목록 내용의 메모를 삭제해 줘,DELETE_MEMO
+주말 계획 내용의 메모를 삭제해 줘,DELETE_MEMO
+오늘 오후 미용실 일정 취소해줘,DELETE_TASK
+다음달 한국 입국 일정 알려줘,LIST_TASK
+다음 달 중순 십오일에 친구 결혼식 일정을 추가해줘,ADD_TASK
+이번 주 토요일 안 끝낸 할 일 뭐야?,LIST_TASK
+장보기 목록 메모 하나 만들어 줘,ADD_MEMO
+이 음성 비서가 할 수 있는 일을 소개해 줘,HELP
+다음달 이십사일에 학회 일정 추가해줘,ADD_TASK
+메모 목록에서 오늘 배운 내용 제거해 줘,DELETE_MEMO
+음성 명령 기능 안내해 줘,HELP
+택배 보내기 할 일 완료 처리해 줘,COMPLETE_TASK
+메모 조회 기능 안내해 줘,HELP
+프로젝트 아이디어 내용 메모로 저장해 줘,ADD_MEMO
+메모에 병원 방문 적어 줘,ADD_MEMO
+운동하기 할 일 날짜를 일요일로 변경해 줘,UPDATE_TASK
+일월 구일 어머님 제사 일정 추가해줘,ADD_TASK
+내일 할 일에 운동 추가해 줘,ADD_TASK
+이번 주 금요일까지 과제 제출 끝내야 하니까 등록해 줘,ADD_TASK
+주차 위치라는 제목으로 저장한 메모를 지워줘,DELETE_MEMO
+시험 공부를 최종 보고서 제출로 수정해 주세요,UPDATE_TASK
+내가 메모한 내용들을 알려줄래,LIST_MEMO
+회의 자료 정리를 최종 보고서 제출로 수정해 주세요,UPDATE_TASK
+"교수님 면담은 목요일, 메모해 둬",ADD_MEMO
+오늘 일정의 시간을 한 시간 후로 연기해줘,UPDATE_TASK
+택배 관련 내용 메모 찾아 줘,LIST_MEMO
+기록해 둔 메모가 무엇인지 궁금해,LIST_MEMO
+사용 방법 어떻게 해,HELP
+택배 관련 내용 메모 기록 없애 줘,DELETE_MEMO
+모레까지 영어 발표라고 메모해줘,ADD_MEMO
+수업 정리 내용의 메모를 삭제해 줘,DELETE_MEMO
+할 일 조회 어떻게 해,HELP
+오늘 일정 모두 취소해줘,DELETE_TASK
+"10월 30일까지 택배 보내기 해야 돼, 할 일에 넣어 줘",ADD_TASK
+장보기 관련해서 적어 놓은 게 있나 확인해줘,LIST_MEMO
+팀플 자료 조사를 다음 달 3일 할 일로 등록해 주세요,ADD_TASK
+팔월이십육일 일정알려줘,LIST_TASK
+장보기 목록 메모 삭제해 줘,DELETE_MEMO
+발표 준비 10월 30일로 미뤄 줘,UPDATE_TASK
+새 메모로 회의 준비 추가해 줘,ADD_MEMO
+병원 연락처 관련해서 적어 놓은 게 있나 확인해줘,LIST_MEMO
+이번주 화요일 오후 일정이 어떻게 되는지 알려줘,LIST_TASK
+10월 30일까지 발표 준비 끝내야 하니까 등록해 줘,ADD_TASK
+과제 제출 다 했어,COMPLETE_TASK
+할 일 추가 도움말 보여 줘,HELP
+오늘 할 일 중에 팀플 자료 조사 완료 처리해 줘,COMPLETE_TASK
+오늘 저녁식사 모임 일정 삭제해주겠니,DELETE_TASK
+내일 가장 빠른 스케줄이 언제인지 알려줘,LIST_TASK
+다음주 월요일 오전 일정 알려줘,LIST_TASK
+메모장에 다음 발표 주제는 음성 인식 남겨 주세요,ADD_MEMO
+아이디어 들어간 메모 다 지워 줘,DELETE_MEMO
+이번 주 일정 쭉 알려줘,LIST_TASK
+유월 팔일에 과제 제출 일정 추가해 줄 수 있니,ADD_TASK
+운동하기 할 일 기한을 목요일로 바꿔 줘,UPDATE_TASK
+내일 일정좀 알려줘,LIST_TASK
+오늘 저녁 여섯시 식사 일정 추가해줘,ADD_TASK
+다음 주 금요일 과제 제출 마감일 설정해줘,ADD_TASK
+육월달 휴학 일정 언제인지 알려줘,LIST_TASK
+내일 오전 일정이 어떻게 되는지 알려줘,LIST_TASK
+발표 내용 내용의 메모를 삭제해 줘,DELETE_MEMO
+발표 내용 메모 삭제해 줘,DELETE_MEMO
+보고서 작성 완료했어,COMPLETE_TASK
+오늘 오후일정 알려주겠니,LIST_TASK
+메모 목록에서 친구 연락처 제거해 줘,DELETE_MEMO
+주말 계획 메모 내용 알려 줘,LIST_MEMO
+팔월 십이일부터 십사일까지 태국 여행 일정 추가해줘,ADD_TASK
+"메모 추가, 프린터 잉크 사야 함",ADD_MEMO
+주말 계획 메모 찾아 줘,LIST_MEMO
+다음 주 수요일에 중간고사 일정 추가해줘,ADD_TASK
+지원하는 명령을 알려 주세요,HELP
+운동 할 일 항목을 목록에서 빼줘,DELETE_TASK
+이번 십일 동안 갈 싱가폴 멕시코 비행기 일정을 알려줘,LIST_TASK
+병원 방문 내용 메모로 저장해 줘,ADD_MEMO
+택배 안내라는 제목으로 저장한 메모를 지워줘,DELETE_MEMO
+"모레까지 발표 준비 해야 돼, 할 일에 넣어 줘",ADD_TASK
+영어 공부 작업 끝났다고 체크해 줘,COMPLETE_TASK
+책 읽기 할 일 다 했어 완료로 바꿔 줘,COMPLETE_TASK
+내일 오전 여섯시에 미용실 일정 추가해줘,ADD_TASK
+업무 인수인계 기록을 메모에 남겨 줘,ADD_MEMO
+할 일 삭제 사용법 설명해 줘,HELP
+이번 달 주말 일정을 전부 삭제해줘,DELETE_TASK
+내일 모래 오전 조기축구 모임 일정 추가해줘,ADD_TASK
+책 읽기 할 일 완료 처리해 줘,COMPLETE_TASK
+택배 안내 관련해서 적어 놓은 게 있나 확인해줘,LIST_MEMO
+식단 계획 관련 메모 보여 줘,LIST_MEMO
+오늘 일정을 모두 알려줘,LIST_TASK
+병원 연락처라는 제목으로 저장한 메모를 지워줘,DELETE_MEMO
+"팀플 자료 조사 끝났어, 체크해 줘",COMPLETE_TASK
+내일 일정 알려줘,LIST_TASK
+팀 회의 관련 메모 보여 줘,LIST_MEMO
+내일 모레 오전에 부산 가는 스케줄 넣어줘,ADD_TASK
+메모에 운동 기록 적어 줘,ADD_MEMO
+운동하기 일정을 이번 주로 수정해 줘,UPDATE_TASK
+다음 주 월요일 할 일 중에 시험 공부 완료 처리해 줘,COMPLETE_TASK
+운동 기록 메모 찾아 줘,LIST_MEMO
+메모 조회 도움말 보여 줘,HELP
+운동하기 일정을 토요일로 수정해 줘,UPDATE_TASK
+어제 무슨 일정 있었는 지 알려줘,LIST_TASK
+다음 달 3일 아직 못 한 할 일 뭐야?,LIST_TASK
+내일 오전에 회의미팅 일정 넣어줘,ADD_TASK
+메모를 추가하려면 어떻게 말해야 해?,HELP
+피크닉 일정을 이번주 일요일로 추가해줘,ADD_TASK
+"할 일 추가, 과제 제출",ADD_TASK
+운동하기 일정을 모레로 수정해 줘,UPDATE_TASK
+프로젝트 아이디어 관련 메모 보여 줘,LIST_MEMO
+장보기 끝냈으니 완료로 표시해 줘,COMPLETE_TASK
+장보기 메모 뭐 있었지?,LIST_MEMO
+이번주에 학교 관련 일정 다 알려줘,LIST_TASK
+이번주 수요일 사촌동생과 놀이공원 일정 취소해줘,DELETE_TASK
+할 일 추가 사용법 설명해 줘,HELP
+이천십구년 이월 이십칠일 파주 지혜의집 미팅 일정 추가해줘,ADD_TASK
+오늘의 일정을 내일로 옮겨줘,UPDATE_TASK
+업무 인수인계 적어 둔 메모 읽어 줘,LIST_MEMO
+내일 오후에 회의 일정 취소할 수 있니,DELETE_TASK
+메모장에 우유랑 계란 사기 남겨 주세요,ADD_MEMO
+할 일 조회 방법 알려 줘,HELP
+다음 달 3일 할 일 중에 회의 자료 정리 완료 처리해 줘,COMPLETE_TASK
+사용 방법 기능 안내해 줘,HELP
+친구에게 전화하기 할 일 완료 처리해 줘,COMPLETE_TASK
+내일 저녁 가족모임 일정 취소해라,DELETE_TASK
+다음주 회의일정을 모두 취소해줘,DELETE_TASK
+우유 사기 할 일 완료 처리해 줘,COMPLETE_TASK
+음성 비서 명령어 예시 알려 줘,HELP
+여행 준비 기록을 메모에 남겨 줘,ADD_MEMO
+병원 방문 메모 삭제해 줘,DELETE_MEMO
+금요일에 동생이랑 저녁먹기 일정 삭제해줄 수 있니,DELETE_TASK
+사월 삼십일에 백일 이라고 기록해줘,ADD_MEMO
+메모 삭제 사용법 설명해 줘,HELP
+내일 오전 열시에 장보기 일정 추가해줘,ADD_TASK
+프로젝트 아이디어 메모 찾아 줘,LIST_MEMO
+이번 주 일정중 두시간 이상인 걸리는 일정 알려줘,LIST_TASK
+일주년 일주일 전에 선물사기라고 메모해줘,ADD_MEMO
+팀 회의라고 적은 메모 지워 줘,DELETE_MEMO
+다음주 화요일 일정 삭제해줘,DELETE_TASK
+내일 세시에 미용실 일정 등록해줄래,ADD_TASK
+기능 목록 어떻게 해,HELP
+내일 오후 여섯시에 언니와 식사일정 추가해줘,ADD_TASK
+책 추천 메모 하나 만들어 줘,ADD_MEMO
+회의 준비라고 메모해 줘,ADD_MEMO
+회의 자료 정리 마감을 이번 주 토요일로 바꿔 줘,UPDATE_TASK
+내일 저녁 일곱시 쇼핑 일정을 추가해줘,ADD_TASK
+병원 방문 메모 찾아 줘,LIST_MEMO
+운동하기 일정을 월요일로 수정해 줘,UPDATE_TASK
+친구 연락처 관련 메모 보여 줘,LIST_MEMO
+내일 저녁 열시 이후 일정 확인해줄수있니,LIST_TASK
+운동하기 할 일 기한을 다음 주로 바꿔 줘,UPDATE_TASK
+오늘 일정 알려줘,LIST_TASK
+메모 추가 기능 안내해 줘,HELP
+메모 추가 방법 알려 줘,HELP
+저장된 주차 위치 메모를 지워줘,DELETE_MEMO
+기능 목록 사용법 설명해 줘,HELP
+내 아이 유치원 행사 일정 알려줘,LIST_TASK
+"메모 추가, 주차 위치 지하 2층",ADD_MEMO
+약속 장소 관련해서 적어 놓은 게 있나 확인해줘,LIST_MEMO
+병원 예약 작업 끝났다고 체크해 줘,COMPLETE_TASK
+내일 오전 스케줄 알려줘,LIST_TASK
+다름달에 등산일정이 언제인지 알려줘,LIST_TASK
+이번주 일정이 어떻게 되는지 알려줘,LIST_TASK
+이번주 일정 모두 다음주로 미뤄 줄 수 있니,UPDATE_TASK
+예전에 남긴 메모 확인하고 싶어,LIST_MEMO
+택배 보내기 할 일 항목을 목록에서 빼줘,DELETE_TASK
+"주차 위치 지하 2층, 메모해 둬",ADD_MEMO
+음성 비서 기능 안내해 줘,HELP
+오늘 밤 아홉시에 남편과 디저트 먹을 일정 추가해줘,ADD_TASK
+여행 준비 내용의 메모를 삭제해 줘,DELETE_MEMO
+할 일 추가 기능 안내해 줘,HELP
+이번 주 금요일 할 일에 과제 제출 추가해 줘,ADD_TASK
+내일 모래 장보기 일정 추가해줘,ADD_TASK
+이십칠일 업체 미팅 일정 취소해줘,DELETE_TASK
+콘서트 일정 취소해줘,DELETE_TASK
+우유 사기 할 일 날짜를 오늘로 변경해 줘,UPDATE_TASK
+다음 발표 주제는 음성 인식이라고 메모해 줘,ADD_MEMO
+내일 오전 일정을 알려줘,LIST_TASK
+장보기 목록 내용 메모로 저장해 줘,ADD_MEMO
+회의 준비 기록을 메모에 남겨 줘,ADD_MEMO
+이번주 일요일에 성당 일정 취소해줘,DELETE_TASK
+내일 잡혀있던 과외 일정 취소해라,DELETE_TASK
+장보기 목록 기록을 메모에 남겨 줘,ADD_MEMO
+할 일 삭제 기능 안내해 줘,HELP
+내일 여덟시 방탄소년단 티켓팅 일정 추가해줘,ADD_TASK
+사용할 수 있는 명령 알려 줘,HELP
+고객 요청 메모 찾아 줘,LIST_MEMO
+수업 정리 관련 메모 보여 줘,LIST_MEMO
+다음 달에 회사 일정 있는지 알려줘,LIST_TASK
+운동하기 할 일 기한을 오늘로 바꿔 줘,UPDATE_TASK
+회의 준비 메모 기록 없애 줘,DELETE_MEMO
+지난주 금요일 적어 둔 메모 보여 줘,LIST_MEMO
+내일 친구랑 만날 약속 장소 가로수길로 메모해줘,ADD_MEMO
+장보기 다 했어,COMPLETE_TASK
+내일 오후 세시까지 일정 삭제해줘,DELETE_TASK
+새 메모로 장보기 목록 추가해 줘,ADD_MEMO
+어제 한 일정 알려줘,LIST_TASK
+장보기 목록라고 메모해 줘,ADD_MEMO
+이학기 개강 일정이 언제인지 알려줘,LIST_TASK
+주말 계획 메모 삭제해 줘,DELETE_MEMO
+우유 사기 할 일 날짜를 모레로 변경해 줘,UPDATE_TASK
+다음주 화요일 일정이 뭐야,LIST_TASK
+오후 다섯시에 학원가기 일정 추가해줄래,ADD_TASK
+우유 사기 할 일 기한을 모레로 바꿔 줘,UPDATE_TASK
+오늘 오전 열시에 회의 일정 추가해줘,ADD_TASK
+음성 명령 도움말 보여 줘,HELP
+메모에 회의 준비 적어 줘,ADD_MEMO
+이번주에 있는 일정좀 보여주겠니,LIST_TASK
+이번주 모든 일정을 취소해주겠니,DELETE_TASK
+책 추천 관련 메모 보여 줘,LIST_MEMO
+운동하기 할 일 날짜를 화요일로 변경해 줘,UPDATE_TASK
+주말 계획 메모 하나 만들어 줘,ADD_MEMO
+우유 사기 작업 끝났다고 체크해 줘,COMPLETE_TASK
+장보기 할 일 삭제해 줘,DELETE_TASK
+오늘 일정 모두 삭제해줘,DELETE_TASK
+운동하기 할 일 날짜를 금요일로 변경해 줘,UPDATE_TASK
+택배 보내기 작업 끝났다고 체크해 줘,COMPLETE_TASK
+회의 참석 할 일 다 했어 완료로 바꿔 줘,COMPLETE_TASK
+저장해 둔 기록을 읽어줄래,LIST_MEMO
+오늘 일정을 내일로 미뤄 줄 수 있니,UPDATE_TASK
+책 추천 메모 삭제해 줘,DELETE_MEMO
+장보기 목록 관련 메모 보여 줘,LIST_MEMO
+회의 준비 메모 하나 만들어 줘,ADD_MEMO
+세탁하기 끝냈으니 완료로 표시해 줘,COMPLETE_TASK
+은행가기 일정 내일 오후 세시로 시간 변경해줄래,UPDATE_TASK
+내일 할 일에서 보고서 작성 빼 줘,DELETE_TASK
+작성했던 메모를 하나씩 읽어줘,LIST_MEMO
+운동 기록 적어 둔 메모 읽어 줘,LIST_MEMO
+주말 계획라고 적은 메모 지워 줘,DELETE_MEMO
+방금 쓴 메모 지워 줘,DELETE_MEMO
+메모함의 병원 연락처를 지워줘,DELETE_MEMO
+고객 요청 메모 내용 알려 줘,LIST_MEMO
+여행 준비 관련 메모 보여 줘,LIST_MEMO
+프로젝트 아이디어 적어 둔 메모 읽어 줘,LIST_MEMO
+보고서 작성 끝냈으니 완료로 표시해 줘,COMPLETE_TASK
+시험 들어간 메모 다 지워 줘,DELETE_MEMO
+등록해 둔 할 일 중 책 반납을 제거해줘,DELETE_TASK
+운동하기 할 일 기한을 내일로 바꿔 줘,UPDATE_TASK
+다음주 금요일 병문안 일정 추가해줘,ADD_TASK
+내일 오후 일정을 전부 취소해줘,DELETE_TASK
+새 메모로 운동 기록 추가해 줘,ADD_MEMO
+"팀플 자료 조사는 안 해도 돼, 지워 줘",DELETE_TASK
+보고서 작성 작업 끝났다고 체크해 줘,COMPLETE_TASK
+할 일 수정 방법 알려 줘,HELP
+사용 방법 사용법 설명해 줘,HELP
+시월 말 추석 연휴에 해외 출장 일정을 추가해줄 수 있니,ADD_TASK
+메모 삭제 기능 안내해 줘,HELP
+내일 할일이 뭐가 있니,LIST_TASK
+도움말 보여 줘,HELP
+병원 방문 적어 둔 메모 읽어 줘,LIST_MEMO
+메모장에 적어 둔 운동 기록을 지워줘,DELETE_MEMO
+내일 모레 새벽에 일정 있는지 알려줘,LIST_TASK
+오늘 방문하기로 했던 서울기상청 일정을 취소해줘,DELETE_TASK
+내일 미팅일정 알려주겠니,LIST_TASK
+내일 하루 일정이 어떻게 되는지 알려줘,LIST_TASK
+삼월 일정이 어떻게 되는지 알려줘,LIST_TASK
+영어 공부 할 일 완료 처리해 줘,COMPLETE_TASK
+이번 주 금요일 여섯 시에 소개팅 일정 추가해줘,ADD_TASK
+독서 계획 관련 메모 보여 줘,LIST_MEMO
+운동하기 할 일 기한을 10월 30일로 바꿔 줘,UPDATE_TASK
+"병원 예약 끝났어, 체크해 줘",COMPLETE_TASK
+지난주 금요일 쓴 메모 삭제해 주세요,DELETE_MEMO
+다음 주 이후로 수영 일정 다 취소해줘,DELETE_TASK
+운동 기록라고 메모해 줘,ADD_MEMO
+세탁하기 할 일 완료 처리해 줘,COMPLETE_TASK
+기록한 장보기 메모를 삭제해줘,DELETE_MEMO
+과제 메모 삭제해 줘,DELETE_MEMO
+우유 사기 일정 완료했다고 기록해 줘,COMPLETE_TASK
+이번주에 가족 관련 일정 있으면 알려줘,LIST_TASK
+차 보험 만기일 이번주 까지라고 기록해줘,ADD_MEMO
+이번주 일정 중 공항 일정이 있다면 알려줘,LIST_TASK
+내일 오후 두시에 데이트 일정 추가해줘,ADD_TASK
+독서 계획 메모 내용 알려 줘,LIST_MEMO
+사월 일정이 어떻게 되는지 알려줘,LIST_TASK
+발표 메모 삭제해 줘,DELETE_MEMO
+고객 요청 관련 메모 보여 줘,LIST_MEMO
+회의 준비라고 적은 메모 지워 줘,DELETE_MEMO
+다음 일정이 무엇인지 알려줘,LIST_TASK
+이번 달 내가 부산갔던 일정 모두 보여라,LIST_TASK
+병원 예약 완료로 바꿔 주세요,COMPLETE_TASK
+회의 참석 일정 완료했다고 기록해 줘,COMPLETE_TASK
+이 서비스 이용 방법을 안내해 줘,HELP
+운동하기 일정 완료했다고 기록해 줘,COMPLETE_TASK
+할 일 완료 기능 안내해 줘,HELP
+수영장 일정 일박 이일로 수정해줘,UPDATE_TASK
+할 일을 등록하는 명령 예시 알려 줘,HELP
+창문 닦기 할 일 항목을 목록에서 빼줘,DELETE_TASK
+오늘 오전일정 취소해주겠니,DELETE_TASK
+"발표 준비는 안 해도 돼, 지워 줘",DELETE_TASK
+운동 기록 내용의 메모를 삭제해 줘,DELETE_MEMO
+다음달 말 봉사활동 일정 추가해줘,ADD_TASK
+팀 회의 메모 내용 알려 줘,LIST_MEMO
+할 일 추가 명령어 예시 알려 줘,HELP
+우유 사기 할 일 기한을 내일로 바꿔 줘,UPDATE_TASK
+모레까지 영어 발표라고 메모해줄래,ADD_MEMO
+책 읽기 끝냈으니 완료로 표시해 줘,COMPLETE_TASK
+운동하기 할 일 기한을 모레로 바꿔 줘,UPDATE_TASK
+프로젝트 점검 끝냈으니 완료로 표시해 줘,COMPLETE_TASK
+보고서 제출 할 일 항목을 목록에서 빼줘,DELETE_TASK
+목록에 추가한 회의 참석을 제거해줘,DELETE_TASK
+시월초에 감사 일정 잡아줘,ADD_TASK
+화요일 오후 여섯시에 강남에서 소개팅 일정 등록해줘,ADD_TASK
+할 일 수정 명령어 예시 알려 줘,HELP
+메모에 주말 계획 적어 줘,ADD_MEMO
+"할 일 추가, 회의 자료 정리",ADD_TASK
+주말 계획 내용 메모로 저장해 줘,ADD_MEMO
+이번주 일요일에 속초 가기 일정 추가해줘,ADD_TASK
+병원 예약 끝냈으니 완료로 표시해 줘,COMPLETE_TASK
+택배 보내기 이름을 중간고사 대비로 바꿔 줘,UPDATE_TASK
+내일 발표 일정 추가해줘,ADD_TASK
+발표 연습 할 일 다 했어 완료로 바꿔 줘,COMPLETE_TASK
+내일 저녁 약속 일정을 추가해줘,ADD_TASK
+오늘 갈 대구 기상지청 일정을 취소해줘,DELETE_TASK
+이번주말 축구경기 일정을 취소해줘,DELETE_TASK
+오늘 남은 일정 내일로 다 미뤄줘,UPDATE_TASK
+오늘 배운 내용 내용의 메모를 삭제해 줘,DELETE_MEMO
+장보기 할 일 다 했어 완료로 바꿔 줘,COMPLETE_TASK
+다음주 월화수 휴가라고 일정 추가해줘,ADD_TASK
+회의 메모 삭제해 줘,DELETE_MEMO
+오늘 할 일 알려 줘,LIST_TASK
+할 일 삭제 도움말 보여 줘,HELP
+프로젝트 아이디어 기록을 메모에 남겨 줘,ADD_MEMO
+내일모레 네일숍 일정 등록해줘,ADD_TASK
+숙제 제출 할 일 다 했어 완료로 바꿔 줘,COMPLETE_TASK
+운동하기 일정을 화요일로 수정해 줘,UPDATE_TASK
+과제 제출을 다음 주 월요일 할 일로 등록해 주세요,ADD_TASK
+운동 기록 기록을 메모에 남겨 줘,ADD_MEMO
+적어 둔 메모가 몇 개나 있는지 보여줘,LIST_MEMO
+다음주 금요일에 서울랜드 가기 일정 추가해줘,ADD_TASK
+내일 일정에 대해 알려주겠니,LIST_TASK
+"장보기 끝났어, 체크해 줘",COMPLETE_TASK
+할 일 수정 사용법 설명해 줘,HELP
+업무 인수인계 메모 찾아 줘,LIST_MEMO
+친구 연락처 적어 둔 메모 읽어 줘,LIST_MEMO
+보고서 작성 할 일 다 했어 완료로 바꿔 줘,COMPLETE_TASK
+이번주 화요일 일정 모두 취소해줄수있니,DELETE_TASK
+과제 제출 할 일 삭제해 줘,DELETE_TASK
+팔일에 있는 일정 전부 삭제해주겠니,DELETE_TASK
+택배 보내기 오늘로 미뤄 줘,UPDATE_TASK
+새 메모로 프로젝트 아이디어 추가해 줘,ADD_MEMO
+명령어 예시 어떻게 해,HELP
+보고서 작성 할 일 완료 처리해 줘,COMPLETE_TASK
+새 메모로 주말 계획 추가해 줘,ADD_MEMO
+발표 내용 메모 하나 만들어 줘,ADD_MEMO
+"메모 추가, 다음 발표 주제는 음성 인식",ADD_MEMO
+다음주 화요일 체력시험일정 추가해줘,ADD_TASK
+할 일을 삭제하려면 무슨 말을 해야 해?,HELP
+비밀번호 힌트 관련해서 적어 놓은 게 있나 확인해줘,LIST_MEMO
+음성 비서 사용법 설명해 줘,HELP
+메모 목록에서 프로젝트 아이디어 제거해 줘,DELETE_MEMO
+도움말 방법 알려 줘,HELP
+내일 아침 일정 알려줘,LIST_TASK
+보고서 작성을 10월 30일 할 일로 등록해 주세요,ADD_TASK
+우유 사기 할 일 다 했어 완료로 바꿔 줘,COMPLETE_TASK
+여행 준비 메모 찾아 줘,LIST_MEMO
+운동하기 할 일 날짜를 월요일로 변경해 줘,UPDATE_TASK
+프로젝트 점검 할 일 다 했어 완료로 바꿔 줘,COMPLETE_TASK
+과제 제출 완료로 바꿔 주세요,COMPLETE_TASK
+회의 준비 메모 삭제해 줘,DELETE_MEMO
+발표 연습 할 일 완료 처리해 줘,COMPLETE_TASK
+책 추천 적어 둔 메모 읽어 줘,LIST_MEMO
+다음주 월요일에 이마트 가기 일정 추가해줘,ADD_TASK
+주말 계획 메모 기록 없애 줘,DELETE_MEMO
+운동하기 일정을 금요일로 수정해 줘,UPDATE_TASK
+오늘 배운 내용 메모 내용 알려 줘,LIST_MEMO
+책 반납 할 일 항목을 목록에서 빼줘,DELETE_TASK
+다음달 중요 일정이 뭐야,LIST_TASK
+책 추천 기록을 메모에 남겨 줘,ADD_MEMO
+장보기 목록라고 적은 메모 지워 줘,DELETE_MEMO
+운동하기 할 일 다 했어 완료로 바꿔 줘,COMPLETE_TASK
+운동 기록 내용 메모로 저장해 줘,ADD_MEMO
+강남역에 있는 일정이 뭐였는지 찾아줘,LIST_TASK
+내일 첫출근 일정 추가해줘,ADD_TASK
+책 추천 메모 내용 알려 줘,LIST_MEMO
+시험 메모 뭐 있었지?,LIST_MEMO
+지금까지 적어둔 일정 다 지워줘,DELETE_TASK
+운동하기 할 일 날짜를 10월 30일로 변경해 줘,UPDATE_TASK
+운동 기록 관련 메모 보여 줘,LIST_MEMO
+금요일 오후 회의 일정을 세 시까지로 바꿔줘,UPDATE_TASK
+자료 정리 일정 완료했다고 기록해 줘,COMPLETE_TASK
+"프린터 잉크 사야 함, 메모해 둬",ADD_MEMO
+오늘 배운 내용 메모 삭제해 줘,DELETE_MEMO
+자료 정리 끝냈으니 완료로 표시해 줘,COMPLETE_TASK
+숙제 제출 끝냈으니 완료로 표시해 줘,COMPLETE_TASK
+할 일 조회 기능 안내해 줘,HELP
+자료 정리 할 일 완료 처리해 줘,COMPLETE_TASK
+오늘 일정 있다면 알려줘,LIST_TASK
+수업 필기라고 적은 메모를 삭제해줘,DELETE_MEMO
+프로젝트 아이디어라고 적은 메모 지워 줘,DELETE_MEMO
+프로젝트 아이디어 메모 기록 없애 줘,DELETE_MEMO
+다가오는 기념일 중 가장 빠른 게 어떤 일정인지 알려줘,LIST_TASK
+운동하기 일정을 일요일로 수정해 줘,UPDATE_TASK
+다음주 월요일 일정 그대로 다다음주로 옮겨줘,UPDATE_TASK
+이번 주 금요일 할 일에 회의 자료 정리 추가해 줘,ADD_TASK
+이번 주 토요일 할 일 알려 줘,LIST_TASK
+내일 아침에 과외 일정을 모레 저녁 일곱시로 바꿔줘,UPDATE_TASK
+오늘 배운 내용 기록을 메모에 남겨 줘,ADD_MEMO
+이번주에 저녁 여덟시 넘어서 있는 일정 알려줘,LIST_TASK
+메모장에 보관된 글들을 보여줘,LIST_MEMO
+운동하기 할 일 날짜를 11월 2일로 변경해 줘,UPDATE_TASK
+오늘 오후 세시 일정을 다음주 수요일로 미뤄줘,UPDATE_TASK
+팀 회의 메모 찾아 줘,LIST_MEMO
+내일 아침 교문선도 일정 취소해라,DELETE_TASK
+내일 오후 한시에 점심 일정 추가해줘,ADD_TASK
+오늘 적어 둔 메모 보여 줘,LIST_MEMO
+내일 오전 일정 모두 지워줘,DELETE_TASK
+팔월 보충수업 일정 알려줘,LIST_TASK
+회의록 관련해서 적어 놓은 게 있나 확인해줘,LIST_MEMO
+운동하기 할 일 기한을 이번 주말로 바꿔 줘,UPDATE_TASK
+다음달 구일에 제사 일정 추가되어있니,LIST_TASK
+모레 할 일 뭐 있어?,LIST_TASK
+다음주 일요일 오전 열시에 조조영화보기 일정 추가해줄수있니,ADD_TASK
+병원 예약 10월 30일로 미뤄 줘,UPDATE_TASK
+메모에 책 추천 적어 줘,ADD_MEMO
+병원 방문 메모 하나 만들어 줘,ADD_MEMO
+운동하기 끝냈으니 완료로 표시해 줘,COMPLETE_TASK
+친구에게 전화하기 작업 끝났다고 체크해 줘,COMPLETE_TASK
+다음 발표 주제는 음성 인식이라고 적어 줘,ADD_MEMO
+운동하기 할 일 날짜를 목요일로 변경해 줘,UPDATE_TASK
+토요일 아침에 병원 예약 메모해줘,ADD_MEMO
+"다음 발표 주제는 음성 인식, 메모해 둬",ADD_MEMO
+보고서 작성 일정 완료했다고 기록해 줘,COMPLETE_TASK
+할 일 완료 도움말 보여 줘,HELP
+음성 명령 사용법 설명해 줘,HELP
+다음주 토요일에 친구와 술 마시기 일정 추가해 줄 수 있니,ADD_TASK
+메모 목록에서 독서 계획 제거해 줘,DELETE_MEMO
+장보기 메모 삭제해 줘,DELETE_MEMO
+다음 주 월요일 할 일 뭐 있어?,LIST_TASK
+친구 연락처 메모 삭제해 줘,DELETE_MEMO
+아직 못 한 할 일 목록 읽어 줘,LIST_TASK
+할 일 완료 어떻게 해,HELP
+해야 할 목록의 장보기를 없애줘,DELETE_TASK
+프로젝트 회의 관련해서 적어 놓은 게 있나 확인해줘,LIST_MEMO
+서류 발급 할 일 항목을 목록에서 빼줘,DELETE_TASK
+할 일 전체 목록 보여 줘,LIST_TASK
+수업 필기라는 제목으로 저장한 메모를 지워줘,DELETE_MEMO
+독서 계획 내용의 메모를 삭제해 줘,DELETE_MEMO
+다음달 친구랑 야구경기 일정 언제인지 알려줘,LIST_TASK
+수업 정리 적어 둔 메모 읽어 줘,LIST_MEMO
+수업 정리 메모 찾아 줘,LIST_MEMO
+택배 안내 메모 기록을 지워줘,DELETE_MEMO
+운동하기 할 일 날짜를 모레로 변경해 줘,UPDATE_TASK
+메모에 오늘 배운 내용 적어 줘,ADD_MEMO
+백일 후에 남자친구와의 백일 일정 추가해줄수있니,ADD_TASK
+업무 인수인계라고 메모해 줘,ADD_MEMO
+운동 다 했어,COMPLETE_TASK
+다음주 월요일 증명사진 촬영 일정 추가해줘,ADD_TASK
+내일 저녁 일정 모두 지워줘,DELETE_TASK
+메모 목록에서 운동 기록 제거해 줘,DELETE_MEMO
+운동하기 할 일 완료 처리해 줘,COMPLETE_TASK
+할 일 완료 사용법 설명해 줘,HELP
+이번 주 금요일 할 일 뭐 있어?,LIST_TASK
+십월달 동생과 이탈리아 여행 일정 추가해줘,ADD_TASK
+수업 정리 메모 기록 없애 줘,DELETE_MEMO
+지난 일정들 삭제해줄 수 있니,DELETE_TASK
+일정표에서 빨래 개기를 빼줘,DELETE_TASK
+독서 계획 메모 삭제해 줘,DELETE_MEMO
+카드 만기 날짜 십이월 이십일에 메모해줄래,ADD_MEMO
+다음주 일정이 어떻게 되는지 알려줘,LIST_TASK
+"메모 추가, 우유랑 계란 사기",ADD_MEMO
+내일 오후 세 시 일정을 한 시간 뒤로 변경해줘,UPDATE_TASK
+음성 명령 어떻게 해,HELP
+주말 계획 기록을 메모에 남겨 줘,ADD_MEMO
+운동하기 할 일 기한을 토요일로 바꿔 줘,UPDATE_TASK
+운동하기 할 일 기한을 이번 주로 바꿔 줘,UPDATE_TASK
+친구에게 전화하기 일정 완료했다고 기록해 줘,COMPLETE_TASK
+병원 방문라고 메모해 줘,ADD_MEMO
+이번 주 금요일 할 일 알려 줘,LIST_TASK
+다음 달 두번째 목요일 일정 다 취소해줄 수 있니,DELETE_TASK
+칠월 삼십일 저녁에 일정이 있는지 알려줘,LIST_TASK
+운동하기 일정을 다음 주로 수정해 줘,UPDATE_TASK
+친구 연락처라고 적은 메모 지워 줘,DELETE_MEMO
+새 메모로 발표 내용 추가해 줘,ADD_MEMO
+팀 회의 메모 삭제해 줘,DELETE_MEMO
+비밀번호 힌트라는 제목으로 저장한 메모를 지워줘,DELETE_MEMO
+업무 인수인계 메모 기록 없애 줘,DELETE_MEMO
+여행 계획 관련해서 적어 놓은 게 있나 확인해줘,LIST_MEMO
+계획에 넣은 발표 연습을 취소해줘,DELETE_TASK
+다음주 수요일에 애버랜드 가기 일정 추가해줘,ADD_TASK
+청소하기 할 일 다 했어 완료로 바꿔 줘,COMPLETE_TASK
+올해 여행 일정을 정리해서 알려줄 수 있니,LIST_TASK
+팀 회의 내용의 메모를 삭제해 줘,DELETE_MEMO
+메모 목록에서 장보기 목록 제거해 줘,DELETE_MEMO
+메모에 프로젝트 아이디어 적어 줘,ADD_MEMO
+책 추천 메모 찾아 줘,LIST_MEMO
+이번 주 토요일 일정 알려줘,LIST_TASK
+도움말 어떻게 해,HELP
+다음주 중에 있는 일정들을 알려줘,LIST_TASK
+내일 영화관 데이트 일정 취소해줘,DELETE_TASK
+내일 치킨 먹으니깐 내일 노랑통닭에서 치킨먹기 일정 추가해줘,ADD_TASK
+다음 달 3일까지 해야 할 일 보여 주세요,LIST_TASK
+우유랑 계란 사기라고 메모해 줘,ADD_MEMO
+업무 인수인계 메모 하나 만들어 줘,ADD_MEMO
+우유 사기 일정을 오늘로 수정해 줘,UPDATE_TASK
+오늘까지 해야 할 일 보여 주세요,LIST_TASK
+도움말 읽어 주세요,HELP
+영어 공부 끝냈으니 완료로 표시해 줘,COMPLETE_TASK
+할 일 수정 기능 안내해 줘,HELP
+내일 야간근무 일정 추가해줘,ADD_TASK
+메모 삭제 명령어 예시 알려 줘,HELP
+운동하기 일정을 10월 30일로 수정해 줘,UPDATE_TASK
+주말 계획 적어 둔 메모 읽어 줘,LIST_MEMO
+회의 참석 작업 끝났다고 체크해 줘,COMPLETE_TASK
+병원 예약 일정 완료했다고 기록해 줘,COMPLETE_TASK
+세탁하기 작업 끝났다고 체크해 줘,COMPLETE_TASK
+모레 일정 모두 취소해줘,DELETE_TASK
+메모 목록에서 발표 내용 제거해 줘,DELETE_MEMO
+장보기 관련 메모 지워 줘,DELETE_MEMO
+장보기 일정 완료했다고 기록해 줘,COMPLETE_TASK
+회의실 예약 확인 필요라고 적어 줘,ADD_MEMO
+약속 장소라는 제목으로 저장한 메모를 지워줘,DELETE_MEMO
+운동 오늘로 미뤄 줘,UPDATE_TASK
+"다음 주 월요일까지 팀플 자료 조사 해야 돼, 할 일에 넣어 줘",ADD_TASK
+"이번 주 금요일까지 과제 제출 해야 돼, 할 일에 넣어 줘",ADD_TASK
+학교 졸업식 삼월 마지막 주 일요일에 기록해줄래,ADD_MEMO
+회의 준비 관련 메모 보여 줘,LIST_MEMO
+청소하기 할 일 완료 처리해 줘,COMPLETE_TASK
+여행 준비라고 적은 메모 지워 줘,DELETE_MEMO
+다음주에 기말고사니깐 스케줄에 메모해줘,ADD_MEMO
+우유 사기 일정을 모레로 수정해 줘,UPDATE_TASK
+병원 방문라고 적은 메모 지워 줘,DELETE_MEMO
+오늘 배운 내용 메모 하나 만들어 줘,ADD_MEMO
+독서 계획라고 적은 메모 지워 줘,DELETE_MEMO
+예정된 치과 방문을 취소해줘,DELETE_TASK
+십구일 여섯시에 데이트 일정 추가해주겠니,ADD_TASK
+음성 비서 방법 알려 줘,HELP
+프로젝트 회의라는 제목으로 저장한 메모를 지워줘,DELETE_MEMO
+내일까지 해야할 일 오늘까지로 바꿔줘,UPDATE_TASK
+수업 정리라고 적은 메모 지워 줘,DELETE_MEMO
+할 일 목록에 넣은 운동을 없애줘,DELETE_TASK
+새 메모로 책 추천 추가해 줘,ADD_MEMO
+치과 방문 할 일 항목을 목록에서 빼줘,DELETE_TASK
+이번달에 학부모모임일정을 모두 취소해줘,DELETE_TASK
+친구 연락처 메모 내용 알려 줘,LIST_MEMO
+운동하기 할 일 기한을 화요일로 바꿔 줘,UPDATE_TASK
+해야 할 일로 등록한 청소를 지워줘,DELETE_TASK
+발표 준비 관련해서 적어 놓은 게 있나 확인해줘,LIST_MEMO
+장보기 할 일 항목을 목록에서 빼줘,DELETE_TASK
+메모에 발표 내용 적어 줘,ADD_MEMO
+내일 저녁 회의 일정을 추가해줄 수 있니,ADD_TASK
+다음 달 모든 월요일 일정들 다 취소해줘,DELETE_TASK
+수영장 일정 일박 이일로 수정해줄수있니,UPDATE_TASK
+과제 들어간 메모 다 지워 줘,DELETE_MEMO
+다음주 일정 알려줘,LIST_TASK
+업무 인수인계 메모 삭제해 줘,DELETE_MEMO
+운동 마감을 이번 주 금요일로 바꿔 줘,UPDATE_TASK
+프로젝트 점검 일정 완료했다고 기록해 줘,COMPLETE_TASK
+내일 오전 일정 취소해줘,DELETE_TASK
+시험 공부 마감을 이번 주 금요일로 바꿔 줘,UPDATE_TASK
+책 추천라고 적은 메모 지워 줘,DELETE_MEMO
+육일에 있는 과제 제출 일정 구일로 옮겨줘,UPDATE_TASK
+이번주 토요일 여행 일정을 취소해줘,DELETE_TASK
+발표 내용 내용 메모로 저장해 줘,ADD_MEMO
+다음으로 잡혀있는 일정 알려줘,LIST_TASK
+택배 보내기 이름을 헬스장 가기로 바꿔 줘,UPDATE_TASK
+친구에게 전화하기 끝냈으니 완료로 표시해 줘,COMPLETE_TASK
+내일 아쿠아리움 데이트 일정 여섯 시 추가해라,ADD_TASK
+"장보기는 안 해도 돼, 지워 줘",DELETE_TASK
+그저께 일정 확인해줘,LIST_TASK
+식단 계획 메모 내용 알려 줘,LIST_MEMO
+할 일 추가 방법 알려 줘,HELP
+내일 오전 회의 일정 추가해줘,ADD_TASK
+팔월 십일 베트남 여행 일정 추가해줘,ADD_TASK
+회의 준비 적어 둔 메모 읽어 줘,LIST_MEMO
+10월 15일 쓴 메모 삭제해 주세요,DELETE_MEMO
+일정에 오후 세시에 약 먹기 추가해줄래,ADD_TASK
+모레 주요 일정이 뭐지,LIST_TASK
+할 일 관리 기능을 설명해 줘,HELP
+새 메모로 여행 준비 추가해 줘,ADD_MEMO
+다음주 금요일 출국 일정 삭제해줘,DELETE_TASK
+사용 방법 알려 줘,HELP
+프로젝트 점검 할 일 완료 처리해 줘,COMPLETE_TASK
+내 메모함에는 어떤 내용이 남아 있어,LIST_MEMO
+지원하는 기능 목록을 보여 주세요,HELP
+오늘 저녁약속 일정을 취소해줘,DELETE_TASK
+자료 정리 작업 끝났다고 체크해 줘,COMPLETE_TASK
+청소하기 끝냈으니 완료로 표시해 줘,COMPLETE_TASK
+오늘 배운 내용 메모 찾아 줘,LIST_MEMO
+처음 사용하는데 사용법 설명해 주세요,HELP
+영어 공부 할 일 다 했어 완료로 바꿔 줘,COMPLETE_TASK
+회의록라는 제목으로 저장한 메모를 지워줘,DELETE_MEMO
+도움말 좀 안내해 줘,HELP
+내일 오후 두시에 회의참석 일정에 추가해줘,ADD_TASK
+병원 예약 할 일 삭제해 줘,DELETE_TASK
+메모 기능으로 무엇을 할 수 있어?,HELP
+오늘 할 일에 장보기 추가해 줘,ADD_TASK
+숙제 제출 작업 끝났다고 체크해 줘,COMPLETE_TASK
+다음달 참가 학회 일정을 알려줘,LIST_TASK
+음성 비서 도움말 보여 줘,HELP
+어떤 명령을 사용할 수 있어?,HELP
+에이에스 방문 일정이 오늘 몇시인지 알려줘,LIST_TASK
+카드 만기 날짜 십이월 이십일에 메모해줘,ADD_MEMO
+오늘 일정 내일로 미뤄줘,UPDATE_TASK
+메모 삭제 방법 알려 줘,HELP
+면접 준비 메모 내용 알려 줘,LIST_MEMO
+메모함에 있는 기록들을 확인해줘,LIST_MEMO
+오늘 오후 열한시 축구보기 일정 추가해줘,ADD_TASK
+지나간 스케줄 목록 지워줘,DELETE_TASK
+레포트 제출 관련 일정 다 삭제해줄래,DELETE_TASK
+십이월 이십사일 우레옥에서 점심식사 일정을 추가해줘,ADD_TASK
+프린터 잉크 사야 함이라고 메모해 줘,ADD_MEMO
+운동 할 일 삭제해 줘,DELETE_TASK
+운동하기 할 일 날짜를 오늘로 변경해 줘,UPDATE_TASK
+새 메모로 오늘 배운 내용 추가해 줘,ADD_MEMO
+메모 추가 명령어 예시 알려 줘,HELP
+숙제 제출 일정 완료했다고 기록해 줘,COMPLETE_TASK
+병원 예약 할 일 다 했어 완료로 바꿔 줘,COMPLETE_TASK
+내일 아침 출장 일정 추가해줘,ADD_TASK
+발표 준비 다 했어,COMPLETE_TASK
+이십육일에 부산 여행 일정을 추가해줘,ADD_TASK
+프로젝트 아이디어 내용의 메모를 삭제해 줘,DELETE_MEMO
+여행 준비 내용 메모로 저장해 줘,ADD_MEMO
+다음달 둘째주 출장 일정 추가해줘,ADD_TASK
+발표 내용 메모 찾아 줘,LIST_MEMO
+할 일로 적어 둔 택배 보내기를 삭제해줘,DELETE_TASK
+시험 관련 메모 지워 줘,DELETE_MEMO
+장보기 메모 찾아 줘,LIST_MEMO
+모레 영어 스터디 모임일정 삭제해줘,DELETE_TASK
+발표 연습 할 일 항목을 목록에서 빼줘,DELETE_TASK
+내가 지금까지 정리해 놓은 쇼핑 일정을 모두 삭제해줘,DELETE_TASK
+메모 추가 사용법 설명해 줘,HELP
+내일 일정 오늘로 앞당겨줘,UPDATE_TASK
+발표 내용 기록을 메모에 남겨 줘,ADD_MEMO
+여행 계획라는 제목으로 저장한 메모를 지워줘,DELETE_MEMO
+교수님 면담은 목요일이라고 적어 줘,ADD_MEMO
+다음주 금토 일정을 다음주 토일으로 바꿔줘,UPDATE_TASK
+할 일 조회 도움말 보여 줘,HELP
+메모에 업무 인수인계 적어 줘,ADD_MEMO
+완료한 할 일 목록 읽어 줘,LIST_TASK
+운동하기 일정을 이번 주말로 수정해 줘,UPDATE_TASK
+택배 보내기 일정 완료했다고 기록해 줘,COMPLETE_TASK
+할 일에서 팀플 자료 조사 지워 주세요,DELETE_TASK
+운동하기 할 일 기한을 11월 2일로 바꿔 줘,UPDATE_TASK
+독서 기록라는 제목으로 저장한 메모를 지워줘,DELETE_MEMO
+다음주 토요일에 한강 가기 일정 추가해줘,ADD_TASK
+여행 준비라고 메모해 줘,ADD_MEMO
+이번 주 토요일 팀플 자료 조사 오늘로 옮겨 주세요,UPDATE_TASK
+그저께 쓴 메모 알려 줘,LIST_MEMO
+우유 사기 일정을 이번 주로 수정해 줘,UPDATE_TASK
+택배 관련 내용 관련 메모 보여 줘,LIST_MEMO
+프로젝트 아이디어 메모 삭제해 줘,DELETE_MEMO
+목요일 두 시 일정을 영화 보기로 바꿔줘,UPDATE_TASK
+장보기 관련 메모 보여 줘,LIST_MEMO
+다음 달 3일까지 장보기 끝내야 하니까 등록해 줘,ADD_TASK
+메모 삭제 도움말 보여 줘,HELP
+내일 아침 일정을 알려줘,LIST_TASK
+운동하기 일정을 수요일로 수정해 줘,UPDATE_TASK
+할 일 삭제 어떻게 해,HELP
+이번 주 금요일 할 일에서 택배 보내기 빼 줘,DELETE_TASK
+그저께 쓴 메모 삭제해 주세요,DELETE_MEMO
+택배 보내기 끝냈으니 완료로 표시해 줘,COMPLETE_TASK
+메모 조회 명령어 예시 알려 줘,HELP
+내일 일정에 친구 만나기 추가해줘,ADD_TASK
+"운동은 안 해도 돼, 지워 줘",DELETE_TASK
+다음주 금요일 회의 일정 몇시인지 알려줘,LIST_TASK
+다음 달 3일 할 일 알려 줘,LIST_TASK
+작년 팔월 일정 전부 알려줘,LIST_TASK
+수업 정리 메모 삭제해 줘,DELETE_MEMO
+프로젝트 아이디어 메모 하나 만들어 줘,ADD_MEMO
+10월 15일 쓴 메모 알려 줘,LIST_MEMO
+장보기 완료로 바꿔 주세요,COMPLETE_TASK
+다음 주 수요일 네 시 치과 일정 목요일로 바꿔줘,UPDATE_TASK
+할 일 삭제 명령어 예시 알려 줘,HELP
+회의 준비 내용 메모로 저장해 줘,ADD_MEMO
+오늘 배운 내용라고 메모해 줘,ADD_MEMO
+메모 추가 도움말 보여 줘,HELP
+보관해 둔 메모들 좀 찾아봐 줘,LIST_MEMO
+장보기 목록 메모 기록 없애 줘,DELETE_MEMO
+내일 잡힌 일정 다 취소해줘,DELETE_TASK
+책 읽기 작업 끝났다고 체크해 줘,COMPLETE_TASK
+운동하기 일정을 내일로 수정해 줘,UPDATE_TASK
+지출 내역 적어 둔 메모 읽어 줘,LIST_MEMO
+이천십팔년 구월 삼일에 이학기 개강 일정 추가해줘,ADD_TASK
+음성 명령 명령어 예시 알려 줘,HELP
+다음주 일정 어떻게 되는지 알려줘,LIST_TASK
+운동하기 할 일 날짜를 이번 주로 변경해 줘,UPDATE_TASK
+이 음성 비서는 어떻게 사용해?,HELP
+내일 보고서 작성 이번 주 금요일로 옮겨 주세요,UPDATE_TASK
+팔월 일정이 어떻게 되는지 알려줘,LIST_TASK
+이번 주 일정을 알려주겠니,LIST_TASK
+업무 인수인계라고 적은 메모 지워 줘,DELETE_MEMO
+발표 준비라는 제목으로 저장한 메모를 지워줘,DELETE_MEMO
+내일 다섯시에 동생 데리러 가는 일정 취소해줘,DELETE_TASK
+할 일 조회 명령어 예시 알려 줘,HELP
+기능 목록 도움말 보여 줘,HELP
+한국사 시험 일정 언제인지 알려줘,LIST_TASK
+청소하기 일정 완료했다고 기록해 줘,COMPLETE_TASK
+여행 준비 메모 하나 만들어 줘,ADD_MEMO
+병원 방문 내용의 메모를 삭제해 줘,DELETE_MEMO
+약속 장소에 대한 메모를 지워줘,DELETE_MEMO
+오늘 할 일이 뭐야,LIST_TASK
+삼월 전체 여행일정으로 추가해줘,ADD_TASK
+수강신청 일정 언제인지 알려줘,LIST_TASK
+택배 보내기를 오늘 할 일로 등록해 주세요,ADD_TASK
+메모 조회 방법 알려 줘,HELP
+운동 완료했어,COMPLETE_TASK
+몇 시에 일정 있는 지 알려줘,LIST_TASK
+그저께 적어 둔 메모 보여 줘,LIST_MEMO
+할 일 추가 어떻게 해,HELP
+업무 인수인계 내용 메모로 저장해 줘,ADD_MEMO
+이번주말 일정이 있는지 확인해줘,LIST_TASK
+여행 준비 메모 내용 알려 줘,LIST_MEMO
+메모 조회 어떻게 해,HELP
+이번주에 오전에 있는 일정 알려줘,LIST_TASK
+할 일에서 시험 공부 지워 주세요,DELETE_TASK
+"할 일 추가, 보고서 작성",ADD_TASK
+병원 예약 할 일 완료 처리해 줘,COMPLETE_TASK
+회의 참석 할 일 완료 처리해 줘,COMPLETE_TASK
+주말 계획라고 메모해 줘,ADD_MEMO
+도움말 기능 안내해 줘,HELP
+여행 준비 적어 둔 메모 읽어 줘,LIST_MEMO
+독서 기록 관련해서 적어 놓은 게 있나 확인해줘,LIST_MEMO
+운동하기 할 일 기한을 월요일로 바꿔 줘,UPDATE_TASK
+내일 오후 친구모임 일정 추가해줄수있니,ADD_TASK
+저장된 메모는 어떻게 조회해?,HELP
+저번주 일정을 이번주로 옮겨와줘,UPDATE_TASK
+이번주 화요일 일정 모두 취소해줘,DELETE_TASK
+예약한 병원 방문 일정을 지워줘,DELETE_TASK
+오늘 오후 일정 알려줘,LIST_TASK
+주차 위치 관련해서 적어 놓은 게 있나 확인해줘,LIST_MEMO
+다음달에 해외 나가는 일정 있다면 알려줘,LIST_TASK
+운동하기 할 일 날짜를 다음 주로 변경해 줘,UPDATE_TASK
+메모 목록에서 업무 인수인계 제거해 줘,DELETE_MEMO
+내일 안 끝낸 할 일 뭐야?,LIST_TASK
+사용 방법 방법 알려 줘,HELP
+병원 방문 관련 메모 보여 줘,LIST_MEMO
+메모 목록에서 주말 계획 제거해 줘,DELETE_MEMO
+책 추천라고 메모해 줘,ADD_MEMO
+다음 달 3일 회의 자료 정리 모레로 옮겨 주세요,UPDATE_TASK
+도움말 도움말 보여 줘,HELP
+병원 방문 기록을 메모에 남겨 줘,ADD_MEMO
+오늘 배운 내용 관련 메모 보여 줘,LIST_MEMO
+내일 오전 일정을 전부 취소해줘,DELETE_TASK
+내일 할 일 뭐 있어?,LIST_TASK
+다음달 오일부터 칠일까지 동아리 엠티 일정 추가해줘,ADD_TASK
+운동하기 할 일 날짜를 토요일로 변경해 줘,UPDATE_TASK
+메모 조회 사용법 설명해 줘,HELP
+보관 중인 비밀번호 힌트 메모를 없애줘,DELETE_MEMO
+다음달에 브라질 여행 일정을 취소해줘,DELETE_TASK
+오늘 오전 일정 있따면 알려줄래,LIST_TASK
+"운동 끝났어, 체크해 줘",COMPLETE_TASK
+다음 주 가기로 된 가구점 예약 일정을 취소해줄래,DELETE_TASK
+업무 인수인계 메모 내용 알려 줘,LIST_MEMO
+기능 목록 방법 알려 줘,HELP
+장보기 목록 메모 내용 알려 줘,LIST_MEMO
+내일 일정 오전 말고 오후로 바꿔줘,UPDATE_TASK
+우유 사기 끝냈으니 완료로 표시해 줘,COMPLETE_TASK
+지출 내역 메모 찾아 줘,LIST_MEMO
+여행 준비 메모 기록 없애 줘,DELETE_MEMO
+음성 비서 어떻게 해,HELP
+다음달에 해외 나가는 일정 다 알려줘,LIST_TASK
+음성 명령 방법 알려 줘,HELP
+오늘 여섯시 친구랑 식사일정 추가해줘,ADD_TASK
+다음달 오빠 휴가 일정 알려줘,LIST_TASK
+할 일 완료 방법 알려 줘,HELP
+운동 기록 메모 기록 없애 줘,DELETE_MEMO
+회의 준비 메모 찾아 줘,LIST_MEMO
+오늘 배운 내용 내용 메모로 저장해 줘,ADD_MEMO
+식단 계획 메모 찾아 줘,LIST_MEMO
+고객 요청 적어 둔 메모 읽어 줘,LIST_MEMO
+기능 목록 명령어 예시 알려 줘,HELP
+이번주 토요일에 동호회 모임 일정 취소해줘,DELETE_TASK
+우유 사기 할 일 날짜를 이번 주로 변경해 줘,UPDATE_TASK
+안 끝낸 할 일 목록 읽어 줘,LIST_TASK
+운동하기 할 일 날짜를 내일로 변경해 줘,UPDATE_TASK
+병원 예약 이름을 최종 보고서 제출로 바꿔 줘,UPDATE_TASK
+오전에 있는 일정 전부 취소해줄 수 있니,DELETE_TASK
+내일 술 약속 장소 홍대입구로 기록해 줘,ADD_MEMO
+회의 참석 할 일 항목을 목록에서 빼줘,DELETE_TASK
+택배 보내기 마감을 내일로 바꿔 줘,UPDATE_TASK
+메모 목록에서 병원 방문 제거해 줘,DELETE_MEMO
+우유 사기 일정을 내일로 수정해 줘,UPDATE_TASK
+운동하기 할 일 기한을 금요일로 바꿔 줘,UPDATE_TASK
+세탁하기 일정 완료했다고 기록해 줘,COMPLETE_TASK
+다음 달 3일까지 팀플 자료 조사 끝내야 하니까 등록해 줘,ADD_TASK
+내일 오후 세시 일정을 목요일로 미뤄줄 수 있니,UPDATE_TASK
+명령어 예시 방법 알려 줘,HELP
+다음주 월요일 데이트 일정 취소해줘,DELETE_TASK
+내 일정에 있는 운동 항목을 삭제해줘,DELETE_TASK
+메모 목록에서 여행 준비 제거해 줘,DELETE_MEMO
+숙제 제출 할 일 완료 처리해 줘,COMPLETE_TASK
+다음주 수요일 엠티 일정 추가해줘,ADD_TASK
+다음주 수요일 친구랑 경리단길 일정 추가해줘,ADD_TASK
+메모에 여행 준비 적어 줘,ADD_MEMO
+장보기라는 제목으로 저장한 메모를 지워줘,DELETE_MEMO
+"할 일 추가, 택배 보내기",ADD_TASK
+팔월 삼십일 싱가포르 여행 일정 추가해줘,ADD_TASK
+다음달에 시험 일정 언제있는지 알려줘,LIST_TASK
+메모장에 프린터 잉크 사야 함 남겨 주세요,ADD_MEMO
+운동하기 일정을 목요일로 수정해 줘,UPDATE_TASK
+운동 기록 메모 하나 만들어 줘,ADD_MEMO
+이번주 일정 모두 취소해줘,DELETE_TASK
+메모 목록에서 택배 관련 내용 제거해 줘,DELETE_MEMO
+회의 준비 메모 내용 알려 줘,LIST_MEMO
+회의 들어간 메모 다 지워 줘,DELETE_MEMO
+작성한 여행 계획 메모를 삭제해줘,DELETE_MEMO
+시험 공부 이름을 발표 리허설로 바꿔 줘,UPDATE_TASK
+내일 오전 열한시 영화보기 일정 추가 해라,ADD_TASK
+택배 관련 내용 메모 내용 알려 줘,LIST_MEMO
+지출 내역 관련 메모 보여 줘,LIST_MEMO
+책 추천 내용 메모로 저장해 줘,ADD_MEMO
+회의 메모 뭐 있었지?,LIST_MEMO
+학교 졸업식 날짜 팔월 이십이일에 기록해줘,ADD_MEMO
+도움말을 확인하고 싶어,HELP
+운동하기 할 일 날짜를 이번 주말로 변경해 줘,UPDATE_TASK
+장보기 할 일 완료 처리해 줘,COMPLETE_TASK
+업무 인수인계 관련 메모 보여 줘,LIST_MEMO
+과제 제출을 최종 보고서 제출로 수정해 주세요,UPDATE_TASK
+운동하기 일정을 11월 2일로 수정해 줘,UPDATE_TASK
+발표 내용 메모 기록 없애 줘,DELETE_MEMO
+시험 관련 메모 보여 줘,LIST_MEMO
+발표 연습 일정 완료했다고 기록해 줘,COMPLETE_TASK
+10월 30일 할 일에서 장보기 빼 줘,DELETE_TASK
