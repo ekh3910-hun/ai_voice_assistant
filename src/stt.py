@@ -2,6 +2,7 @@
 """Shared STT. Team app retains preprocessing; app1 can compare raw decoded audio."""
 import io
 import logging
+import os
 import re
 import time
 import unicodedata
@@ -19,15 +20,25 @@ def report_progress(callback, message):
     if callback is not None:
         callback(message)
 
-@lru_cache(maxsize=1)
-def load_stt_model(model_size="base"):
+DEFAULT_MODEL_SIZE = 'small'
+COMMAND_CONTEXT = '한국어 메모, 할 일, 일정, 예약, 추가, 조회, 수정, 완료, 삭제, 오늘, 내일, 모레, 오전, 오후, 월요일.'
+
+
+@lru_cache(maxsize=2)
+def _load_stt_model(model_path):
     return WhisperModel(
-        model_size, device="cpu", compute_type="int8",
-        cpu_threads=2, num_workers=1,
+        model_path, device="cpu", compute_type="int8",
+        cpu_threads=min(4, os.cpu_count() or 1), num_workers=1,
     )
 
-def transcript_wav(audio, model_size="base", progress_callback=None,
-                   use_preprocess=True):
+
+def load_stt_model(model_size=None):
+    return _load_stt_model(os.getenv('WHISPER_MODEL_PATH') or model_size
+                           or os.getenv('WHISPER_MODEL_SIZE', DEFAULT_MODEL_SIZE))
+
+
+def transcript_wav(audio, model_size=None, progress_callback=None,
+                   use_preprocess=False):
     started = time.perf_counter()
     if isinstance(audio, (str, Path)):
         audio_bytes = Path(audio).read_bytes()
@@ -59,16 +70,19 @@ def transcript_wav(audio, model_size="base", progress_callback=None,
         data, _ = sf.read(io.BytesIO(prepared), dtype="float32")
         logger.warning("[STT] preprocessing %.3fs", time.perf_counter()-prep_start)
 
-    report_progress(progress_callback, f"2/3 {model_size} 모델 준비 중...")
+    selected_model = model_size or os.getenv('WHISPER_MODEL_SIZE', DEFAULT_MODEL_SIZE)
+    report_progress(progress_callback, f"2/3 {selected_model} 모델 준비 중...")
     model_start = time.perf_counter()
-    model = load_stt_model(model_size)
+    model = load_stt_model(selected_model)
     logger.warning("[STT] model ready %.3fs", time.perf_counter()-model_start)
     report_progress(progress_callback, "3/3 한국어 음성 인식 중...")
     transcribe_start = time.perf_counter()
     segments, _ = model.transcribe(
         data, language="ko", beam_size=5,
-        # app1 raw path uses VAD; team preprocessing path keeps original VAD off.
+        # Preserve quiet word boundaries; avoid trimming the signal twice.
         vad_filter=not use_preprocess,
+        vad_parameters={'min_speech_duration_ms': 150, 'speech_pad_ms': 400},
+        initial_prompt=COMMAND_CONTEXT,
         condition_on_previous_text=False, temperature=0,
     )
     text = " ".join(segment.text.strip() for segment in segments).strip()

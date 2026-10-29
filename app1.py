@@ -4,8 +4,8 @@
 """
 import calendar
 import base64
-import hashlib
 import html
+import os
 import re
 import sqlite3
 from datetime import date, datetime, timedelta
@@ -20,7 +20,7 @@ if 'page' not in st.session_state:
 
 ROOT = Path(__file__).resolve().parent
 chat_bar_component = components.declare_component('voice_chat_bar', path=str(ROOT / 'chat_bar'))
-DB_FILE = ROOT / 'assistant_data.sqlite3'
+DB_FILE = Path(os.getenv('ASSISTANT_DB_PATH', str(ROOT / 'assistant_data.sqlite3')))
 COLORS = ['#FFF2BE', '#FFE0E8', '#DBECFF', '#DDF6DD', '#E9E2FF']
 st.set_page_config(page_title='AI 음성 비서', page_icon='🤖', layout='wide', initial_sidebar_state='expanded')
 st.set_option('client.showSidebarNavigation', False)
@@ -93,7 +93,7 @@ def parse_time(text):
     m = re.search(r'(오전|오후)?\s*(\d{1,2})시(?:\s*(\d{1,2})분)?', text)
     if not m: return ''
     hour = int(m.group(2))
-    if hour > 23: return ''
+    if hour > 23 or (m.group(1) and not 1 <= hour <= 12): return ''
     if m.group(1) == '오후' and hour < 12: hour += 12
     if m.group(1) == '오전' and hour == 12: hour = 0
     minute = int(m.group(3) or 0)
@@ -218,6 +218,8 @@ def process_message(text):
         if not title:
             return '등록할 할 일 내용을 알려 주세요.', intent, False, intent_ms, db_ms
         tm = parse_time(msg)
+        if re.search(r'\d+시', msg) and not tm:
+            return '올바른 시간을 입력해 주세요. 예: 오후 3시 30분', intent, False, intent_ms, db_ms
         t = perf_counter()
         execute('INSERT INTO tasks(title,due_date,due_time,created_at) VALUES(?,?,?,?)',
                 (title, when.isoformat(), tm, datetime.now().isoformat(timespec='seconds')))
@@ -613,9 +615,9 @@ if page=='대화하기':
 
     if selected_audio is not None:
         audio_bytes = selected_audio
-        audio_key = hashlib.sha256(audio_bytes).hexdigest()
 
-        if st.session_state.get("last_audio_hash") != audio_key:
+        # 이벤트 ID로 중복 처리하며, 새 이벤트의 같은 음성은 다시 처리합니다.
+        if audio_bytes:
             if len(audio_bytes) > 10 * 1024 * 1024:
                 st.warning("음성 파일은 10MB 이하만 업로드할 수 있어요.")
 
@@ -631,7 +633,6 @@ if page=='대화하기':
 
                     recognized, elapsed = transcript_wav(
                         audio_bytes,
-                        model_size="base",
                         use_preprocess=False,
                         progress_callback=progress_box.info,
                     )
@@ -658,7 +659,6 @@ if page=='대화하기':
 
                     # 인식 결과를 실제 대화 / 명령 처리에 연결
                     # 명령 처리 전에 표시해 중복 처리를 방지
-                    st.session_state.last_audio_hash = audio_key
 
                     try:
                         st.session_state.pending_voice = {

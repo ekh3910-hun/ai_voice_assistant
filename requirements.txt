@@ -12,3 +12,5 @@ streamlit>=1.40
 joblib
 scikit-learn
 jiwer
+matplotlib
+streamlit-calendar
