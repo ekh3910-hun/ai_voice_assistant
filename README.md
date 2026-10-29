@@ -78,3 +78,21 @@ python test_stt.py --audio-dir data/audio_processed --models base small \
 학습 모델을 다시 만들려면 `python train_intent.py`를 실행합니다.
 이 명령은 모델과 평가 보고서를 갱신하므로 변경 사항을 확인하세요.
 전체 점검 결과는 [EVALUATION.md](EVALUATION.md)를 참고하세요.
+
+## Render 배포
+
+[Render에서 배포 설정 열기](https://render.com/deploy?repo=https://github.com/ekh3910-hun/ai_voice_assistant)
+
+Render에 로그인한 뒤 위 링크에서 저장소 연결을 허용하고 Blueprint를 생성하세요.
+`render.yaml`은 main 브랜치를 사용하고, Render가 제공하는 PORT에 Streamlit을 연결합니다.
+서비스가 Live 상태가 되면 Render가 발급한 실제 `https://…onrender.com` 주소로 접속하세요.
+이 링크 자체는 실행 중인 앱 주소가 아닙니다.
+
+기본 설정은 요금 발생을 피하기 위한 무료 데모입니다. 유의 사항:
+
+- SQLite와 모델 캐시는 임시 파일 시스템에 있습니다. 재배포·재시작 시 데이터와 캐시를 잃을 수 있으므로 중요한 메모를 저장하지 마세요.
+- 무료 인스턴스는 유휴 시 중지될 수 있으며, 첫 접속 및 최초 모델 다운로드가 느릴 수 있습니다.
+- small 모델 STT는 무료 인스턴스의 메모리 한도를 초과할 수 있습니다. 음성 시연이 필요하면 충분한 메모리의 인스턴스를 선택하고 비용을 확인하세요. 모델을 base/tiny로 줄이면 품질과 속도 조건도 바뀝니다.
+- 영구 데이터가 필요하면 유료 영구 디스크에 ASSISTANT_DB_PATH를 지정하거나 별도 영구 저장소 구현이 필요합니다. 현재 SQLite 앱이 DATABASE_URL만으로 PostgreSQL로 전환되지는 않습니다.
+- 인증·사용자별 데이터 분리가 없으므로 공개 URL에서는 다른 방문자와 데이터가 공유됩니다. 개인 정보 없이 데모 용도로 사용하세요.
+- 배포 성공 후 실제 녹음, STT 및 TTS 연결은 별도로 확인해야 합니다.

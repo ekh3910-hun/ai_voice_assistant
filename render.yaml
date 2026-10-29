@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: ai-voice-assistant
+    runtime: python
+    plan: free
+    branch: main
+    buildCommand: pip install -r requirements.txt
+    startCommand: >-
+      python -m streamlit run app1_b.py
+      --server.address 0.0.0.0
+      --server.port $PORT
+      --server.headless true
+      --browser.gatherUsageStats false
+    healthCheckPath: /_stcore/health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.14
+      - key: TZ
+        value: Asia/Seoul
+      - key: HF_HOME
+        value: /tmp/huggingface
+      - key: WHISPER_MODEL_SIZE
+        value: small
+      - key: ASSISTANT_DB_PATH
+        value: /tmp/assistant_data.sqlite3
