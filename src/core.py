@@ -7,10 +7,11 @@ from pathlib import Path
 from datetime import date, timedelta
 import re
 import joblib
-from src.db import *
 BASE = Path(__file__).resolve().parent.parent
 if str(BASE) not in sys.path:
     sys.path.insert(0, str(BASE))
+
+from src.db import *
 MODEL_PATH = BASE / 'models' / 'intent_model.pkl'
 
 
@@ -33,8 +34,32 @@ DATE_PATTERN = re.compile(
     r'(?:다음\s*달|이번\s*달)\s*\d{1,2}일|'
     r'\d{1,2}월\s*\d{1,2}일|'
     r'(?:이번\s*주|다음\s*주|지난\s*주)\s*[월화수목금토일]요일|'
+    r'(?<![\d월])\d{1,2}일(?!\s*(?:간|동안|마다|째|연속|치))|'   # [수정] '29일', '30일' 처럼 일(日)만 말한 경우
     r'오늘|내일|모레|어제|그저께|방금'
 )
+# [수정] 메모 내용 추출에는 기존 날짜 패턴만 사용 ('1일 1커밋 하기 메모해' 같은 내용이 잘리지 않도록)
+DATE_PATTERN_LEGACY = re.compile(
+    r'\d{4}[-./]\d{1,2}[-./]\d{1,2}|'
+    r'\d{4}년\s*\d{1,2}월\s*\d{1,2}일|'
+    r'(?:다음\s*달|이번\s*달)\s*\d{1,2}일|'
+    r'\d{1,2}월\s*\d{1,2}일|'
+    r'(?:이번\s*주|다음\s*주|지난\s*주)\s*[월화수목금토일]요일|'
+    r'오늘|내일|모레|어제|그저께|방금'
+)
+
+# [수정] STT가 날짜를 한글 숫자로 전사한 경우("이십구일") 아라비아 숫자로 정규화
+_KO_DIGIT = {'일': 1, '이': 2, '삼': 3, '사': 4, '오': 5, '육': 6, '칠': 7, '팔': 8, '구': 9}
+_KO_DAY_PATTERN = re.compile(r'(?<![가-힣])([이삼]?십[일이삼사오육칠팔구]?)(일|월)')
+
+
+def _ko_num(s):
+    tens, _, ones = s.partition('십')
+    return (_KO_DIGIT.get(tens, 1) if tens else 1) * 10 + (_KO_DIGIT.get(ones, 0) if ones else 0)
+
+
+def normalize_text(text):
+    """'이십구일' → '29일', '십일월 삼일' 같은 표현은 그대로 둠(10 이상만 변환해 오인식 방지)"""
+    return _KO_DAY_PATTERN.sub(lambda m: f'{_ko_num(m.group(1))}{m.group(2)}', text)
 
 
 def convert_date(date_text, today=None):
@@ -82,6 +107,23 @@ def convert_date(date_text, today=None):
             return result.isoformat()
         except ValueError:
             return None
+
+    # [수정] 'N일'만 말한 경우: 이번 달 N일, 이미 지났으면 다음 달 N일
+    m = re.fullmatch(r'(\d{1,2})일', s)
+    if m:
+        day = int(m.group(1))
+        year, month = today.year, today.month
+        for _ in range(12):  # 해당 일이 없는 달(예: 11월 31일)은 건너뜀
+            try:
+                result = date(year, month, day)
+                if result >= today:
+                    return result.isoformat()
+            except ValueError:
+                pass
+            month += 1
+            if month == 13:
+                year, month = year + 1, 1
+        return None
     return None
 
 
@@ -95,27 +137,52 @@ def clean_title(value):
     return value.strip(' ,，.!?')
 
 
+def _strip_quote_josa(s):
+    """[수정] 인용 조사 '이라고'의 '이' 제거: '있음이' → '있음' (앞 글자에 받침이 있을 때만, '아이'는 유지)"""
+    if len(s) >= 2 and s.endswith('이'):
+        prev = s[-2]
+        if '가' <= prev <= '힣' and (ord(prev) - 0xAC00) % 28 != 0:
+            return s[:-1]
+        if prev.isdigit() or prev.isascii() and prev.isalpha():
+            return s[:-1]
+    return s
+
+
 def extract_slots(text, intent):
     slots = {}
     working = text.strip()
-    dates = list(DATE_PATTERN.finditer(text))
+    date_pattern = DATE_PATTERN_LEGACY if intent == 'ADD_MEMO' else DATE_PATTERN  # [수정]
+    dates = list(date_pattern.finditer(text))
 
     if intent in {'ADD_TASK', 'LIST_TASK', 'UPDATE_TASK', 'COMPLETE_TASK', 'DELETE_TASK'}:
         if intent == 'UPDATE_TASK':
             if dates:
-                if len(dates) >= 2:
-                    slots['DUE_DATE'] = convert_date(dates[0].group())
-                    slots['NEW_DUE_DATE'] = convert_date(dates[-1].group())
-                else:
-                    slots['NEW_DUE_DATE'] = convert_date(dates[0].group())
+                # [수정] 날짜 뒤에 '로/으로'가 붙으면 새 마감일, 아니면 대상 할 일을 찾는 날짜
+                #   예) '30일 장보기 이름을 마트 가기로 바꿔' → DUE_DATE=30일 (이름만 변경)
+                #       '오늘 회의 날짜를 내일로 변경해'     → DUE_DATE=오늘, NEW_DUE_DATE=내일
+                is_rename = bool(re.search(r'(?:이름|제목)\s*(?:을|를)', text))
+                for d in dates:
+                    followed_by_ro = re.match(r'\s*(?:으로|로)', text[d.end():])
+                    key = 'NEW_DUE_DATE' if followed_by_ro else 'DUE_DATE'
+                    slots.setdefault(key, convert_date(d.group()))
+                if len(dates) == 1 and not is_rename and 'NEW_DUE_DATE' not in slots:
+                    slots['NEW_DUE_DATE'] = slots.pop('DUE_DATE')   # '회의 내일 변경해' 등 기존 동작 유지
         elif dates:
             slots['DUE_DATE'] = convert_date(dates[0].group())
     elif intent in {'LIST_MEMO', 'DELETE_MEMO'} and dates:
-        slots['MEMO_DATE'] = convert_date(dates[0].group())
+        if not (intent == 'DELETE_MEMO' and re.search(r'방금', text)):
+            slots['MEMO_DATE'] = convert_date(dates[0].group())
 
-    # 메모 본문에 포함된 날짜는 사용자 데이터이므로 보존합니다.
+    # [수정] '모두/전부' → 일치하는 항목 일괄 처리, '최근/마지막/방금' → 가장 최근 메모
+    #        (완료·삭제 명령에서만 적용 → 추가 명령의 '가족 모두 모임' 같은 내용은 그대로 유지)
+    if intent in {'COMPLETE_TASK', 'DELETE_TASK', 'DELETE_MEMO'} and re.search(r'모두|전부|싹\s*다', text):
+        slots['ALL'] = True
+        working = re.sub(r'\s*(?:모두|전부|싹\s*다)\s*', ' ', working)
+    if intent == 'DELETE_MEMO' and re.search(r'최근|마지막|방금', text):
+        slots['TARGET'] = 'LATEST'
+
     if intent != 'ADD_MEMO':
-        working = DATE_PATTERN.sub(' ', working)
+        working = date_pattern.sub(' ', working)
     working = re.sub(r'\s+', ' ', working).strip()
     working = re.sub(r'^(?:까지|에|부터)\s+', '', working)
 
@@ -132,27 +199,50 @@ def extract_slots(text, intent):
         m = re.search(r'^(.+?)\s*(?:관련|들어간)?\s*메모', working)
         if m:
             keyword = clean_title(m.group(1))
-            if keyword and keyword not in {'쓴', '적어 둔', '작성한', '방금'}:
+            keyword = re.sub(r'^(?:최근|마지막|방금)\s*(?:에)?\s*(?:쓴|적은|작성한|저장한)?\s*', '', keyword).strip()
+            # [수정] '회의라고 적어 둔/쓴 메모' → 키워드 '회의'
+            keyword = _strip_quote_josa(re.sub(r'\s*라고\s*(?:적어\s*둔|적어\s*놓은|적은|쓴|써\s*둔|메모한|저장한)$', '', keyword).strip())
+            if keyword and keyword not in {'쓴', '적어 둔', '작성한', '방금', '최근', '마지막', '전체'}:
                 slots['KEYWORD'] = keyword
         return {k: v for k, v in slots.items() if v is not None}
 
     if intent == 'ADD_MEMO':
+        # [수정] '~라고 메모해' 형식: 따옴표처럼 말한 내용은 날짜 단어까지 그대로 저장
+        #        '준비라고'(받침 없음)·'있음이라고'(받침 있음) 모두 처리, '메모 해줘'처럼 띄어 써도 인식
+        m = re.search(r'^(.+?)\s*라고\s*(?:메모|적어|써|남겨)', text.strip())
+        if m:
+            content = _strip_quote_josa(m.group(1).strip(' ,，.!?"\''))
+            if content:
+                slots['MEMO_CONTENT'] = content
+                return slots
+
+        memo_actions = r'(?:추가\s*(?:해줘|해주세요|해달라|해라|해|해주|하기|할래|좀)?|등록\s*(?:해줘|해주세요|해달라|해라|해|해주|하기|할래|좀)?|남겨\s*(?:줘|주세요|달라|라|둬|놓아)?|적어\s*(?:줘|주세요|달라|라|둬|놓아)?|써\s*(?:줘|주세요|달라|라|둬|놓아)?|해\s*(?:줘|주세요|둬|놓아|라)?|추가|등록)'
         patterns = [
-            r'^(.+?)\s*(?:이라고|라고)\s*(?:메모|적어)',
-            r'^메모\s*추가\s*[,，:]\s*(.+)$',
-            r'^(?:메모장|메모)(?:에)?\s*(.+?)\s*(?:남겨|적어|써)',
-            r'^(.+?)\s*[,，]?\s*메모해',
-            r'^(.+?)\s*메모(?:해|로\s*남겨|에\s*적어)'
+            # 1) 메모 추가: 회의 준비 / 메모 추가 회의준비 / 메모 등록 회의준비
+            rf'^(?:메모\s*추가|메모\s*등록)\s*[,，:]?\s*(.+)$',
+            # 2) 메모에 회의준비 추가해줘 / 메모장에 회의준비 적어줘
+            rf'^(?:메모장|메모)(?:에|로)?\s*(.+?)\s*{memo_actions}$',
+            # 3) 회의준비 메모 추가해줘 / 회의준비 메모 등록
+            rf'^(.+?)\s*(?:메모장|메모)(?:에|로|를|을)?\s*{memo_actions}$',
+            # 4) 회의준비 메모해 / 우유 사기 메모
+            rf'^(.+?)\s*[,，]?\s*메모\s*(?:좀\s*)?해',
+            rf'^(.+?)\s*메모(?:해|로\s*남겨|에\s*적어)',
+            # 5) "회의준비 메모" 처럼 입력된 경우
+            rf'^(.+?)\s*메모$',
+            # 6) 메모 회의준비
+            rf'^메모\s+(.+)$',
         ]
         for pattern in patterns:
             m = re.search(pattern, working)
             if m:
-                slots['MEMO_CONTENT'] = m.group(1).strip(' ,，.!?')
-                break
+                extracted = m.group(1).strip(' ,，.!?')
+                if extracted:
+                    slots['MEMO_CONTENT'] = extracted
+                    break
         return slots
 
     if intent == 'UPDATE_TASK':
-        m = re.search(r'^(.+?)\s*(?:이름을|제목을|을|를)\s*(.+?)(?:로|으로)\s*(?:바꿔|수정해|변경해)', working)
+        m = re.search(r'^(.+?)\s*(?:이름을|제목을|을|를)\s*(.+?)(?:으로|로)\s*(?:바꿔|수정해|변경해|고쳐)', working)
         if m and 'NEW_DUE_DATE' not in slots:
             slots['TITLE'] = clean_title(m.group(1))
             slots['NEW_TITLE'] = clean_title(m.group(2))
@@ -223,7 +313,12 @@ def predict_intent(text):
 
     compact = re.sub(r'\s+', '', text)
     rule_matched = True
-    if re.search(r'도움말|사용할수있는명령|사용법', compact):
+    quote = re.search(r'라고\s*(?:메모|적어|써|남겨)', text)
+    if quote and not re.search(r'삭제|지워|조회|보여|둔|놓은|있는', text[quote.end():]):
+        intent = 'ADD_MEMO'
+    elif re.match(r'^메모\s*(?:추가|등록)(?:\s*[:,，]\s*|\s+)\S', text):
+        intent = 'ADD_MEMO'
+    elif re.search(r'도움말|사용할수있는명령|사용법', compact):
         intent = 'HELP'
     elif re.search(r'메모(?:해|장에)|메모추가[:：,，]', compact) and not re.search(r'삭제|지워|조회|보여', compact):
         intent = 'ADD_MEMO'
@@ -243,7 +338,8 @@ def predict_intent(text):
     else:
         rule_matched = False
 
-    slots = extract_slots(text, intent)
+    slot_text = text if intent == 'ADD_MEMO' else normalize_text(text)
+    slots = extract_slots(slot_text, intent)
     needs_confirm = (
         (not rule_matched and score < 0.4)
         or (intent in {'ADD_TASK', 'COMPLETE_TASK', 'DELETE_TASK', 'UPDATE_TASK'} and 'TITLE' not in slots)
@@ -299,6 +395,41 @@ def select_one(rows, entity_name='항목'):
     return rows[0], None
 
 
+# [수정] 중복 후보가 있을 때 후보 목록과 다시 말할 예시를 함께 안내
+def _fmt_date(d):
+    if not d:
+        return '날짜 없음'
+    d = d if isinstance(d, date) else date.fromisoformat(str(d)[:10])
+    diff = (d - date.today()).days
+    label = {0: '오늘', 1: '내일', 2: '모레', -1: '어제'}.get(diff)
+    return f"{d.month}월 {d.day}일" + (f"({label})" if label else '')
+
+
+def ambiguous_task_message(title, rows, intent, slots=None):
+    verb = {'COMPLETE_TASK': '완료', 'DELETE_TASK': '삭제', 'UPDATE_TASK': '수정'}.get(intent, '처리')
+    dates = [_fmt_date(r.get('due_date')) for r in rows]
+    example_day = next((r['due_date'] for r in rows if r.get('due_date')), None)
+    example = f"{example_day.day}일 {title} {verb}" if isinstance(example_day, date) else f"{title} {verb}"
+    all_hint = f", 모두 처리하려면 '{title} 모두 {verb}'" if intent != 'UPDATE_TASK' else ''
+    if intent == 'UPDATE_TASK' and isinstance(example_day, date):
+        slots = slots or {}
+        if slots.get('NEW_TITLE'):
+            example = f"{example_day.day}일 {title} 이름을 {slots['NEW_TITLE']}로 바꿔"
+        elif slots.get('NEW_DUE_DATE'):
+            new_d = date.fromisoformat(slots['NEW_DUE_DATE'])
+            example = f"{example_day.day}일 {title} 날짜를 {new_d.day}일로 바꿔"
+    return (f"'{title}' 할 일이 {len(rows)}개 있습니다: {', '.join(dates)}. "
+            f"어느 날짜인지 함께 말씀해 주세요 (예: '{example}'{all_hint})")
+
+
+def ambiguous_memo_message(rows, keyword=None):
+    preview = ' / '.join(f"{i}) {r['content'][:15]}" for i, r in enumerate(rows[:5], start=1))
+    head = f"'{keyword}' 관련 메모가 {len(rows)}개 있습니다" if keyword else f"메모가 {len(rows)}개 있습니다"
+    return (f"{head}: {preview}. 더 구체적인 키워드나 날짜를 말씀해 주세요 "
+            f"(예: '{(rows[0]['content'].split() or ['회의'])[0]} 관련 메모 삭제해', '최근 메모 삭제해', "
+            f"'{keyword or '회의'} 관련 메모 모두 삭제해')")
+
+
 def execute(intent, slots):
     slots = slots or {}
     title = slots.get('TITLE')
@@ -342,15 +473,38 @@ def execute(intent, slots):
     if intent in ('UPDATE_TASK', 'COMPLETE_TASK', 'DELETE_TASK'):
         if not title:
             return '처리할 할 일의 제목을 말씀해 주세요', None
-        row, error = select_one(task_matches(title, due_date), '할 일')
-        if error:
-            return error, None
+        matches = task_matches(title, due_date)
+        # [수정] 완료 처리는 아직 안 끝낸 할 일만 대상으로 (이미 완료한 같은 이름 할 일 제외)
+        if intent == 'COMPLETE_TASK':
+            pending = [r for r in matches if not r.get('completed')]
+            if matches and not pending:
+                return f"'{title}' 할 일은 이미 완료되어 있습니다", None
+            matches = pending
+        if not matches:
+            where = f"{_fmt_date(due_date)}에 " if due_date else ''
+            return f"{where}'{title}' 할 일을 찾을 수 없습니다", None
+
+        # [수정] '모두/전부'라고 말한 경우에만 여러 개를 한 번에 처리 (완료·삭제)
+        if len(matches) > 1 and slots.get('ALL') and intent in ('COMPLETE_TASK', 'DELETE_TASK'):
+            ids = [str(r['id']) for r in matches]
+            if intent == 'DELETE_TASK':
+                delete_tasks(ids)
+            else:
+                complete_tasks(ids)
+            verb = '삭제' if intent == 'DELETE_TASK' else '완료 처리'
+            return f"'{title}' 할 일 {len(ids)}개를 모두 {verb}했습니다", {'ids': ids, 'count': len(ids)}
+
+        if len(matches) > 1:
+            matches.sort(key=lambda r: (r.get('due_date') is None, str(r.get('due_date'))))
+            return ambiguous_task_message(title, matches, intent, slots), None
+        row = matches[0]
+        old_title = row['title']
 
         if intent == 'DELETE_TASK':
             count = delete_task(row['id'])
             if count:
-                return f'할 일: {title}을 삭제했습니다', {'count': count}
-            return '삭제할 할 일이 없습니다', {'count': count}
+                return f"{_fmt_date(row.get('due_date'))} 할 일: {row['title']}을(를) 삭제했습니다", {'id': str(row['id']), 'count': count}
+            return '삭제할 할 일이 없습니다', None
 
         new_title = (
             slots.get('NEW_TITLE')
@@ -367,19 +521,21 @@ def execute(intent, slots):
         if intent == 'UPDATE_TASK' and not (new_title or new_due):
             return '변경할 제목이나 마감일을 입력해주세요', None
 
+        # [수정] 이름 변경 시 화면에 표시되는 title 컬럼도 함께 변경 (기존엔 content만 바뀌어 반영 안 됨)
         changed = update_task(
             row['id'],
             due_date=new_due or row.get('due_date'),
             content=new_title or row.get('content'),
-            title=new_title,
-            completed=True if intent == 'COMPLETE_TASK' else row.get('completed')
+            completed=True if intent == 'COMPLETE_TASK' else row.get('completed'),
+            title=new_title
         )
 
         if not changed:
             return '변경에 실패했습니다', None
 
+        title = old_title
         if intent == 'COMPLETE_TASK':
-            return f'할 일: {title}을 완료 처리했습니다', {'id': str(row['id'])}
+            return f"{_fmt_date(row.get('due_date'))} 할 일: {title}을(를) 완료 처리했습니다", {'id': str(row['id'])}
 
         if new_title and new_due:
             return (
@@ -392,7 +548,7 @@ def execute(intent, slots):
             return f'할 일 {title}을 {new_title}로 수정했습니다', {'id': str(row['id'])}
 
         if new_due:
-            return f'{title}의 마감일을 {new_due}로 변경했습니다', {'id': str(row['id'])}
+            return f'{title}의 마감일을 {_fmt_date(new_due)}로 변경했습니다', {'id': str(row['id'])}
 
     if intent == 'ADD_MEMO':
         content = slots.get('MEMO_CONTENT')
@@ -420,16 +576,33 @@ def execute(intent, slots):
     if intent == 'DELETE_MEMO':
         keyword = slots.get('KEYWORD')
         memo_date = slots.get('MEMO_DATE')
-        if not (keyword or memo_date):
-            return '삭제할 메모의 내용이나 날짜를 알려주세요', None
         memos = memo_matches(keyword, memo_date)
-        row, error = select_one(memos, '메모')
-        if error:
-            return error, None
+
+        # [수정] '최근/마지막/방금 메모 삭제' → 가장 최근 메모 1개
+        if slots.get('TARGET') == 'LATEST' and memos:
+            memos = memos[:1]
+        elif not (keyword or memo_date):
+            # [수정] '메모 삭제해'처럼 대상이 없으면 최근 메모를 보여주며 다시 말하도록 안내
+            if not memos:
+                return '삭제할 메모가 없습니다', None
+            return ambiguous_memo_message(memos), None
+
+        if not memos:
+            return (f"'{keyword}' 관련 메모를 찾을 수 없습니다" if keyword
+                    else '해당 날짜의 메모를 찾을 수 없습니다'), None
+
+        if len(memos) > 1:
+            if not slots.get('ALL'):
+                return ambiguous_memo_message(memos, keyword), None
+            ids = [str(r['id']) for r in memos]
+            delete_memos(ids)
+            return f'{len(ids)}개 메모를 모두 삭제했습니다', {'ids': ids, 'count': len(ids)}
+
+        row = memos[0]
         count = delete_memo(row['id'])
         if count:
-            return f'{count}개 메모를 삭제했습니다', {'count': count}
-        return '메모 삭제에 실패했습니다', {'count': 0}
+            return f"메모 '{row['content'][:20]}'을(를) 삭제했습니다", {'id': str(row['id']), 'count': count}
+        return '메모 삭제에 실패했습니다', None
 
     return f'작업을 수행할 수 없습니다: {intent}', None
 
@@ -450,7 +623,7 @@ def process_text(text, input_type='텍스트'):  # [수정] input_type 인자 �
             raise ValueError('텍스트를 입력하세요')
         result = predict_intent(text)
         intent = result['intent']
-        if any(convert_date(m.group()) is None for m in DATE_PATTERN.finditer(text)) and intent != 'ADD_MEMO':
+        if any(convert_date(m.group()) is None for m in DATE_PATTERN.finditer(normalize_text(text))) and intent != 'ADD_MEMO':
             result['needs_confirmation'] = True
             response, data, status = '유효한 날짜를 입력해 주세요.', None, '확인 필요'
         elif result['needs_confirmation']:
@@ -471,9 +644,11 @@ def process_text(text, input_type='텍스트'):  # [수정] input_type 인자 �
 
     elapsed_ms = round((time.perf_counter() - t0) * 1000, 2)
 
+    run_id = None
+    history_warning = None
     try:
         if has_database_url():
-            add_voice_runs(
+            run_id = add_voice_runs(
                 transcript=text,
                 intent=intent,
                 status=status,
@@ -482,8 +657,8 @@ def process_text(text, input_type='텍스트'):  # [수정] input_type 인자 �
                 error_message=None if status == '성공' else response,
                 input_type=input_type  # [수정] 처리 이력에 입력 방식 저장
             )
-    except Exception as e:
-        print(f"[voice_runs 저장 오류] {type(e).__name__}: {e}")
+    except Exception:
+        history_warning = '처리 이력을 DB에 저장하지 못했습니다. 현재 세션에서만 확인할 수 있습니다.'
 
     return {
         **result,
@@ -491,6 +666,8 @@ def process_text(text, input_type='텍스트'):  # [수정] input_type 인자 �
         'response': response,
         'data': data,
         'status': status,
+        'run_id': str(run_id) if run_id else None,
+        'history_warning': history_warning,
         'latency_ms': elapsed_ms,
         'input_type': input_type  # [수정]
     }

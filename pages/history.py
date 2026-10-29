@@ -6,7 +6,7 @@ from zoneinfo import ZoneInfo
 import pandas as pd
 import streamlit as st
 
-from src.db import has_database_url, list_voice_runs
+from src.db import has_database_url, list_voice_runs, clear_voice_runs
 
 
 def normalize_datetime(dt_val):
@@ -29,39 +29,7 @@ def normalize_datetime(dt_val):
 
 
 def init_history_state():
-    if "history" not in st.session_state:
-        st.session_state.history = [
-            {
-                "created_at": datetime(2026, 10, 26, 14, 30),
-                "input_type": "직접 녹음",
-                "transcript": "내일 장보기 추가해 줘",
-                "intent": "ADD_TASK",
-                "status": "성공",
-                "response_text": "내일 할 일에 장보기를 추가했어요.",
-                "latency_ms": 2300,
-                "error_message": "",
-            },
-            {
-                "created_at": datetime(2026, 10, 26, 14, 25),
-                "input_type": "텍스트",
-                "transcript": "회의 준비라고 메모해 줘",
-                "intent": "ADD_MEMO",
-                "status": "성공",
-                "response_text": "회의 준비를 메모로 저장했어요.",
-                "latency_ms": 450,
-                "error_message": "",
-            },
-            {
-                "created_at": datetime(2026, 10, 26, 14, 20),
-                "input_type": "파일 업로드",
-                "transcript": "오늘 할 일 알려줘",
-                "intent": "LIST_TASK",
-                "status": "실패",
-                "response_text": "잠시 후 다시 시도해 주세요.",
-                "latency_ms": 1800,
-                "error_message": "DB 연결에 실패했습니다.",
-            },
-        ]
+    st.session_state.setdefault('history', [])
 
 
 STATUS_KO = {"success": "성공", "fail": "실패", "need_confirm": "확인 필요",
@@ -69,7 +37,7 @@ STATUS_KO = {"success": "성공", "fail": "실패", "need_confirm": "확인 필�
 
 
 def fetch_history_records():
-    """DB 연결 시 voice_runs만 사용 (세션 이력과 섞지 않음), 없으면 예시 이력"""
+    """DB와 세션의 실제 처리 이력을 ID 기준으로 합칩니다."""
     if not has_database_url():
         init_history_state()
         return list(st.session_state.history)
@@ -78,9 +46,11 @@ def fetch_history_records():
         db_runs = list_voice_runs(limit=500)
     except Exception as e:
         st.error(f"처리 이력을 불러오지 못했습니다: {type(e).__name__}")
-        return []
+        init_history_state()
+        return list(st.session_state.history)
 
-    return [{
+    records = [{
+        "id": str(r.get("id")),
         "created_at": normalize_datetime(r.get("created_at")),
         "input_type": r.get("input_type") or "-",
         "transcript": r.get("transcript") or "(내용 없음)",
@@ -90,6 +60,12 @@ def fetch_history_records():
         "latency_ms": float(r.get("latency_ms") or 0),
         "error_message": r.get("error_message") or "",
     } for r in db_runs]
+    # DB 저장에 실패한 세션 기록도 표시하며, 저장된 기록은 ID로 중복 제거합니다.
+    init_history_state()
+    seen_ids = {r['id'] for r in records}
+    records.extend(r for r in st.session_state.history
+                   if not r.get('id') or str(r['id']) not in seen_ids)
+    return records
 
 
 def render_history_view():
@@ -97,6 +73,18 @@ def render_history_view():
 
     st.subheader('🕒 처리 이력')
     st.caption("음성·텍스트 명령의 실행 결과를 확인하세요.")
+
+    with st.expander('처리 이력 전체 삭제'):
+        confirmed = st.checkbox('전체 처리 이력을 삭제합니다. 이 작업은 되돌릴 수 없습니다.')
+        if st.button('이력 비우기', disabled=not confirmed):
+            try:
+                if has_database_url():
+                    clear_voice_runs()
+            except Exception:
+                st.error('이력 삭제에 실패했습니다. DB 연결을 확인해 주세요.')
+            else:
+                st.session_state.history = []
+                st.rerun()
 
     history_records = fetch_history_records()
     if not history_records:

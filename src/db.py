@@ -136,3 +136,37 @@ def list_voice_runs(limit=100):
         with conn.cursor(row_factory=dict_row) as cur:
             cur.execute(sql, (limit,))
             return cur.fetchall()
+
+
+def _batch_mutate(filename, data_ids, completed=None):
+    """일괄 작업은 하나의 트랜잭션에서 수행하여 부분 반영을 방지합니다."""
+    if filename not in {'delete_task.sql', 'delete_memo.sql', 'update_task.sql'}:
+        raise ValueError('지원하지 않는 일괄 작업입니다')
+    sql = load_sql(filename)
+    with get_connection() as conn:
+        with conn.cursor() as cur:
+            for data_id in data_ids:
+                params = ((None, None, completed, None, data_id)
+                          if filename == 'update_task.sql' else (data_id,))
+                cur.execute(sql, params)
+                if cur.rowcount != 1:
+                    raise ValueError('목록이 변경되었습니다. 새로 조회 후 다시 시도해 주세요.')
+    return len(data_ids)
+
+
+def delete_tasks(data_ids):
+    return _batch_mutate('delete_task.sql', data_ids)
+
+
+def complete_tasks(data_ids):
+    return _batch_mutate('update_task.sql', data_ids, completed=True)
+
+
+def delete_memos(data_ids):
+    return _batch_mutate('delete_memo.sql', data_ids)
+
+
+def clear_voice_runs():
+    with get_connection() as conn:
+        with conn.cursor() as cur:
+            cur.execute('DELETE FROM voice_runs')

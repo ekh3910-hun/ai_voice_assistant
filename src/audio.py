@@ -74,8 +74,8 @@ def validate_wav(audio):
     except Exception as exc:
         raise ValueError("WAV 파일을 읽을 수 없습니다.") from exc
 
-    if wav.format not in ("WAV", "WAVEX"):
-        raise ValueError("WAV 파일만 지원합니다.")
+    if wav.format not in ("WAV", "WAVEX", "MP3"):
+        raise ValueError("WAV 또는 MP3 파일만 지원합니다.")
     if wav.channels not in (1, 2) or wav.samplerate <= 0 or wav.frames <= 0:
         raise ValueError("모노 또는 스테레오 WAV 파일이 필요합니다.")
 

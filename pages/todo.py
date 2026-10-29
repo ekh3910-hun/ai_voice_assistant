@@ -81,17 +81,6 @@ def render_calendar(tasks, key='task_calendar'):
     return full_cal(events=tasks_to_events(tasks), options=options, custom_css=custom_css, key=key)
 
 
-def _demo_tasks():
-    today = date.today()
-    return [
-        {'id': 'demo-1', 'content': '발표 자료 준비', 'due_date': today - timedelta(days=1), 'due_time': None, 'is_done': False},
-        {'id': 'demo-2', 'content': '장보기', 'due_date': today, 'due_time': None, 'is_done': False},
-        {'id': 'demo-3', 'content': '과제 제출', 'due_date': today + timedelta(days=3), 'due_time': None, 'is_done': False},
-        {'id': 'demo-4', 'content': '회의 준비', 'due_date': today - timedelta(days=2), 'due_time': None, 'is_done': True},
-        {'id': 'demo-5', 'content': '책 반납', 'due_date': today - timedelta(days=3), 'due_time': None, 'is_done': True},
-    ]
-
-
 def init_task_state(force=False):
     # 이미 세션에 할 일이 로드되어 있으면 불필요한 원격 DB 반복 조회 방지 (속도 최적화)
     if not force and "tasks" in st.session_state:
@@ -114,7 +103,7 @@ def init_task_state(force=False):
 
                     loaded.append({
                         'id': str(row.get('id')),
-                        'content': row.get('content') or row.get('title') or '(제목 없음)',
+                        'content': row.get('title') or row.get('content') or '(제목 없음)',
                         'due_date': d_val,
                         'due_time': None,
                         'is_done': bool(row.get('completed', False)),
@@ -128,7 +117,7 @@ def init_task_state(force=False):
 
     # DB 미연결 시에만 데모 데이터 사용
     if "tasks" not in st.session_state:
-        st.session_state.tasks = _demo_tasks()
+        st.session_state.tasks = []
 
 
 def format_date_ko(d):
@@ -172,7 +161,7 @@ def get_task_status_badge(due_date):
 
 
 def render_todo_view():
-    init_task_state()
+    init_task_state(force=True)
 
     st.subheader('할 일 관리(업무 관리)')
 

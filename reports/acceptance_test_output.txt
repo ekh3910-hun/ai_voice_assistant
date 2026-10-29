@@ -25,8 +25,31 @@ test_tc08_memo_failure_preserves_state (test_acceptance.AcceptanceTests.test_tc0
 test_tc08_memo_update_failure_preserves_content (test_acceptance.AcceptanceTests.test_tc08_memo_update_failure_preserves_content) ... ok
 test_tc08_model_failure (test_acceptance.AcceptanceTests.test_tc08_model_failure) ... ok
 test_tc08_tts_api_failure (test_acceptance.AcceptanceTests.test_tc08_tts_api_failure) ... ok
+test_all_matching_memos (test_integration.IntegrationTests.test_all_matching_memos) ... ok
+test_ambiguous_delete_does_not_mutate (test_integration.IntegrationTests.test_ambiguous_delete_does_not_mutate) ... ok
+test_batch_failure_rolls_back_transaction (test_integration.IntegrationTests.test_batch_failure_rolls_back_transaction) ... ok
+test_batch_missing_row_is_not_success (test_integration.IntegrationTests.test_batch_missing_row_is_not_success) ... ok
+test_complete_all_only_pending (test_integration.IntegrationTests.test_complete_all_only_pending) ... ok
+test_day_only_and_korean_dates (test_integration.IntegrationTests.test_day_only_and_korean_dates) ... ok
+test_delete_all_tasks (test_integration.IntegrationTests.test_delete_all_tasks) ... ok
+test_empty_states_have_no_demo_records (test_integration.IntegrationTests.test_empty_states_have_no_demo_records) ... ok
+test_history_failure_preserves_session (test_integration.IntegrationTests.test_history_failure_preserves_session) ... ok
+test_history_merges_unsaved_and_deduplicates_saved (test_integration.IntegrationTests.test_history_merges_unsaved_and_deduplicates_saved) ... ok
+test_history_write_failure_returns_warning (test_integration.IntegrationTests.test_history_write_failure_returns_warning) ... ok
+test_latest_memo_deletes_one (test_integration.IntegrationTests.test_latest_memo_deletes_one) ... ok
+test_memo_body_is_data (test_integration.IntegrationTests.test_memo_body_is_data) ... ok
+test_move_has_old_and_new_dates (test_integration.IntegrationTests.test_move_has_old_and_new_dates) ... ok
+test_mp3_preprocessing (test_integration.IntegrationTests.test_mp3_preprocessing) ... ok
+test_rename_preserves_target_date (test_integration.IntegrationTests.test_rename_preserves_target_date) ... ok
+test_success_syncs_from_db (test_integration.IntegrationTests.test_success_syncs_from_db) ... ok
+test_history_page (test_ui.PageTests.test_history_page) ... ok
+test_home_page (test_ui.PageTests.test_home_page) ... ok
+test_legacy_deployment_entry (test_ui.PageTests.test_legacy_deployment_entry) ... ok
+test_memo_page (test_ui.PageTests.test_memo_page) ... ok
+test_model_evaluation_page (test_ui.PageTests.test_model_evaluation_page) ... ok
+test_task_page (test_ui.PageTests.test_task_page) ... ok
 
 ----------------------------------------------------------------------
-Ran 27 tests in 0.250s
+Ran 50 tests in 3.344s
 
 OK

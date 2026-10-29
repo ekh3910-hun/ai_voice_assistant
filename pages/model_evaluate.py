@@ -5,6 +5,7 @@ import streamlit as st
 import pandas as pd
 import altair as alt                                    # [추가] 시각화
 from models.model import train_model, REPORT_PATH
+from src.core import load_intent_model
 
 
 # ════════════════════════════════════════════════════════════════════════════
@@ -130,10 +131,15 @@ def render_evaluate_view():
     btn_label = '모델 재학습 및 평가 실행' if has_report else '모델 학습 및 평가 실행'
 
     if st.button(btn_label, type='primary'):
-        with st.spinner('모델 학습 및 평가 중...'):
-            train_model()
-        st.success('모델 평가가 완료되었습니다')
-        st.rerun()
+        try:
+            with st.spinner('모델 학습 및 평가 중...'):
+                train_model()
+                load_intent_model.cache_clear()
+        except Exception:
+            st.error('모델 학습에 실패했습니다. 데이터와 실행 환경을 확인해 주세요.')
+        else:
+            st.success('모델 평가가 완료되었습니다')
+            st.rerun()
 
     if metrics_path.exists():
         df = pd.read_csv(metrics_path)

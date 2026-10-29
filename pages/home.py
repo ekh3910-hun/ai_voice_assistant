@@ -43,6 +43,7 @@ def handle_process_text(text: str, input_type: str = "직접 녹음"):
         st.session_state.history = []
 
     st.session_state.history.insert(0, {
+        "id": result.get('run_id'),
         "transcript": text,
         "input_type": input_type,
         "intent": intent,
@@ -102,8 +103,8 @@ def render_home_view():
 
     with tab2:
         wav_file = st.file_uploader(
-            'wav파일을 업로드하세요',
-            type=['wav']
+            '음성 파일을 업로드하세요 (WAV, MP3)',
+            type=['wav', 'mp3']
         )
 
         if wav_file is not None:
@@ -139,6 +140,7 @@ def render_home_view():
         - 할 일에 장보기 추가해
         - 내일 회의 등록해
         - 할 일 추가: 운동하기
+        - 30일 할 일에 발표 준비 추가해
 
         **2. 할 일 조회**
         - 오늘 할 일 알려줘
@@ -148,16 +150,19 @@ def render_home_view():
         **3. 할 일 수정**
         - 장보기 이름을 마트 가기로 바꿔
         - 회의 날짜를 내일로 변경해
+        - 30일 운동 날짜를 31일로 바꿔
 
         **4. 할 일 완료**
         - 장보기 완료
         - 운동 다 했어
         - 할 일 중에 회의 완료
+        - 운동 모두 완료
 
         **5. 할 일 삭제**
         - 할 일에서 장보기 삭제
         - 운동 할 일 지워
         - 장보기 삭제
+        - 장보기 모두 삭제
 
         ---
 
@@ -176,6 +181,8 @@ def render_home_view():
         **3. 메모 삭제**
         - 회의 관련 메모 삭제해
         - 메모 삭제해
+        - 최근 메모 삭제해
+        - 회의 관련 메모 모두 삭제해
         """)
 
     edited_text = st.text_area(
@@ -210,6 +217,8 @@ def render_home_view():
             st.warning(result['response'])
         else:
             st.error(result['response'])
+        if result.get('history_warning'):
+            st.warning(result['history_warning'])
 
     voice_name = st.selectbox(
         '원하는 목소리를 선택하세요',

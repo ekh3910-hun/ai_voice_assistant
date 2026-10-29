@@ -60,25 +60,7 @@ def init_memo_state(force=False):
             st.session_state.setdefault('memos', [])
             return
 
-    # DB 미연결 시에만 예시 샘플 표시
-    if "memos" not in st.session_state:
-        now = datetime.now().replace(second=0, microsecond=0)
-        today = now.replace(hour=0, minute=0)
-
-        def at(days_ago, h, m):
-            return today - timedelta(days=days_ago) + timedelta(hours=h, minutes=m)
-
-        samples = [
-            ("다음 발표 주제는 음성 인식", at(0, 11, 2)),
-            ("프린터 잉크 사야 함", at(0, 9, 40)),
-            ("교수님 면담은 목요일", at(1, 20, 15)),
-            ("주차 위치 지하 2층", at(1, 14, 30)),
-            ("회의실 예약 확인 필요", at(3, 16, 5)),
-            ("우유랑 계란 사기", at(3, 10, 20)),
-        ]
-        st.session_state.memos = [
-            {"id": f"sample-{uuid.uuid4()}", "content": c, "created_at": t} for c, t in samples
-        ]
+    st.session_state.setdefault('memos', [])
 
 
 # ---------------------------------------------------------------------------
@@ -208,7 +190,7 @@ def open_memo(memo):
 # 화면 렌더링 함수
 # ---------------------------------------------------------------------------
 def render_memo_view():
-    init_memo_state()
+    init_memo_state(force=True)
 
     pending = st.session_state.pop("pending_toast", None)
     if pending:
