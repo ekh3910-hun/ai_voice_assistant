@@ -35,7 +35,7 @@ python -m pip install -r requirements.txt
 
 ## 6. 실행
 ```bash
-streamlit run app.py
+streamlit run app1_b.py
 ```
 
 ## 7. 테스트·평가 재현

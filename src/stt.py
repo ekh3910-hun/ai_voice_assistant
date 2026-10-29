@@ -1,5 +1,5 @@
 # src/stt.py
-
+"""Shared STT. Team app retains preprocessing; app1 can compare raw decoded audio."""
 import io
 import logging
 import re
@@ -7,152 +7,79 @@ import time
 import unicodedata
 from functools import lru_cache
 from pathlib import Path
-
+import numpy as np
 import soundfile as sf
 from faster_whisper import WhisperModel
 from faster_whisper.audio import decode_audio
 
-from src.audio import preprocess
-
-
 logger = logging.getLogger(__name__)
-
 
 def report_progress(callback, message):
     logger.warning("[STT] %s", message)
-
     if callback is not None:
         callback(message)
 
-
 @lru_cache(maxsize=1)
-def load_stt_model(model_size="tiny"):
+def load_stt_model(model_size="base"):
     return WhisperModel(
-        model_size,
-        device="cpu",
-        compute_type="int8",
-        cpu_threads=2,
-        num_workers=1,
+        model_size, device="cpu", compute_type="int8",
+        cpu_threads=2, num_workers=1,
     )
 
-
-def transcript_wav(
-    audio,
-    model_size="tiny",
-    progress_callback=None,
-):
-    start = time.perf_counter()
-
+def transcript_wav(audio, model_size="base", progress_callback=None,
+                   use_preprocess=True):
+    started = time.perf_counter()
     if isinstance(audio, (str, Path)):
         audio_bytes = Path(audio).read_bytes()
     elif isinstance(audio, (bytes, bytearray)):
         audio_bytes = bytes(audio)
     else:
         raise ValueError("파일 경로 또는 음성 bytes가 필요합니다.")
+    if not audio_bytes or len(audio_bytes) > 10 * 1024 * 1024:
+        raise ValueError("비어 있지 않은 10MB 이하 음성이 필요합니다.")
 
-    if not audio_bytes:
-        raise ValueError("녹음 데이터가 비어 있습니다.")
+    report_progress(progress_callback, "1/3 녹음 형식 변환 중...")
+    data = decode_audio(io.BytesIO(audio_bytes), sampling_rate=16000)
+    if not data.size or not np.isfinite(data).all():
+        raise ValueError("유효한 음성 데이터가 없습니다.")
+    duration = len(data) / 16000
+    if not 0.5 <= duration <= 15:
+        raise ValueError("녹음은 0.5초 이상 15초 이내로 해주세요.")
+    if float(np.max(np.abs(data))) < 1e-6:
+        raise ValueError("녹음이 무음입니다.")
+    logger.warning("[STT] decoded %.3fs audio in %.3fs", duration, time.perf_counter()-started)
 
-    if len(audio_bytes) > 10 * 1024 * 1024:
-        raise ValueError("음성 파일은 10MB 이하여야 합니다.")
+    if use_preprocess:
+        report_progress(progress_callback, "기존 음성 전처리 중...")
+        from src.audio import preprocess
+        buf = io.BytesIO()
+        sf.write(buf, data, 16000, format="WAV", subtype="PCM_16")
+        prep_start = time.perf_counter()
+        prepared, _ = preprocess(buf.getvalue(), check_duplicate=False)
+        data, _ = sf.read(io.BytesIO(prepared), dtype="float32")
+        logger.warning("[STT] preprocessing %.3fs", time.perf_counter()-prep_start)
 
-    report_progress(
-        progress_callback,
-        "1/4 녹음 형식 변환 중...",
-    )
-
-    decoded_audio = decode_audio(
-        io.BytesIO(audio_bytes),
-        sampling_rate=16000,
-    )
-
-    if decoded_audio.size == 0:
-        raise ValueError("음성 데이터가 없습니다.")
-
-    # 기존 프로젝트의 최대 녹음 길이 정책 적용
-    if len(decoded_audio) / 16000 > 15:
-        raise ValueError("15초 이내로 짧게 녹음해주세요.")
-
-    wav_buffer = io.BytesIO()
-    sf.write(
-        wav_buffer,
-        decoded_audio,
-        16000,
-        format="WAV",
-        subtype="PCM_16",
-    )
-
-    report_progress(
-        progress_callback,
-        "2/4 음성 전처리 중...",
-    )
-
-    prepared_audio, _ = preprocess(
-        wav_buffer.getvalue(),
-        check_duplicate=False,
-    )
-
-    audio_data, _ = sf.read(
-        io.BytesIO(prepared_audio),
-        dtype="float32",
-    )
-
-    report_progress(
-        progress_callback,
-        f"3/4 {model_size} 모델 준비 중... "
-        "(첫 실행은 모델 다운로드가 필요합니다)",
-    )
-
+    report_progress(progress_callback, f"2/3 {model_size} 모델 준비 중...")
+    model_start = time.perf_counter()
     model = load_stt_model(model_size)
-
-    report_progress(
-        progress_callback,
-        "4/4 한국어 음성 인식 중...",
-    )
-
+    logger.warning("[STT] model ready %.3fs", time.perf_counter()-model_start)
+    report_progress(progress_callback, "3/3 한국어 음성 인식 중...")
+    transcribe_start = time.perf_counter()
     segments, _ = model.transcribe(
-        audio_data,
-        language="ko",
-        beam_size=5,
-        vad_filter=True,
-        vad_parameters={
-            "min_silence_duration_ms": 500,
-        },
-        condition_on_previous_text=False,
-        temperature=0,
+        data, language="ko", beam_size=5,
+        # app1 raw path uses VAD; team preprocessing path keeps original VAD off.
+        vad_filter=not use_preprocess,
+        condition_on_previous_text=False, temperature=0,
     )
-
-    # segments를 순회해야 실제 전사가 완료됨
-    transcript = " ".join(
-        segment.text.strip()
-        for segment in segments
-    ).strip()
-
-    text = unicodedata.normalize("NFC", transcript)
-    text = re.sub(r"\s+", " ", text).strip()
-    text = text.rstrip(".?!,~ ")
-
+    text = " ".join(segment.text.strip() for segment in segments).strip()
+    text = re.sub(r"\s+", " ", unicodedata.normalize("NFC", text)).strip().rstrip(".?!,~ ")
     if not text:
-        raise ValueError(
-            "인식된 문장이 없습니다. "
-            "마이크 가까이에서 다시 말씀해주세요."
-        )
-
-    elapsed = round(time.perf_counter() - start, 3)
-
-    report_progress(
-        progress_callback,
-        f"인식 완료: {elapsed:.3f}초",
-    )
-
+        raise ValueError("인식된 문장이 없습니다. 녹음 원본을 확인해주세요.")
+    elapsed = round(time.perf_counter()-started, 3)
+    logger.warning("[STT] transcription %.3fs total %.3fs", time.perf_counter()-transcribe_start, elapsed)
+    report_progress(progress_callback, f"인식 완료 ({elapsed:.3f}초)")
     return text, elapsed
 
-
 def evaluate_score(ref, pred):
-    # 평가할 때만 평가 패키지 불러오기
     from jiwer import wer, cer
-
-    return {
-        "WER": round(wer(ref, pred), 4),
-        "CER": round(cer(ref, pred), 4),
-    }
+    return {"WER": round(wer(ref, pred), 4), "CER": round(cer(ref, pred), 4)}

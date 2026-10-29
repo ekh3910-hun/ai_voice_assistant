@@ -1,6 +1,6 @@
 """AI 음성 비서: 이미지 시안 기반 Streamlit UI.
-로컬 SQLite에 저장. 팀 Neon DB/STT/TTS는 아직 미연결.
-실행: python -m streamlit run app.py
+로컬 SQLite에 저장. STT 및 답변 TTS 연결.
+실행: python -m streamlit run app1.py
 """
 import calendar
 import base64
@@ -102,31 +102,97 @@ def parse_time(text):
 
 def clean_content(text, kind):
     s = text.strip()
-    s = re.sub(r'(?:해\s*줘|해주세요|해줘|줘|주세요|해\s*줘요)[.!?\s]*$', '', s).strip()
+
+    # 문장 끝의 부탁 표현 제거
+    s = re.sub(
+        r'\s*(?:해\s*줘요|해\s*주세요|해\s*줘|줘요|주세요|줘)'
+        r'[.!?\s]*$',
+        '',
+        s,
+    ).strip()
+
     if kind == 'memo':
-        s = re.sub(r'(?:메모(?:로)?|기록(?:으로)?)\s*(?:해|남겨|저장해|적어|추가해)?\s*$', '', s).strip()
-        s = re.sub(r'^(?:메모(?:해|로)?|기록해)\s*', '', s).strip()
+        # 앞쪽 명령 표현 제거
+        # 예: "메모에 우유사기" → "우유사기"
+        s = re.sub(
+            r'^(?:메모장|메모)\s*(?:에|의)?\s*',
+            '',
+            s,
+        ).strip()
+
+        # 뒤쪽 메모 명령 제거
+        # 예: "오늘 회의 내용 메모" → "오늘 회의 내용"
+        s = re.sub(
+            r'\s*메모(?:로)?\s*'
+            r'(?:해|남겨|저장해|적어|추가해)?[.!?]*$',
+            '',
+            s,
+        ).strip()
+
+        # 예: "우유사기라고 적어" → "우유사기"
+        s = re.sub(
+            r'\s*(?:(?:이)?라고\s*)?'
+            r'(?:적어|써|남겨|저장해|추가해|저장|추가)'
+            r'[.!?]*$',
+            '',
+            s,
+        ).strip()
+
     else:
-        s = re.sub(r'(?:할\s*일(?:에|로)?|일정(?:에|으로)?)\s*', '', s)
-        s = re.sub(r'(?:추가|등록|저장|잡아|넣어)(?:해)?\s*$', '', s).strip()
-        s = re.sub(r'(오늘|내일|모레|\d{1,2}월\s*\d{1,2}일|(?:이번|다음)\s*주\s*[월화수목금토일]요일)', '', s)
-        s = re.sub(r'(오전|오후)?\s*\d{1,2}시(?:\s*\d{1,2}분)?(?:에|부터)?', '', s)
+        # 할 일 / 일정 명령 표현 제거
+        s = re.sub(
+            r'(?:할\s*일(?:에|로)?|일정(?:에|으로)?)\s*',
+            '',
+            s,
+        )
+
+        s = re.sub(
+            r'(?:추가|등록|저장|잡아|넣어)(?:해)?\s*$',
+            '',
+            s,
+        ).strip()
+
+        # 날짜 표현 제거
+        s = re.sub(
+            r'(오늘|내일|모레|\d{1,2}월\s*\d{1,2}일|'
+            r'(?:이번|다음)\s*주\s*[월화수목금토일]요일)',
+            '',
+            s,
+        )
+
+        # 시간 표현 제거
+        s = re.sub(
+            r'(오전|오후)?\s*\d{1,2}시'
+            r'(?:\s*\d{1,2}분)?(?:에|부터)?',
+            '',
+            s,
+        )
+
     s = re.sub(r'\s+', ' ', s).strip(' ,.-')
-    return s or text.strip()
+
+    return s
 
 
 def process_message(text):
-    """규칙 기반 명령 처리. (응답, 의도, 성공여부, 의도분류ms, DBms) 반환."""
+    """학습 모델 의도 분류 + 기존 SQLite 저장 처리."""
     start = perf_counter()
     msg = text.strip()
-    is_memo = bool(re.search(r'메모|기록해|기록해줘|적어\s*줘', msg))
-    is_task = bool(re.search(r'할\s*일|일정|예약|등록|추가|해야\s*해|까지|완료', msg))
-    is_list = bool(re.search(r'보여\s*줘|조회|목록|알려\s*줘', msg))
-    intent = ('LIST_MEMO' if is_list else 'ADD_MEMO') if is_memo else (
-        ('LIST_TASK' if is_list else 'ADD_TASK') if is_task else 'UNKNOWN'
-    )
+    if not msg:
+        return '내용을 입력해 주세요.', 'UNKNOWN', False, 0.0, 0.0
+    from src.intent_classifier import classify_intent
+    intent, confidence = classify_intent(msg)
+    is_memo = intent in {'ADD_MEMO', 'LIST_MEMO'}
+    is_task = intent in {'ADD_TASK', 'LIST_TASK'}
+    is_list = intent in {'LIST_MEMO', 'LIST_TASK'}
     intent_ms = (perf_counter() - start) * 1000
     db_ms = 0.0
+    # 초기 보수적 차단 기준. 별도 검증으로 조정해야 하는 값이며 확률 보장은 아님.
+    if confidence < 0.40:
+        return '명령이 불확실합니다. 메모/할 일과 요청 내용을 구체적으로 입력해 주세요.', intent, False, intent_ms, db_ms
+    if intent == 'HELP':
+        return '메모·할 일 추가와 조회를 사용할 수 있어요. 수정·완료·삭제는 관리 탭에서 진행해 주세요.', intent, True, intent_ms, db_ms
+    if intent in {'UPDATE_TASK', 'COMPLETE_TASK', 'DELETE_TASK', 'DELETE_MEMO'}:
+        return '이 명령의 대화 처리는 아직 연결되지 않았어요. 메모·할 일 관리 탭을 이용해 주세요.', intent, False, intent_ms, db_ms
     if not msg:
         return '내용을 입력해 주세요.', 'UNKNOWN', False, intent_ms, db_ms
     if is_list:
@@ -452,6 +518,19 @@ def add_message(text, input_type='문자', stt_ms=0.0, started_at=None):
     except Exception as exc:
         st.error(f'처리 이력 저장 실패: {exc}')
     st.session_state.page='대화하기'
+    # 저장 결과와 분리: TTS 실패 때문에 명령을 다시 실행하지 않는다.
+    st.session_state.tts_audio = None
+    st.session_state.tts_error = None
+    st.session_state.tts_autoplay = False
+    try:
+        from src.tts import synthesize_speech
+        with st.spinner('답변 음성 생성 중...'):
+            audio_bytes, elapsed = synthesize_speech(reply)
+        st.session_state.tts_audio = audio_bytes
+        st.session_state.tts_time = elapsed
+        st.session_state.tts_autoplay = True
+    except Exception as exc:
+        st.session_state.tts_error = f'{type(exc).__name__}: {exc}'
 
 
 def log_voice_failure(message, stt_ms, started_at, error_type):
@@ -472,6 +551,34 @@ if page=='대화하기':
         chat+=f'<div class="chat-row {role}">'+(f'<div class="chat-avatar">{avatar}</div>'+bubble if role=='assistant' else bubble+f'<div class="chat-avatar">{avatar}</div>')+'</div>'
     chat+='</div>'
     st.markdown(chat,unsafe_allow_html=True)
+    pending = st.session_state.get('pending_voice')
+    if pending:
+        st.caption('음성 인식 결과를 확인한 뒤 실행해 주세요. 아직 저장하지 않았어요.')
+        with st.form('confirm_voice_command'):
+            confirmed_text = st.text_area('인식 문장 수정', value=pending['text'])
+            run_voice = st.form_submit_button('확인 후 실행')
+            cancel_voice = st.form_submit_button('취소')
+        if cancel_voice:
+            st.session_state.pop('pending_voice', None)
+            st.rerun()
+        if run_voice:
+            if not confirmed_text.strip():
+                st.warning('실행할 내용을 입력해 주세요.')
+            else:
+                st.session_state.pop('pending_voice', None)
+                add_message(confirmed_text.strip(), input_type=pending['kind'],
+                            stt_ms=pending['stt_ms'])
+                st.rerun()
+    # 버튼/성공 조건 밖에서 렌더링하므로 rerun 후에도 재생바가 유지된다.
+    if st.session_state.get('tts_audio'):
+        st.caption(f"🔊 비서 답변 · 음성 생성 {st.session_state.get('tts_time', 0):.2f}초")
+        st.audio(st.session_state.tts_audio, format='audio/mpeg',
+                 autoplay=st.session_state.get('tts_autoplay', False))
+        st.session_state.tts_autoplay = False
+    if st.session_state.get('tts_error'):
+        st.warning('명령 처리 결과는 유지됩니다. 답변 음성 생성에만 실패했습니다.')
+        with st.expander('TTS 오류 상세'):
+            st.code(st.session_state.tts_error)
     # 단일 커스텀 입력바: 브라우저 MediaRecorder + 숨겨진 파일 선택 + 문자 전송
     # 이벤트 ID로 Streamlit rerun 시 중복 처리 방지
     chat_event = chat_bar_component(key='voice_chat_bar', default=None)
@@ -525,6 +632,7 @@ if page=='대화하기':
                     recognized, elapsed = transcript_wav(
                         audio_bytes,
                         model_size="base",
+                        use_preprocess=False,
                         progress_callback=progress_box.info,
                     )
 
@@ -553,12 +661,10 @@ if page=='대화하기':
                     st.session_state.last_audio_hash = audio_key
 
                     try:
-                        add_message(
-                            recognized,
-                            input_type=selected_kind,
-                            stt_ms=stt_ms,
-                            started_at=started,
-                        )
+                        st.session_state.pending_voice = {
+                            'text': recognized, 'kind': selected_kind,
+                            'stt_ms': stt_ms,
+                        }
 
                     except Exception as exc:
                         st.error(

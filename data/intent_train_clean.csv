@@ -1,0 +1,992 @@
+﻿text,intent
+내일 할 일에 운동 추가해 줘,ADD_TASK
+"10월 30일까지 택배 보내기 해야 돼, 할 일에 넣어 줘",ADD_TASK
+택배 보내기를 오늘 할 일로 등록해 주세요,ADD_TASK
+다음 달 3일까지 장보기 끝내야 하니까 등록해 줘,ADD_TASK
+"할 일 추가, 보고서 작성",ADD_TASK
+오늘 할 일에 장보기 추가해 줘,ADD_TASK
+"이번 주 금요일까지 과제 제출 해야 돼, 할 일에 넣어 줘",ADD_TASK
+보고서 작성을 10월 30일 할 일로 등록해 주세요,ADD_TASK
+다음 달 3일까지 팀플 자료 조사 끝내야 하니까 등록해 줘,ADD_TASK
+"할 일 추가, 과제 제출",ADD_TASK
+이번 주 금요일 할 일에 회의 자료 정리 추가해 줘,ADD_TASK
+"모레까지 발표 준비 해야 돼, 할 일에 넣어 줘",ADD_TASK
+팀플 자료 조사를 다음 달 3일 할 일로 등록해 주세요,ADD_TASK
+10월 30일까지 발표 준비 끝내야 하니까 등록해 줘,ADD_TASK
+"할 일 추가, 택배 보내기",ADD_TASK
+이번 주 금요일 할 일에 과제 제출 추가해 줘,ADD_TASK
+"다음 주 월요일까지 팀플 자료 조사 해야 돼, 할 일에 넣어 줘",ADD_TASK
+과제 제출을 다음 주 월요일 할 일로 등록해 주세요,ADD_TASK
+이번 주 금요일까지 과제 제출 끝내야 하니까 등록해 줘,ADD_TASK
+"할 일 추가, 회의 자료 정리",ADD_TASK
+오늘 할 일 알려 줘,LIST_TASK
+다음 주 월요일 할 일 뭐 있어?,LIST_TASK
+다음 달 3일까지 해야 할 일 보여 주세요,LIST_TASK
+안 끝낸 할 일 목록 읽어 줘,LIST_TASK
+이번 주 토요일 안 끝낸 할 일 뭐야?,LIST_TASK
+할 일 전체 목록 보여 줘,LIST_TASK
+이번 주 토요일 할 일 알려 줘,LIST_TASK
+내일 할 일 뭐 있어?,LIST_TASK
+모레까지 해야 할 일 보여 주세요,LIST_TASK
+완료한 할 일 목록 읽어 줘,LIST_TASK
+내일 안 끝낸 할 일 뭐야?,LIST_TASK
+다음 달 3일 할 일 알려 줘,LIST_TASK
+모레 할 일 뭐 있어?,LIST_TASK
+오늘까지 해야 할 일 보여 주세요,LIST_TASK
+끝낸 할 일 목록 읽어 줘,LIST_TASK
+다음 달 3일 아직 못 한 할 일 뭐야?,LIST_TASK
+이번 주 금요일 할 일 알려 줘,LIST_TASK
+이번 주 금요일 할 일 뭐 있어?,LIST_TASK
+다음 주 월요일까지 해야 할 일 보여 주세요,LIST_TASK
+아직 못 한 할 일 목록 읽어 줘,LIST_TASK
+택배 보내기 오늘로 미뤄 줘,UPDATE_TASK
+운동 마감을 이번 주 금요일로 바꿔 줘,UPDATE_TASK
+내일 보고서 작성 이번 주 금요일로 옮겨 주세요,UPDATE_TASK
+택배 보내기 이름을 헬스장 가기로 바꿔 줘,UPDATE_TASK
+회의 자료 정리를 최종 보고서 제출로 수정해 주세요,UPDATE_TASK
+병원 예약 10월 30일로 미뤄 줘,UPDATE_TASK
+회의 자료 정리 마감을 이번 주 토요일로 바꿔 줘,UPDATE_TASK
+이번 주 토요일 과제 제출 이번 주 금요일로 옮겨 주세요,UPDATE_TASK
+택배 보내기 이름을 중간고사 대비로 바꿔 줘,UPDATE_TASK
+시험 공부를 최종 보고서 제출로 수정해 주세요,UPDATE_TASK
+운동 오늘로 미뤄 줘,UPDATE_TASK
+택배 보내기 마감을 내일로 바꿔 줘,UPDATE_TASK
+다음 달 3일 회의 자료 정리 모레로 옮겨 주세요,UPDATE_TASK
+시험 공부 이름을 발표 리허설로 바꿔 줘,UPDATE_TASK
+과제 제출을 최종 보고서 제출로 수정해 주세요,UPDATE_TASK
+발표 준비 10월 30일로 미뤄 줘,UPDATE_TASK
+시험 공부 마감을 이번 주 금요일로 바꿔 줘,UPDATE_TASK
+이번 주 토요일 팀플 자료 조사 오늘로 옮겨 주세요,UPDATE_TASK
+병원 예약 이름을 최종 보고서 제출로 바꿔 줘,UPDATE_TASK
+팀플 자료 조사를 헬스장 가기로 수정해 주세요,UPDATE_TASK
+보고서 작성 완료했어,COMPLETE_TASK
+"장보기 끝났어, 체크해 줘",COMPLETE_TASK
+오늘 할 일 중에 팀플 자료 조사 완료 처리해 줘,COMPLETE_TASK
+발표 준비 다 했어,COMPLETE_TASK
+과제 제출 완료로 바꿔 주세요,COMPLETE_TASK
+팀플 자료 조사 완료했어,COMPLETE_TASK
+"병원 예약 끝났어, 체크해 줘",COMPLETE_TASK
+다음 주 월요일 할 일 중에 시험 공부 완료 처리해 줘,COMPLETE_TASK
+운동 다 했어,COMPLETE_TASK
+장보기 완료로 바꿔 주세요,COMPLETE_TASK
+과제 제출 완료했어,COMPLETE_TASK
+"운동 끝났어, 체크해 줘",COMPLETE_TASK
+이번 주 토요일 할 일 중에 운동 완료 처리해 줘,COMPLETE_TASK
+과제 제출 다 했어,COMPLETE_TASK
+병원 예약 완료로 바꿔 주세요,COMPLETE_TASK
+운동 완료했어,COMPLETE_TASK
+"팀플 자료 조사 끝났어, 체크해 줘",COMPLETE_TASK
+다음 달 3일 할 일 중에 회의 자료 정리 완료 처리해 줘,COMPLETE_TASK
+장보기 다 했어,COMPLETE_TASK
+발표 준비 완료로 바꿔 주세요,COMPLETE_TASK
+과제 제출 할 일 삭제해 줘,DELETE_TASK
+이번 주 금요일 할 일에서 택배 보내기 빼 줘,DELETE_TASK
+할 일에서 택배 보내기 지워 주세요,DELETE_TASK
+"팀플 자료 조사는 안 해도 돼, 지워 줘",DELETE_TASK
+병원 예약 할 일 삭제해 줘,DELETE_TASK
+10월 30일 할 일에서 장보기 빼 줘,DELETE_TASK
+할 일에서 과제 제출 지워 주세요,DELETE_TASK
+"발표 준비는 안 해도 돼, 지워 줘",DELETE_TASK
+운동 할 일 삭제해 줘,DELETE_TASK
+내일 할 일에서 운동 빼 줘,DELETE_TASK
+할 일에서 팀플 자료 조사 지워 주세요,DELETE_TASK
+"운동은 안 해도 돼, 지워 줘",DELETE_TASK
+회의 자료 정리 할 일 삭제해 줘,DELETE_TASK
+내일 할 일에서 보고서 작성 빼 줘,DELETE_TASK
+할 일에서 장보기 지워 주세요,DELETE_TASK
+"장보기는 안 해도 돼, 지워 줘",DELETE_TASK
+장보기 할 일 삭제해 줘,DELETE_TASK
+이번 주 금요일 할 일에서 발표 준비 빼 줘,DELETE_TASK
+할 일에서 시험 공부 지워 주세요,DELETE_TASK
+"회의 자료 정리는 안 해도 돼, 지워 줘",DELETE_TASK
+다음 발표 주제는 음성 인식이라고 메모해 줘,ADD_MEMO
+"메모 추가, 프린터 잉크 사야 함",ADD_MEMO
+"프린터 잉크 사야 함, 메모해 둬",ADD_MEMO
+다음 발표 주제는 음성 인식이라고 적어 줘,ADD_MEMO
+메모장에 프린터 잉크 사야 함 남겨 주세요,ADD_MEMO
+프린터 잉크 사야 함이라고 메모해 줘,ADD_MEMO
+"메모 추가, 우유랑 계란 사기",ADD_MEMO
+"교수님 면담은 목요일, 메모해 둬",ADD_MEMO
+회의실 예약 확인 필요라고 적어 줘,ADD_MEMO
+메모장에 우유랑 계란 사기 남겨 주세요,ADD_MEMO
+우유랑 계란 사기라고 메모해 줘,ADD_MEMO
+"메모 추가, 주차 위치 지하 2층",ADD_MEMO
+"주차 위치 지하 2층, 메모해 둬",ADD_MEMO
+주차 위치 지하 2층이라고 적어 줘,ADD_MEMO
+메모장에 교수님 면담은 목요일 남겨 주세요,ADD_MEMO
+주차 위치 지하 2층이라고 메모해 줘,ADD_MEMO
+"메모 추가, 다음 발표 주제는 음성 인식",ADD_MEMO
+"다음 발표 주제는 음성 인식, 메모해 둬",ADD_MEMO
+교수님 면담은 목요일이라고 적어 줘,ADD_MEMO
+메모장에 다음 발표 주제는 음성 인식 남겨 주세요,ADD_MEMO
+과제 관련 메모 보여 줘,LIST_MEMO
+아이디어 메모 찾아 줘,LIST_MEMO
+시험 메모 뭐 있었지?,LIST_MEMO
+오늘 쓴 메모 알려 줘,LIST_MEMO
+지난주 금요일 적어 둔 메모 보여 줘,LIST_MEMO
+메모 전부 읽어 주세요,LIST_MEMO
+아이디어 관련 메모 보여 줘,LIST_MEMO
+회의 메모 찾아 줘,LIST_MEMO
+장보기 메모 뭐 있었지?,LIST_MEMO
+10월 15일 쓴 메모 알려 줘,LIST_MEMO
+오늘 적어 둔 메모 보여 줘,LIST_MEMO
+장보기 관련 메모 보여 줘,LIST_MEMO
+장보기 메모 찾아 줘,LIST_MEMO
+발표 메모 뭐 있었지?,LIST_MEMO
+지난주 금요일 쓴 메모 알려 줘,LIST_MEMO
+그저께 적어 둔 메모 보여 줘,LIST_MEMO
+시험 관련 메모 보여 줘,LIST_MEMO
+과제 메모 찾아 줘,LIST_MEMO
+회의 메모 뭐 있었지?,LIST_MEMO
+그저께 쓴 메모 알려 줘,LIST_MEMO
+과제 메모 삭제해 줘,DELETE_MEMO
+시험 관련 메모 지워 줘,DELETE_MEMO
+시험 들어간 메모 다 지워 줘,DELETE_MEMO
+그저께 쓴 메모 삭제해 주세요,DELETE_MEMO
+방금 쓴 메모 지워 줘,DELETE_MEMO
+발표 메모 삭제해 줘,DELETE_MEMO
+회의 관련 메모 지워 줘,DELETE_MEMO
+회의 들어간 메모 다 지워 줘,DELETE_MEMO
+오늘 쓴 메모 삭제해 주세요,DELETE_MEMO
+회의 메모 삭제해 줘,DELETE_MEMO
+아이디어 관련 메모 지워 줘,DELETE_MEMO
+장보기 들어간 메모 다 지워 줘,DELETE_MEMO
+10월 15일 쓴 메모 삭제해 주세요,DELETE_MEMO
+장보기 메모 삭제해 줘,DELETE_MEMO
+과제 관련 메모 지워 줘,DELETE_MEMO
+아이디어 들어간 메모 다 지워 줘,DELETE_MEMO
+지난주 금요일 쓴 메모 삭제해 주세요,DELETE_MEMO
+시험 메모 삭제해 줘,DELETE_MEMO
+장보기 관련 메모 지워 줘,DELETE_MEMO
+과제 들어간 메모 다 지워 줘,DELETE_MEMO
+사용할 수 있는 명령 알려 줘,HELP
+지원하는 명령을 알려 주세요,HELP
+어떤 명령을 사용할 수 있어?,HELP
+여기서 가능한 명령이 뭐야?,HELP
+사용 방법 알려 줘,HELP
+이 음성 비서는 어떻게 사용해?,HELP
+처음 사용하는데 사용법 설명해 주세요,HELP
+이 서비스 이용 방법을 안내해 줘,HELP
+메모를 추가하려면 어떻게 말해야 해?,HELP
+할 일을 등록하는 명령 예시 알려 줘,HELP
+저장된 메모는 어떻게 조회해?,HELP
+할 일을 삭제하려면 무슨 말을 해야 해?,HELP
+도움말 보여 줘,HELP
+도움말 읽어 주세요,HELP
+도움말을 확인하고 싶어,HELP
+도움말 좀 안내해 줘,HELP
+메모 기능으로 무엇을 할 수 있어?,HELP
+할 일 관리 기능을 설명해 줘,HELP
+이 음성 비서가 할 수 있는 일을 소개해 줘,HELP
+지원하는 기능 목록을 보여 주세요,HELP
+다음주 중에 있는 일정들을 알려줘,LIST_TASK
+이번 주 일정을 알려주겠니,LIST_TASK
+내 아이 유치원 행사 일정 알려줘,LIST_TASK
+내일 오후에 회의 일정 취소할 수 있니,DELETE_TASK
+팔월이십육일 일정알려줘,LIST_TASK
+다음달 중요 일정이 뭐야,LIST_TASK
+오늘 일정을 모두 알려줘,LIST_TASK
+내일 아침 일정을 알려줘,LIST_TASK
+이번 주 일정중 두시간 이상인 걸리는 일정 알려줘,LIST_TASK
+다음달 친구랑 야구경기 일정 언제인지 알려줘,LIST_TASK
+내일 오전 일정이 어떻게 되는지 알려줘,LIST_TASK
+어제 한 일정 알려줘,LIST_TASK
+오늘 할 일이 뭐야,LIST_TASK
+한국사 시험 일정 언제인지 알려줘,LIST_TASK
+이번주에 저녁 여덟시 넘어서 있는 일정 알려줘,LIST_TASK
+다음달에 해외 나가는 일정 있다면 알려줘,LIST_TASK
+강남역에 있는 일정이 뭐였는지 찾아줘,LIST_TASK
+이번주에 가족 관련 일정 있으면 알려줘,LIST_TASK
+다음달 한국 입국 일정 알려줘,LIST_TASK
+내일 일정 모두 확인해주겠니,LIST_TASK
+어제 무슨 일정 있었는 지 알려줘,LIST_TASK
+작년 팔월 일정 전부 알려줘,LIST_TASK
+몇 시에 일정 있는 지 알려줘,LIST_TASK
+오늘 일정 있다면 알려줘,LIST_TASK
+내일 오전 스케줄 알려줘,LIST_TASK
+내일 가장 빠른 스케줄이 언제인지 알려줘,LIST_TASK
+오늘 일정 알려줘,LIST_TASK
+내일 아침 일정 알려줘,LIST_TASK
+에이에스 방문 일정이 오늘 몇시인지 알려줘,LIST_TASK
+오늘 오전 일정 있따면 알려줄래,LIST_TASK
+다음달에 해외 나가는 일정 다 알려줘,LIST_TASK
+이번 주 일정 쭉 알려줘,LIST_TASK
+오늘 오후 일정 알려줘,LIST_TASK
+팔월 보충수업 일정 알려줘,LIST_TASK
+다음달 참가 학회 일정을 알려줘,LIST_TASK
+칠월 삼십일 오후 일정이 뭐야,LIST_TASK
+다름달에 등산일정이 언제인지 알려줘,LIST_TASK
+다음 일정이 무엇인지 알려줘,LIST_TASK
+다음주 화요일 일정이 뭐야,LIST_TASK
+다음 달에 회사 일정 있는지 알려줘,LIST_TASK
+다음주 일정 알려줘,LIST_TASK
+이번주에 학교 관련 일정 다 알려줘,LIST_TASK
+다음주 월요일 오전 일정 알려줘,LIST_TASK
+내일 미팅일정 알려주겠니,LIST_TASK
+다가오는 기념일 중 가장 빠른 게 어떤 일정인지 알려줘,LIST_TASK
+팔월 일정이 어떻게 되는지 알려줘,LIST_TASK
+수강신청 일정 언제인지 알려줘,LIST_TASK
+이번주말 일정이 있는지 확인해줘,LIST_TASK
+다음주 일정 어떻게 되는지 알려줘,LIST_TASK
+모레 주요 일정이 뭐지,LIST_TASK
+내일 저녁 열시 이후 일정 확인해줄수있니,LIST_TASK
+올해 여행 일정을 정리해서 알려줄 수 있니,LIST_TASK
+이번 주 토요일 일정 알려줘,LIST_TASK
+오늘 오후일정 알려주겠니,LIST_TASK
+이번주 화요일 오후 일정이 어떻게 되는지 알려줘,LIST_TASK
+이번주 일정 중 공항 일정이 있다면 알려줘,LIST_TASK
+내일 하루 일정이 어떻게 되는지 알려줘,LIST_TASK
+내일 일정 알려줘,LIST_TASK
+이번 달 내가 부산갔던 일정 모두 보여라,LIST_TASK
+내일 할일이 뭐가 있니,LIST_TASK
+이번주 일정이 어떻게 되는지 알려줘,LIST_TASK
+다음으로 잡혀있는 일정 알려줘,LIST_TASK
+다음달 오빠 휴가 일정 알려줘,LIST_TASK
+내일 일정좀 알려줘,LIST_TASK
+내일 오전 일정을 알려줘,LIST_TASK
+칠월 삼십일 저녁에 일정이 있는지 알려줘,LIST_TASK
+이번주에 있는 일정좀 보여주겠니,LIST_TASK
+다음주 일정이 어떻게 되는지 알려줘,LIST_TASK
+이번주 학교 중요 일정 알려줘,LIST_TASK
+내일 모레 새벽에 일정 있는지 알려줘,LIST_TASK
+육월달 휴학 일정 언제인지 알려줘,LIST_TASK
+이번 십일 동안 갈 싱가폴 멕시코 비행기 일정을 알려줘,LIST_TASK
+다음주 금요일 회의 일정 몇시인지 알려줘,LIST_TASK
+내일 일정에 대해 알려주겠니,LIST_TASK
+다음달 구일에 제사 일정 추가되어있니,LIST_TASK
+이학기 개강 일정이 언제인지 알려줘,LIST_TASK
+다음달에 시험 일정 언제있는지 알려줘,LIST_TASK
+그저께 일정 확인해줘,LIST_TASK
+사월 일정이 어떻게 되는지 알려줘,LIST_TASK
+이번주에 오전에 있는 일정 알려줘,LIST_TASK
+삼월 일정이 어떻게 되는지 알려줘,LIST_TASK
+다음주 월요일 일정 알려줘,LIST_TASK
+내일 오전일정 알려주겠니,LIST_TASK
+이번주 금요일 일정 알려주세요,LIST_TASK
+이번 달 치과 수술일정일을 알려줘,LIST_TASK
+오늘 오전일정 알려줘,LIST_TASK
+캘린더에서 동창회 단어 들어간 일정만 모두 모아서 보여줘,LIST_TASK
+내일 모레 오전 일정 알려줘,LIST_TASK
+내일 오후 세시 이후 일정 알려줘,LIST_TASK
+오늘 오후 네시 이후 일정 확인해줘,LIST_TASK
+이번주 중요일정이 뭐가 있는지 알 수 있니,LIST_TASK
+다음 주 전체 일정 보여줘,LIST_TASK
+다음주 스케줄 확인해줘,LIST_TASK
+이번달 아르바이트 일정 알려줘,LIST_TASK
+강남역 일정이 뭐지,LIST_TASK
+오늘 일정 뭐 있는지 알려줘,LIST_TASK
+다음달 베트남 출국 일정 알려줘,LIST_TASK
+이번주 중요 일정 알려줘,LIST_TASK
+오늘 오후 세시 이후 일정 모두 알려줄 수 있니,LIST_TASK
+오늘 회사일정에 상세정보를 알려주겠니,LIST_TASK
+다음주 토요일 오후 일정이 어떻게 되는지 알려줘,LIST_TASK
+한시간 뒤에 일정 뭐 있니,LIST_TASK
+다음주에 내가 신경써야 할 일정이 있으면 알려줘,LIST_TASK
+토요일날 무슨 일정 있었는지 알려줘,LIST_TASK
+이번주에 친구 만나는 일정 있으면 알려줄래,LIST_TASK
+오늘 오전 일정이 어떻게 되는지 알려줘,LIST_TASK
+팔월 일본여행 일정 언제인지 알려줘,LIST_TASK
+다다음주에 일정 있는지 확인 좀 해줄 수 있어,LIST_TASK
+십일월달 농구 경기 일정 언제인지 알려줘,LIST_TASK
+주말에 과외 스케줄좀 알려줘,LIST_TASK
+이월 일정이 어떻게 되는지 알려줘,LIST_TASK
+내일 스케줄 보여줘,LIST_TASK
+오늘 오후 일정 중 장소가 서울이 아닌곳 알려줘,LIST_TASK
+오늘 일정이 뭐가있는지 알려줘,LIST_TASK
+다음주 주말 일정 알려줘,LIST_TASK
+오늘의 축구경기 일정 알려주련,LIST_TASK
+다다음달 개강총회 일정 언제인지 알려줘,LIST_TASK
+이번 주 돌잔치 일정 알려줘,LIST_TASK
+내일 자동차 수리 일정 추가되어있니,LIST_TASK
+내일 일정 몇 시부터 시작하는지 알려줘,LIST_TASK
+십일월 일정이 어떻게 되는지 알려줘,LIST_TASK
+모레 일정이 어떻게 되는지 알려줘,LIST_TASK
+이번주 금요일 오전 일정이 어떻게 되는지 알려줘,LIST_TASK
+내일 밤 아홉시에 남편과의 드라이브 일정을 알려줘,LIST_TASK
+내일 일정 확인해줘,LIST_TASK
+오전에 일정 읽어줘,LIST_TASK
+스팀게임 할일 기간이 등록 되어 있니,LIST_TASK
+칠월달 방학 일정 알려줘,LIST_TASK
+올해 시험일정 알려줘,LIST_TASK
+오늘의 모든 일정을 알려줘,LIST_TASK
+내일 아침 운동 일정 있는지 알려줘,LIST_TASK
+이번주 시험 일정이 언제인지 알려줘,LIST_TASK
+구월구일 내생일일정 추가되어있니,LIST_TASK
+오늘 일정이 뭐가있는지 알려주겠니,LIST_TASK
+오늘 일정이 어떻게 되는지 알려줘,LIST_TASK
+이번달 중요 일정 알려줄래,LIST_TASK
+오늘 일정 중 가족 모임 있는지 알려줘,LIST_TASK
+다음주 월요일 일정 어떻게 되는지 알려줘,LIST_TASK
+일월 일정이 어떻게 되는지 알려줘,LIST_TASK
+내일 아침 회의 일정 알려줘,LIST_TASK
+다음달 병원 예약 일정을 알려줘,LIST_TASK
+내일 무슨 일정 있는지 알려줘,LIST_TASK
+결혼 기념일날 일정 알려줘,LIST_TASK
+이번 주에 해야할 일 알려줘,LIST_TASK
+십이월 일정이 어떻게 되는지 알려줘,LIST_TASK
+이번주 금요일 일정을 알려줘,LIST_TASK
+오늘 일정 쭉 알려줘,LIST_TASK
+다음달 랩미팅 일정 알려줘,LIST_TASK
+이 다음 일정이 뭔지 알려줄래,LIST_TASK
+내일 저녁 일정 알려줘,LIST_TASK
+기말고사 일정 알려줘,LIST_TASK
+내일 오전 일정이 있는지 알려줘,LIST_TASK
+내년에 유럽 여행 일정 언제인지 알려줄수있니,LIST_TASK
+올해의 영어과외 일정일을 알려줘,LIST_TASK
+수강신청 일정 언제인지 알려줄수있니,LIST_TASK
+내일 세시 일정이 어떻게 되는지 알려줘,LIST_TASK
+출장 일정 알려줘,LIST_TASK
+이번 토요일 일정 알려줘,LIST_TASK
+이번주 일요일 일정 알려줘,LIST_TASK
+이번주에 왁싱일정있는지 알려줘,LIST_TASK
+이번주에 점심약속 있는 일정 알려줘,LIST_TASK
+오늘 전체 일정 좀 알려줄래,LIST_TASK
+다음달 콘서트 일정 언제인지 알려줘,LIST_TASK
+칠월 이십팔일에 저녁 일정 있는지 알려줘,LIST_TASK
+올해 지원 마감 일정 알려줘,LIST_TASK
+이번달 오케스트라 음악회 일정 언젱인지 알려줘,LIST_TASK
+오늘 일정 다 알려줘,LIST_TASK
+저번주 수요일 일정 확인해줘,LIST_TASK
+오늘 오후 스케줄이 뭔지 알려줘,LIST_TASK
+그저께 어떤 일정이 있었는지 알려줘,LIST_TASK
+저번달 중요 일정이 뭐였는지 알려줘,LIST_TASK
+이번주 지원 마감 일정 알려줘,LIST_TASK
+이번주 주말 일정 전부 알려줘,LIST_TASK
+시월 일정이 어떻게 되는지 알려줘,LIST_TASK
+오늘 오전일정 알려주겠니,LIST_TASK
+오늘 오전 열한시 일정을 알려줘,LIST_TASK
+지난주 월요일 오전 일정 알려줘,LIST_TASK
+오늘 오후 일정이 어떻게 되는지 알려줘,LIST_TASK
+우리 큰 딸 피아노 콩쿨 일정을 알려줘,LIST_TASK
+이번주 목요일 일정이 뭐야,LIST_TASK
+오늘 스케줄을 알려줘,LIST_TASK
+한 시간 후의 일정을 알려주겟니,LIST_TASK
+팔월 오일에 일정 뭐 잡혀 있니,LIST_TASK
+친구 생일파티 일정이 저장되어 있는지 확인해줘,LIST_TASK
+이번주 목요일 오후 일정 알려줘,LIST_TASK
+내일 일정 뭐 있는지 알려줄 수 있니,LIST_TASK
+지난달 시험 일정 알려줘,LIST_TASK
+오늘 해야할 일이 뭐야,LIST_TASK
+오늘 오후 일정 알려줄수있니,LIST_TASK
+이번 주 금식기도 일정과 기도제목들을 알려줘,LIST_TASK
+오늘 일정 중 교수님 만나는 시간 언제인지 알려줘,LIST_TASK
+다음달 셋째 주 일정 좀 알려줘,LIST_TASK
+상반기 원서 접수 일정 알려줘,LIST_TASK
+다음달 첫째 주 주말 일정 추가 되어있는게 있니,LIST_TASK
+이번주에 저녁 약속 있는 일정 알려줘,LIST_TASK
+내일 아침 일정이 어떻게 되는지 알려줘,LIST_TASK
+내일 어디서 일정이 있는지 알려줘,LIST_TASK
+다음달 마지막 주 일정 알려줄래,LIST_TASK
+내일 오전 열시 영화보기 일정 추가 되어있니,LIST_TASK
+칠월 일정이 어떻게 되는지 알려줘,LIST_TASK
+내일 일정에 대해 알려줘,LIST_TASK
+오늘 남은일정 확인해줄수있니,LIST_TASK
+내일 오전 일정 알려줘,LIST_TASK
+이 개월 뒤 전국체전 일정을 모두 보여라,LIST_TASK
+다음달에 생일일정이 언제인지 알려줘,LIST_TASK
+그저께 일정 알려줄 수 있니,LIST_TASK
+이번달 모임이라고 스케쥴에 적힌 일정들 모두 알려줘,LIST_TASK
+내일 아침 일정이 언제 시작하는지 알려줘,LIST_TASK
+다음달 두번째주 토요일 일정 확인해줘,LIST_TASK
+다음년도에 학회일정 알려줘,LIST_TASK
+스케줄 확인해서 토플 접수 기간 언제까지인지 찾아줘,LIST_TASK
+다음 달 시험 일정 알려줘,LIST_TASK
+오늘 할 일 목록 알려줘,LIST_TASK
+다음 일정이 몇시인지 알려줘,LIST_TASK
+내일 첫 스케줄이 언제부터 시작하는지 알려줘,LIST_TASK
+오늘부터 십일동안 잡혀있는 일정 알려줘,LIST_TASK
+오늘 오전 스케줄이 뭐야,LIST_TASK
+이번주에 청담동에서 하는 일정들 다 알려줘,LIST_TASK
+이번 주 오전 일정 전부 알려줘,LIST_TASK
+마지막으로 영화 단어 들어간 일정이 언젠지 알려줘,LIST_TASK
+오늘 일정 중 가족 모임 있으면 알려줄래,LIST_TASK
+내일 오후일정 알려주겠니,LIST_TASK
+한시간 뒤 일정 알려줘,LIST_TASK
+이번 달 일정들 뭐가 있는지 알려줘,LIST_TASK
+내일 영화 일정 몇시인지 알려줘,LIST_TASK
+여름휴가 일정을 자세히 알려줘,LIST_TASK
+구월 일정이 어떻게 되는지 알려줘,LIST_TASK
+그저께 오전 아홉시부터 오후 여섯시 사이 일정 다 알려줘,LIST_TASK
+이번주 일정 알려줘,LIST_TASK
+지난주 목요일 오후 일정 알려줘,LIST_TASK
+이모 집가는 일정 알려줘,LIST_TASK
+내일까지 해야할 일 알려줘,LIST_TASK
+금요일 오후에 일정이 있는 지 알려줘,LIST_TASK
+다음 일정은 뭐야,LIST_TASK
+이번주 회사 일 관련 일정 다 알려줘,LIST_TASK
+내일 스케줄 있는지 알려줘,LIST_TASK
+이번주 중요 일정을 알려주겠니,LIST_TASK
+다음주 부산 여행 일정 알려줘,LIST_TASK
+내일 저녁에 일정 어떻게 되는지 알려줘,LIST_TASK
+다음주 일요일 오전 일정이 어떻게 되는지 알려줘,LIST_TASK
+다음주 회의 일정 있는지 알려줘,LIST_TASK
+오늘 미팅 일정 알려줘,LIST_TASK
+내일 일정 몇 시에 끝나는지 알려줘,LIST_TASK
+캘린더에서 거래처 단어 들어간 일정만 모두 모아서 보여줘,LIST_TASK
+이번 주 목요일에 일정 뭐 있어,LIST_TASK
+구월에 있는 결혼식 일정이 몇 일인지 알려줘,LIST_TASK
+저번주 헬스 스케줄 좀 알려줘,LIST_TASK
+이번주에 취소된 일정이 있니,LIST_TASK
+오늘 미팅 일정 알려주겠니,LIST_TASK
+다음주 오후 한 시부터 세 시 사이에 일정이 있는지 알려줘,LIST_TASK
+오늘 제일 마지막 스케줄이 무엇인지 알려줘,LIST_TASK
+다음달 첫주 목요일 열시에 일정 있다면 알려줘,LIST_TASK
+내일 아침 일정 장소 알려줘,LIST_TASK
+다음 달 후쿠오카로 가는 배 일정을 알려줄래,LIST_TASK
+이번주에 점심약속 있는 일정 알려줄래,LIST_TASK
+이천십육년 일정 보여줘,LIST_TASK
+이틀후 회의 일정 확인해줄수있니,LIST_TASK
+내일 일정을 모두 취소되어 있니,LIST_TASK
+지지난주 주말 일정 알려줘,LIST_TASK
+평가 관련 일정 전부 알려줄 수 있니,LIST_TASK
+오늘 전체 일정 좀 알려줘,LIST_TASK
+오늘 헬스장 스케줄 확인해줘,LIST_TASK
+다음주 일요일 일정에 대해 알려줘,LIST_TASK
+다음주 시험 일정 알려줘,LIST_TASK
+내일 미팅일정 알려줘,LIST_TASK
+이번주에 외부 미팅관련 일정 다 알려줘,LIST_TASK
+팔월 육일에 일정 뭐 있니,LIST_TASK
+이번 주말 오후 일정을 알려줘,LIST_TASK
+오늘 아침 일정이 뭐였었는지 알려줘,LIST_TASK
+허금순이 오늘 할일 알려줘,LIST_TASK
+다음주에 한국 가는 일정이 무슨요일인지 알려줘,LIST_TASK
+다음주 월요일 오후 일정 알려줘,LIST_TASK
+이번주 면접 일정 언제인지 알려줘,LIST_TASK
+티켓팅 일정 좀 알려줘,LIST_TASK
+새벽에 잡혀있는 일정 확인해줘,LIST_TASK
+다음달 첫째 주 주말 일정 알려줘,LIST_TASK
+내일 일정 뭐 있는지 알려줘,LIST_TASK
+어제 두시 일정 확인해줘,LIST_TASK
+금요일 일정 알려줘,LIST_TASK
+다음 주에 할 일 뭐 있어,LIST_TASK
+오늘 할 일이 무엇인지 알려줘,LIST_TASK
+식목일에 일정이 있는지 알려주겠니,LIST_TASK
+보고서 작성 일정이 언제까지로 되어있는지 알려줘,LIST_TASK
+내일 오전 일정좀 알려줘,LIST_TASK
+다음주 화요일 일정 알려줘,LIST_TASK
+오늘 오후 스케줄이 뭐야,LIST_TASK
+다음 주에 일정 뭐 있니,LIST_TASK
+내일 몇 시부터 일정 시작인지 알려줘,LIST_TASK
+가족모임 일정 확인해줘,LIST_TASK
+다음주 목요일 오후 두시에 일정 알려줘,LIST_TASK
+다음달 마지막 주 일정 좀 알려줘,LIST_TASK
+여행이라는 단어가 들어간 일정 모두 알려줘,LIST_TASK
+돈까스 먹기 대회의 일정을 알려줘,LIST_TASK
+이번주 화요일 오후 일정이 어떻게 되는지 알려줄수있니,LIST_TASK
+다음달 출장 일정에 대해 확인해주겠니,LIST_TASK
+내일 오전 일정 취소해줘,DELETE_TASK
+내일 발표 일정 추가해줘,ADD_TASK
+월요일 오후 세시에 회사 미팅 일정 취소해줘,DELETE_TASK
+피크닉 일정을 이번주 일요일로 추가해줘,ADD_TASK
+다음주 토요일에 한강 가기 일정 추가해줘,ADD_TASK
+일월 구일 어머님 제사 일정 추가해줘,ADD_TASK
+내일 모래 오전 조기축구 모임 일정 추가해줘,ADD_TASK
+다음주 월요일 데이트 일정 취소해줘,DELETE_TASK
+화요일 오후 여섯시에 강남에서 소개팅 일정 등록해줘,ADD_TASK
+이번주 일요일에 성당 일정 취소해줘,DELETE_TASK
+내일 열시에 가족사진촬영 일정 추가해줘,ADD_TASK
+내일 오후 친구모임 일정 추가해줄수있니,ADD_TASK
+이번주 스케줄만 크게 보여줘,LIST_TASK
+내일 아침 출장 일정 추가해줘,ADD_TASK
+팔월 십이일부터 십사일까지 태국 여행 일정 추가해줘,ADD_TASK
+이번주 일정 모두 다음주로 미뤄 줄 수 있니,UPDATE_TASK
+레포트 제출 관련 일정 다 삭제해줄래,DELETE_TASK
+다음주 금요일에 서울랜드 가기 일정 추가해줘,ADD_TASK
+시월 말 추석 연휴에 해외 출장 일정을 추가해줄 수 있니,ADD_TASK
+내일 세시에 미용실 일정 등록해줄래,ADD_TASK
+지난 일정 모두 삭제해줘,DELETE_TASK
+내일 오후 세시 일정을 목요일로 미뤄줄 수 있니,UPDATE_TASK
+내일 저녁 약속 일정을 추가해줘,ADD_TASK
+십이월 이십사일 우레옥에서 점심식사 일정을 추가해줘,ADD_TASK
+다음주 금요일 병문안 일정 추가해줘,ADD_TASK
+다음달에 브라질 여행 일정을 취소해줘,DELETE_TASK
+내일 모레 오전에 부산 가는 스케줄 넣어줘,ADD_TASK
+다음주 수요일 친구랑 경리단길 일정 추가해줘,ADD_TASK
+내일 저녁 일곱시 쇼핑 일정을 추가해줘,ADD_TASK
+다음달 말 봉사활동 일정 추가해줘,ADD_TASK
+다음주 월요일 증명사진 촬영 일정 추가해줘,ADD_TASK
+오늘의 일정을 내일로 옮겨줘,UPDATE_TASK
+오늘 일정 모두 삭제해줘,DELETE_TASK
+내일 아침에 과외 일정을 모레 저녁 일곱시로 바꿔줘,UPDATE_TASK
+내일 일정에 친구 만나기 추가해줘,ADD_TASK
+콘서트 일정 취소해줘,DELETE_TASK
+내일 오전에 회의미팅 일정 넣어줘,ADD_TASK
+내일 다섯시에 동생 데리러 가는 일정 취소해줘,DELETE_TASK
+다음 달 십오일에 생일파티 일정 추가해줄수있니,ADD_TASK
+이번달 전체 스케줄 보여줘,LIST_TASK
+팔월 삼십일 싱가포르 여행 일정 추가해줘,ADD_TASK
+십구일 여섯시에 데이트 일정 추가해주겠니,ADD_TASK
+이번주 토요일 워너원 콘서트 관람 일정 추가해줘,ADD_TASK
+내일 오전 일정 모두 지워줘,DELETE_TASK
+이번주말 축구경기 일정을 취소해줘,DELETE_TASK
+내일 오후에 등산 일정 추가해줘,ADD_TASK
+내일 오후 세 시 일정을 한 시간 뒤로 변경해줘,UPDATE_TASK
+다음달 오일부터 칠일까지 동아리 엠티 일정 추가해줘,ADD_TASK
+내일 오전 열시에 과외 일정 추가해줘,ADD_TASK
+다음 주 금요일 과제 제출 마감일 설정해줘,ADD_TASK
+다음주 토요일에 친구와 술 마시기 일정 추가해 줄 수 있니,ADD_TASK
+삼월 전체 여행일정으로 추가해줘,ADD_TASK
+다음주 일요일 오전 열시에 조조영화보기 일정 추가해줄수있니,ADD_TASK
+백일 후에 남자친구와의 백일 일정 추가해줄수있니,ADD_TASK
+이천십구년 이월 이십칠일 파주 지혜의집 미팅 일정 추가해줘,ADD_TASK
+내일모레 네일숍 일정 등록해줘,ADD_TASK
+다음주 수요일 엠티 일정 추가해줘,ADD_TASK
+모레까지 영어 발표라고 메모해줘,ADD_MEMO
+다음 주 수요일에 중간고사 일정 추가해줘,ADD_TASK
+내일 잡힌 일정 다 취소해줘,DELETE_TASK
+내일 오전 열시에 장보기 일정 추가해줘,ADD_TASK
+오늘 일정 내일로 미뤄줘,UPDATE_TASK
+다음 주 이후로 수영 일정 다 취소해줘,DELETE_TASK
+내일까지 해야할 일 오늘까지로 바꿔줘,UPDATE_TASK
+이번주에 저녁 여덟시 이후에 있는 일정 다 취소해줘,DELETE_TASK
+이번주 저녁 일정 다 취소해줘,DELETE_TASK
+내일 오후 여섯시에 언니와 식사일정 추가해줘,ADD_TASK
+차 보험 만기일 이번주 까지라고 기록해줘,ADD_MEMO
+내일 오전 열한시 영화보기 일정 추가 해라,ADD_TASK
+다음주 월화수 휴가라고 일정 추가해줘,ADD_TASK
+다음 주 가기로 된 가구점 예약 일정을 취소해줄래,DELETE_TASK
+내일 아침 교문선도 일정 취소해라,DELETE_TASK
+모레 정오에 돌잔치 일정 추가해줘,ADD_TASK
+오늘 밤 아홉시에 남편과 디저트 먹을 일정 추가해줘,ADD_TASK
+내일 두시에 친구와 만나기 일정 취소 해라,DELETE_TASK
+오늘 오후 열한시 축구보기 일정 추가해줘,ADD_TASK
+금요일에 동생이랑 저녁먹기 일정 삭제해줄 수 있니,DELETE_TASK
+내일 오전 회의 일정 추가해줘,ADD_TASK
+내일 저녁 회의 일정을 추가해줄 수 있니,ADD_TASK
+내일 오후 일정을 전부 취소해줘,DELETE_TASK
+내일 오후 두시에 데이트 일정 추가해줘,ADD_TASK
+이십칠일 업체 미팅 일정 취소해줘,DELETE_TASK
+다음주 화요일 체력시험일정 추가해줘,ADD_TASK
+오늘 저녁 여섯시 식사 일정 추가해줘,ADD_TASK
+내일 일정 모두 취소해줘,DELETE_TASK
+모레 일정 모두 취소해줘,DELETE_TASK
+다음달 이십사일에 학회 일정 추가해줘,ADD_TASK
+이번달에 학부모모임일정을 모두 취소해줘,DELETE_TASK
+이십육일에 부산 여행 일정을 추가해줘,ADD_TASK
+모레 영어 스터디 모임일정 삭제해줘,DELETE_TASK
+내일 영화관 데이트 일정 취소해줘,DELETE_TASK
+내일 일정에 친구 만나기 추가해주겠니,ADD_TASK
+시월초에 감사 일정 잡아줘,ADD_TASK
+이번주 화요일 일정 모두 취소해줄수있니,DELETE_TASK
+내일 오후 한시에 점심 일정 추가해줘,ADD_TASK
+다음주 수요일에 발표 일정 추가해줘,ADD_TASK
+이번 달 주말 일정을 전부 삭제해줘,DELETE_TASK
+팔월 십일 베트남 여행 일정 추가해줘,ADD_TASK
+지금까지 적어둔 일정 다 지워줘,DELETE_TASK
+오후 다섯시에 학원가기 일정 추가해줄래,ADD_TASK
+이번주 일요일에 속초 가기 일정 추가해줘,ADD_TASK
+내일 여덟시 방탄소년단 티켓팅 일정 추가해줘,ADD_TASK
+다음달 둘째주 출장 일정 추가해줘,ADD_TASK
+오늘 오전 열시에 회의 일정 추가해줘,ADD_TASK
+내일 아쿠아리움 데이트 일정 여섯 시 추가해라,ADD_TASK
+유월 팔일에 과제 제출 일정 추가해 줄 수 있니,ADD_TASK
+십월달 동생과 이탈리아 여행 일정 추가해줘,ADD_TASK
+월요일 오후 열시에 클럽가기 일정 삭제해줘,DELETE_TASK
+다음주에 기말고사니깐 스케줄에 메모해줘,ADD_MEMO
+오늘 갈 대구 기상지청 일정을 취소해줘,DELETE_TASK
+내일 오전 여섯시에 미용실 일정 추가해줘,ADD_TASK
+이천십팔년 구월 삼일에 이학기 개강 일정 추가해줘,ADD_TASK
+다음 달에 있는 일정 전체 읽어줘,LIST_TASK
+이번 주 금요일 여섯 시에 소개팅 일정 추가해줘,ADD_TASK
+내일 첫출근 일정 추가해줘,ADD_TASK
+토요일 아침에 병원 예약 메모해줘,ADD_MEMO
+내일 치킨 먹으니깐 내일 노랑통닭에서 치킨먹기 일정 추가해줘,ADD_TASK
+내일 모래 장보기 일정 추가해줘,ADD_TASK
+내가 지금까지 정리해 놓은 쇼핑 일정을 모두 삭제해줘,DELETE_TASK
+다음주 월요일에 이마트 가기 일정 추가해줘,ADD_TASK
+저번주 일정을 이번주로 옮겨와줘,UPDATE_TASK
+다음 달 중순 십오일에 친구 결혼식 일정을 추가해줘,ADD_TASK
+이번주 토요일은 쉬게 일정표에 있는 일정 모두 지워줘,DELETE_TASK
+내일 저녁 일정을 취소해줘,DELETE_TASK
+내일 야간근무 일정 추가해줘,ADD_TASK
+오늘 여섯시 친구랑 식사일정 추가해줘,ADD_TASK
+다음주 수요일에 애버랜드 가기 일정 추가해줘,ADD_TASK
+내일 오전에 있는 모든 일정을 취소해줘,DELETE_TASK
+다음달 출장 일정 취소해줄래,DELETE_TASK
+일정에 오후 세시에 약 먹기 추가해줄래,ADD_TASK
+팔일에 있는 일정 전부 삭제해주겠니,DELETE_TASK
+다음주 월요일 언니 연주회 일정 추가해줘,ADD_TASK
+내일 오후 두시에 회의참석 일정에 추가해줘,ADD_TASK
+카드 만기 날짜 십이월 이십일에 메모해줄래,ADD_MEMO
+오늘 일정에 은행가기 추가해줄래,ADD_TASK
+다음 달 두번째 목요일 일정 다 취소해줄 수 있니,DELETE_TASK
+내일 일정 삭제해줄 수 있니,DELETE_TASK
+내일 과외 일정을 삭제해줄래,DELETE_TASK
+내일 열두시삼십분 병문안일정 추가해줘,ADD_TASK
+내일 액션영화보기 일정 추가해줘,ADD_TASK
+오늘 오후 열한시에 클럽 일정 추가해줘,ADD_TASK
+이번주 일정 모두 취소해줘,DELETE_TASK
+오늘 남은 일정 내일로 다 미뤄줘,UPDATE_TASK
+지난 일정들 삭제해줄 수 있니,DELETE_TASK
+다음달에 시험 일정 추가해줘,ADD_TASK
+다음달 동창 모임 일정 취소해줘,DELETE_TASK
+다음달 구일부터 십이일까지 학회 일정 추가해줘,ADD_TASK
+오늘 아침 운동 일정 추가해줘,ADD_TASK
+이번주 금요일에 울릉도 가기 일정 추가해줘,ADD_TASK
+내일 열두시에 한강가기 일정 추가해줘,ADD_TASK
+크리스마스에 영화보기 일정 추가해줘,ADD_TASK
+다음 주 일요일 오후 두 시에 쇼핑 일정 추가해줘,ADD_TASK
+이번주 토요일 오후 한시에 수영 일정을 추가해줘,ADD_TASK
+오전에 있는 일정 전부 취소해줄 수 있니,DELETE_TASK
+다음주 화요일 워터파크 일정 추가해줘,ADD_TASK
+이번 주 금요일에 선생님과 면담 일정 추가해줘,ADD_TASK
+내일 제주도 출장 일정을 추가할 수 있니,ADD_TASK
+오늘 오전일정 취소해주겠니,DELETE_TASK
+다음주 금요일 출국 일정 삭제해줘,DELETE_TASK
+내일 오후에 서비스센터 방문 일정 추가해줘,ADD_TASK
+다음 달 모든 월요일 일정들 다 취소해줘,DELETE_TASK
+이번 주 일요일 상견례 일정 잡아줘,ADD_TASK
+내일 잡혀있던 과외 일정 취소해라,DELETE_TASK
+내일 저녁 가족모임 일정 취소해라,DELETE_TASK
+유월말에 야유회 일정 넣어줘,ADD_TASK
+내일 가족모임 일정 취소해라,DELETE_TASK
+다음주 월요일 영화 일정 추가해줘,ADD_TASK
+이번주 수요일 사촌동생과 놀이공원 일정 취소해줘,DELETE_TASK
+내일 오전 결혼식 일정 추가해줘,ADD_TASK
+오늘 일정 모두 취소해줘,DELETE_TASK
+학부모 상담주간 일정을 다음주로 설정해줄래,ADD_TASK
+오늘 다섯시 교수님 면담 일정 추가해줘,ADD_TASK
+팔월 오일에 여자친구 생일 일정 추가해줘,ADD_TASK
+내일 오후 여덟시 중학교동창회 일정 추가해줘,ADD_TASK
+이번주 수요일 친구 결혼식 일정 추가해줘,ADD_TASK
+오늘 방문하기로 했던 서울기상청 일정을 취소해줘,DELETE_TASK
+내일 오후 네시에 전시회 일정 추가해줘,ADD_TASK
+칠월 첫째주 토요일에 행사 일정을 추가해줄 수 있니,ADD_TASK
+남자친구 생일 유월 삼십일 일정추가해줘,ADD_TASK
+다음주 수요일 월차 일정을 추가해줘,ADD_TASK
+이번주말까지 식료품 사기 일정 잡아줘,ADD_TASK
+모레 영어 스터디 모임일정 삭제해줄 수 있니,DELETE_TASK
+축구 동아리 모임 일정을 내일로 잡아줘,ADD_TASK
+내일 오전 열시에 면접 일정 추가해줘,ADD_TASK
+이천십구년 일월 십오일 랩미팅 일정 추가해줘,ADD_TASK
+이번달 총 스케줄 보여주겠니,LIST_TASK
+내일 오전 열시에 가족모임 일정 추가해줘,ADD_TASK
+팔일에 있는 일정 전부 삭제해줘,DELETE_TASK
+이번주 일요일 오후 네시에 피씨방가기 일정 추가해줘,ADD_TASK
+내일 저녁 야구장 가기 일정 추가해줘,ADD_TASK
+이번주 일정 모두 삭제해줘,DELETE_TASK
+내일 오후 아홉시에 낚시 일정 추가해줘,ADD_TASK
+육일에 있는 과제 제출 일정 구일로 옮겨줘,UPDATE_TASK
+내일 일정에 영화표 예매 추가해줘,ADD_TASK
+삼월 오일 논문자격시험 일정을 추가해줘,ADD_TASK
+내일 오후 소개팅 일정 추가해줘,ADD_TASK
+내일 국회에서 있을 통번역 일정을 읽어줄 수 있니,LIST_TASK
+이번주 금요일 일곱시에 회사 회식 일정 추가해줘,ADD_TASK
+이번주 모든 일정을 취소해주겠니,DELETE_TASK
+칠월 이십칠일부터 삼십일까지 오사카 여행 일정 넣어줘,ADD_TASK
+내일 회의 있다고 일정에 추가해줘,ADD_TASK
+구월 구일 이정현 졸업 작품 전시회 일정 추가해줘,ADD_TASK
+내일 오후 세시까지 일정 삭제해줘,DELETE_TASK
+내일 오후 세시에 여동생이랑 소꿉놀이 일정 추가해줘,ADD_TASK
+내일 오전 병원 일정 추가해줘,ADD_TASK
+오늘 저녁약속 일정을 취소해줘,DELETE_TASK
+내일 저녁 일곱시에 운동 일정 추가해줘,ADD_TASK
+구월 이십일 아빠 생일 일정 추가해줘,ADD_TASK
+오늘 저녁식사 모임 일정 삭제해주겠니,DELETE_TASK
+오늘 일정 다 삭제해줘,DELETE_TASK
+내일 오전 다섯시에 등산 일정 추가해줘,ADD_TASK
+내일 오전 여덟시에 아빠 병문안 일정 추가해줘,ADD_TASK
+다음 주 수요일의 일정을 취소해줘,DELETE_TASK
+내일 오후 열시에 친구랑 피씨방 가기 일정 추가해줘,ADD_TASK
+토요일 일정 다 삭제해줄 수 있니,DELETE_TASK
+이번주 토요일 여행 일정을 취소해줘,DELETE_TASK
+일주년 일주일 전에 선물사기라고 메모해줘,ADD_MEMO
+다다음주 금요일 저녁 회식 일정 추가해줘,ADD_TASK
+내일 일정 모레로 미뤄줘,UPDATE_TASK
+이천십팔년 팔원 십일일 열시에 한국사 시험 일정 추가해 줄 수 있니,ADD_TASK
+다음주 화요일 일정 삭제해줘,DELETE_TASK
+토요일에 출장 스케줄을 추가해줘,ADD_TASK
+이번달 마지막 주 수요일 문화의달 일정 추가해줘,ADD_TASK
+내일 아침에 운동하기 일정 여덟시에 추가해줘,ADD_TASK
+이번 주 금요일 계절학기 종강 일정 추가해줘,ADD_TASK
+내일 오후 세시에 친구랑 카페가기 일정 추가해줘,ADD_TASK
+이번주 금요일 한의원 일정 추가해줘,ADD_TASK
+내일 술 약속 장소 홍대입구로 기록해 줘,ADD_MEMO
+내 남자친구와의 기념일 일정 등록해줘,ADD_TASK
+다음주 토요일에 동아리 모임이라고 일정 추가해줘,ADD_TASK
+사월 삼십일에 백일 이라고 기록해줘,ADD_MEMO
+오늘 오후 미용실 일정 취소해줘,DELETE_TASK
+다음주 회의일정을 모두 취소해줘,DELETE_TASK
+내일 저녁 데이트 일정 추가해줘,ADD_TASK
+다다음주 월요일 상견례 일정 추가해줘,ADD_TASK
+오늘 저녁 회식 일정을 취소해줘,DELETE_TASK
+내일 아침 미팅 준비 일정 좀 추가해줘,ADD_TASK
+이번주 토요일 플리마켓 일정 추가해줘,ADD_TASK
+내일 낮 열두시에 면접 결과 발표 일정 추가해줘,ADD_TASK
+수영장 일정 일박 이일로 수정해줄수있니,UPDATE_TASK
+내일 네시 성신여대입구에서 앤트맨보기 일정 등록해줘,ADD_TASK
+이번 주 토요일에 갈 애견샵 일정을 취소해줘,DELETE_TASK
+오늘 오전 열한시에 오빠 군입대 일정 추가해줘,ADD_TASK
+시월 십삼일에 사촌누나 결혼식 일정 추가해줘,ADD_TASK
+이번주 금요일 유림이 점심 일정 추가해줘,ADD_TASK
+내일 저녁 일정 모두 지워줘,DELETE_TASK
+이번주 목요일 일정 하루종일 공연보기로 등록해줘,ADD_TASK
+구월 십오일 브라질 여행 일정 추가해줘,ADD_TASK
+십일월 십사일에 수능 일정 추가해줘,ADD_TASK
+다음주 목요일 대회일정 추가해줘,ADD_TASK
+오늘 오후 두시에 탁구 동호회 일정 추가해줘,ADD_TASK
+내일 친구랑 만날 약속 장소 가로수길로 메모해줘,ADD_MEMO
+이번주 화요일 일정 모두 취소해줘,DELETE_TASK
+이번주 월요일에 남산 가기 일정 추가해줘,ADD_TASK
+네번째주 일요일 결혼식 일정 추가해줄래,ADD_TASK
+일년 후에 남자친구와의 일주년 일정 추가해줄수있니,ADD_TASK
+내일 자정에 여자친구랑 천문대 가기 일정 추가해줘,ADD_TASK
+다음주 금요일 여섯시에 아르바이트 일정 추가해줘,ADD_TASK
+올해 팔월 이일부터 내년 칠월 이십칠일까지 교환학생 일정 추가해줘,ADD_TASK
+오늘 남은 일정 전부 삭제해줘,DELETE_TASK
+오늘 오후 일곱시에 운동장 걷기 일정 추가해줘,ADD_TASK
+이번주 토요일 부산여행 일정 추가해줘,ADD_TASK
+오후 세시에 약먹기 일정 추가해줘,ADD_TASK
+오늘 저녁 아홉시에 친구랑 만나는 일정 취소해줄 수 있니,DELETE_TASK
+내일 오후 다섯시 조별과제 일정 추가해줘,ADD_TASK
+다음주 화요일 오후 두시 보건소 진료 일정 추가해줘,ADD_TASK
+내일 오후 여덟시에 할아버지 병문안 일정 추가해줘,ADD_TASK
+이번주 토요일 오전 열시 등산 일정 추가해라,ADD_TASK
+이번달 할아버지 칠순잔치 일정 추가해줘,ADD_TASK
+칠월 삼십일 치과일정 추가해줘,ADD_TASK
+이번주 토요일에 동호회 모임 일정 취소해줘,DELETE_TASK
+팔일에 있는 회의 일정 취소해줘,DELETE_TASK
+이번주 금요일 오후 다섯시까지 과제 제출 일정 추가해줘,ADD_TASK
+다음 주 일정 전부 다 취소해줄래,DELETE_TASK
+내일 아홉시에 서점 들리기 일정 추가해줘,ADD_TASK
+내일 오전 일정을 전부 취소해줘,DELETE_TASK
+오늘 오후 세시 일정을 다음주 수요일로 미뤄줘,UPDATE_TASK
+칠월육일 거제도 일정 추가해줘,ADD_TASK
+팔월 구일 친구 결혼식 일정 추가해줘,ADD_TASK
+지나간 스케줄 목록 지워줘,DELETE_TASK
+내년 칠월 십일에 한달 유럽 여행 일정 추가해줄수있니,ADD_TASK
+내일 일정을 모두 취소해줘,DELETE_TASK
+십이월 오일 엄마 생일 일정 추가해줘,ADD_TASK
+이번주 일정 다 취소해줘,DELETE_TASK
+다음주 수요일 오후 일곱시에 가족식사 일정 추가해줘,ADD_TASK
+내일 오후 다섯시 회의일정 추가해줘,ADD_TASK
+이번주 월요일 시사회 일정 취소해줘,DELETE_TASK
+내일 모레 데이트 일정을 취소해줘,DELETE_TASK
+금요일에 회식 일정에 넣어줘,ADD_TASK
+이번주 수요일 오전 열 시에 미팅일정 추가해줘,ADD_TASK
+이번주 일요일 방탄소년단 콘서트 관람 일정 추가해줘,ADD_TASK
+은행가기 일정 내일 오후 세시로 시간 변경해줄래,UPDATE_TASK
+내일 오후 세시에 회의 일정 추가해줘,ADD_TASK
+오늘 일정을 내일로 미뤄 줄 수 있니,UPDATE_TASK
+오늘 오후 미용실 일정 취소해줄수있니,DELETE_TASK
+다음 달에 있는 모든 약속 일정에서 지워줘,DELETE_TASK
+크리스마스 저녁 여섯시에 명동으로 일정 등록해줘,ADD_TASK
+내일 저녁식사 모임 일정 추가해줄수있니,ADD_TASK
+팔월 일정 다 취소해줘,DELETE_TASK
+오늘 밤 열시 축구 경기 일정을 취소할 수 있니,DELETE_TASK
+내일 오후 일곱시부터 아홉시까지 저녁 약속 일정 등록해줘,ADD_TASK
+이번주 토요일 네일받기 일정 추가해줘,ADD_TASK
+모레 오후에 학원 아르바이트 일정 추가해줘,ADD_TASK
+내년 오늘 일주년 기념일 일정 추가해줘,ADD_TASK
+이번주에 친구 만나는 일정들은 다 취소해줘,DELETE_TASK
+다음주 목요일 오후 여섯시 홍대 저녁 일정을 취소해줘,DELETE_TASK
+다음달 십일에서 십육일 여행일정 추가해줘,ADD_TASK
+십일월 십일일 빼빼로 파티 일정을 추가해줘,ADD_TASK
+오늘 오후 일정 전부 취소해 줘,DELETE_TASK
+팔월 십일일에 졸업 연주회 일정 추가해줘,ADD_TASK
+다음주 금요일 출국 일정 추가해줘,ADD_TASK
+오늘 오전 일정 취소해줘,DELETE_TASK
+다음 주 수요일 네 시 치과 일정 목요일로 바꿔줘,UPDATE_TASK
+내일 제주도 출장 일정을 취소해줘,DELETE_TASK
+과제 기한 이번주 까지라고 기록해줄래,ADD_MEMO
+다음 달 중순에 피티이 시험 일정을 추가해줘,ADD_TASK
+시월 십일 엄마 환갑 일정 추가해줘,ADD_TASK
+다음주 목요일에 롯데월드 가기 일정 추가해줘,ADD_TASK
+내일 일정 오늘로 앞당겨줘,UPDATE_TASK
+다음달 이십일일 내 결혼식 일정 추가해줘,ADD_TASK
+이번주 금요일 월차 일정을 추가해줄 수 있니,ADD_TASK
+목요일 두 시 일정을 영화 보기로 바꿔줘,UPDATE_TASK
+내일 미용실 일정 끝나고 바로 네일샵 가는 일정 등록해줄래,ADD_TASK
+십구일 여섯시에 데이트 일정 추가해줘,ADD_TASK
+유월 이십일 고심통 기말고사 일정을 추가해줘,ADD_TASK
+내년 칠월 십일에 한달 유럽 여행 일정 추가해줘,ADD_TASK
+오월 십오일 신경과학 중간고사 일정을 추가해줘,ADD_TASK
+내일 여자친구랑 신촌 데이트 일정 추가해줄 수 있니,ADD_TASK
+내일 오후 두시에 병원 일정 추가해줘,ADD_TASK
+다음주 교수님과의 회의 일정을 모두 취소해줘,DELETE_TASK
+이번주 수요일 오전 여섯시에 새벽기도 일정 추가해줘,ADD_TASK
+유월 팔일에 과제 제출 일정 추가해줘,ADD_TASK
+저번주 일정 모두 삭제해줘,DELETE_TASK
+다음주 금토 일정을 다음주 토일으로 바꿔줘,UPDATE_TASK
+다음 달 휴가 일정을 부산으로 추가할 수 있니,ADD_TASK
+내일 아침에 공항에서 미팅 있다고 일정 추가해줘,ADD_TASK
+오늘 세시에 미팅일정 추가해줄수 있니,ADD_TASK
+다음달 팔일에 수영장 일정 추가해줄수있니,ADD_TASK
+월요일 오후 한시에 남자친구와 데이트 일정 취소해줘,DELETE_TASK
+내일 저녁 회식 일정을 취소해줘,DELETE_TASK
+이번주 일요일 저녁 화상 미팅 일정을 취소해줘,DELETE_TASK
+월요일에 청하 콘서트 라고 일정에 추가해 줄 수 있니,ADD_TASK
+다음달 둘째 주 토요일에 동아리 대회 일정 추가해줘,ADD_TASK
+내일 여행일정 취소 해줘,DELETE_TASK
+다음주에 있는 아르바이트 일정 전부 삭제해줘,DELETE_TASK
+오늘 오후 일정 취소해줘,DELETE_TASK
+다음달 팔일에 수영장 일정 추가해줘,ADD_TASK
+다음주 일요일에 대구 가기 일정 추가해줘,ADD_TASK
+내일 오후 여섯시에 소개팅 일정 추가해줘,ADD_TASK
+이번주 목요일에 제주도 가기 일정 추가해줘,ADD_TASK
+오늘 오후 두시에 테니스 동호회 일정 추가해줘,ADD_TASK
+여덟시에 공연가기로 했는데 일정좀 추가해줘,ADD_TASK
+학교 졸업식 날짜 팔월 이십이일에 기록해줘,ADD_MEMO
+오일 저녁 약속 일정 추가해라,ADD_TASK
+내일 저녁 일곱시 예약일정 추가해주겠니,ADD_TASK
+오늘 일정에 영화보기 추가해줄수있니,ADD_TASK
+월요일 오후 여덟시에 오빠랑 영화보기 일정 취소해줘,DELETE_TASK
+내일 오후 네시에 랩미팅 일정 취소해줘,DELETE_TASK
+월요일 오후 아홉시에 언니랑 술 마시기 일정 삭제해줘,DELETE_TASK
+칠월 일일 캐나다출국 일정을 추가해줘,ADD_TASK
+성탄절에 서울가기 일정 추가해주겠니,ADD_TASK
+내일 저녁 여덟시에 퍼스널트레이닝 일정 넣어줘,ADD_TASK
+내일 오후에 회식 일정 추가해줘,ADD_TASK
+올해 말일에 적금해지 일정을 추가해줘,ADD_TASK
+이번주 일요일에 교회 일정 취소해줘,DELETE_TASK
+이번주 토요일에 부산 가기 일정 추가해줘,ADD_TASK
+다음달 두번째 주 일주일간 여행 일정 추가해줘,ADD_TASK
+이번주 금요일 영화보기 일정 추가해줘,ADD_TASK
+카드 만기 날짜 십이월 이십일에 메모해줘,ADD_MEMO
+다음달 이십팔일 동생 졸업식 일정 추가해줘,ADD_TASK
+내일 일정 오전 말고 오후로 바꿔줘,UPDATE_TASK
+내일 저녁 아홉시에 피티 일정 잡아줘,ADD_TASK
+다음주에 있는 수현이과외 일정을 모두 취소해줘,DELETE_TASK
+내일 오후 세시 쌍커풀 수술 일정 추가해줘,ADD_TASK
+이번주 목요일 카페 아르바이트 면접 일정 추가해줘,ADD_TASK
+목요일 여섯시에 야구장 일정 추가해줘,ADD_TASK
+오늘 이후부터 실험 관련 일정 다 삭제해줘,DELETE_TASK
+팔월 마지막 주 휴가 일정 추가해줘,ADD_TASK
+다음주 화요일 저녁에 가족 모임 일정 추가해줘,ADD_TASK
+여름휴가 일정 취소해라,DELETE_TASK
+일본여행 일정 취소해줘,DELETE_TASK
+이번주 토요일에 동호회 모임 일정 추가해줘,ADD_TASK
+이미 지난 스케줄 다 지워줄 수 있니,DELETE_TASK
+다음주 금요일 영화보기 일정 추가해줘,ADD_TASK
+내일 오후 영화 일정 취소 해 줄 수 있니,DELETE_TASK
+내일 친구랑 밥먹을꺼니깐 밥먹기 일정 추가해줘,ADD_TASK
+수영장 일정 일박 이일로 수정해줘,UPDATE_TASK
+월요일 오후 두시에 대학로에서 연극보기 일정 등록해줘,ADD_TASK
+다음주 화요일까지 팀플 과제 제출 일정 추가해줘,ADD_TASK
+다음주 목요일 남자친구랑 이백일 일정 취소해줘,DELETE_TASK
+이번 주 주간근무 일정을 모두 취소해 줄래,DELETE_TASK
+다음주 일주일간 저녁 일곱시에 운동 일정 추가해줘,ADD_TASK
+다음 주 일정을 전부 삭제해줄래,DELETE_TASK
+오늘 갈 카센터 일정을 취소해줘,DELETE_TASK
+팔월 육일부터 팔월 팔일까지 수강신청 일정 추가해줘,ADD_TASK
+이번주 토요일 두시 롯데시네마 일정 취소해줘,DELETE_TASK
+이번 주 시험 공부 일정 추가해줄 수 있니,ADD_TASK
+내일 오전 열시 일정 취소해줘,DELETE_TASK
+이번주 일요일 여섯시에 기숙사 입소 일정 추가해줘,ADD_TASK
+다음 달 호주동생집에 방문하기로 한 일정도 취소해줘,DELETE_TASK
+이번주 목요일 할머니 칠순잔치 일정 추가해줘,ADD_TASK
+이번주 일요일 교회가기 일정 삭제해줘,DELETE_TASK
+다음 주 토요일 짚라인 타러 가는 일정 추가해줘,ADD_TASK
+내일 무슨 일정 있는지 읽어줘,LIST_TASK
+이번주 일요일 친구랑 피시방 일정 추가해줘,ADD_TASK
+다음 주 저장된 일정 모두 지워줘,DELETE_TASK
+모레까지 영어 발표라고 메모해줄래,ADD_MEMO
+내일 일정 전부 취소해줘,DELETE_TASK
+내일 모레 수영장 강습 일정을 추가해줘,ADD_TASK
+다음주 월요일 증명사진 촬영 일정 삭제해줘,DELETE_TASK
+다음주 월요일 일정 그대로 다다음주로 옮겨줘,UPDATE_TASK
+다음주 목요일 오후 세시에 세미나 일정 등록해줘,ADD_TASK
+이번주 일요일 오후 세시 알바 대타 일정 추가해줄수있니,ADD_TASK
+이번주 토요일 오후 두시에 축구 일정 추가해줘,ADD_TASK
+다음주 화요일 가족 저녁식사 일정 추가해줘,ADD_TASK
+월요일 오후 다섯시에 케밥먹으러 가기 일정 삭제해줘,DELETE_TASK
+내일 열시에는 교회가기 일정 등록해줘,ADD_TASK
+내일 오후 세시에 회의 일정을 추가해줘,ADD_TASK
+올해 여행 일정 다 취소해줘,DELETE_TASK
+올해 칠월초에 워터파크 일정을 추가해줄래,ADD_TASK
+이번주 일요일 오후 세시 알바 대타 일정 추가해줘,ADD_TASK
+이번주 중요 일정 목록에 생일 선물 사기 추가해줄래,ADD_TASK
+모레 열두시에 가족모임 일정 추가해줘,ADD_TASK
+유월 이십오일부터 삼박 사일 일본여행 일정 추가해줘,ADD_TASK
+내일 오후 면담 일정 추가해줘,ADD_TASK
+내일 밤 아홉시에 캐나다 출국 일정 추가해줘,ADD_TASK
+내일 스케줄 전부 다 취소 해줘,DELETE_TASK
+팔일에 있는 회의 일정 취소해주겠니,DELETE_TASK
+내일 잡혀있는 일정 삭제해줘,DELETE_TASK
+오늘 오후 일정 모두 취소해줄래,DELETE_TASK
+이번주 목요일 오후 한시에 병원 일정 추가해줘,ADD_TASK
+내일 오후 네시에 엄마랑 백화점 일정 추가해줘,ADD_TASK
+이틀뒤 오후 외식일정 잡아줘,ADD_TASK
+유월 이십오일부터 유월 이십구일까지 일본여행 일정 추가해줘,ADD_TASK
+다음 주 월요일에 발표 일정 추가해줘,ADD_TASK
+다음주 월요일에 다이어트 시작하기 일정 추가해줘,ADD_TASK
+오늘 한시에 시골 내려가기 일정 취소해줘,DELETE_TASK
+내일 오후 일정 알려줘,LIST_TASK
+학회 일정을 확인해줘,LIST_TASK
+내년에 유럽 여행 일정 언제인지 알려줘,LIST_TASK
+이틀후 회의 일정 확인해줘,LIST_TASK
+이번주에 회식일정 있는지 알려줘,LIST_TASK
+다음 달 둘째 주 일요일 일정 알려줘,LIST_TASK
+엊그제 내 일정 전체 보여줘,LIST_TASK
+이번주 수요일 일정 어떻게 되는지 알려줘,LIST_TASK
+캘린더에서 영화 단어 들어간 일정만 모두 모아서 보여줘,LIST_TASK
+내일 저녁 일정을 알려줘,LIST_TASK
+다음주 목요일 저녁 일정 뭐 있니,LIST_TASK
+이번주 주말 일정 알려주세요,LIST_TASK
+오늘 일정 알려주겠니,LIST_TASK
+다음달 동생 졸업식 일정 언제인지 알려줘,LIST_TASK
+이번 중간고사 일정이 어떻게 되는지 알려줘,LIST_TASK
+내 생일날 일정이 뭔지 알려줄 수 있니,LIST_TASK
+다음주 일정 뭐 있는지 알려줄 수 있어,LIST_TASK
+다음주 수요일 일정이 뭐라고 되어있니,LIST_TASK
+회의일정이 언제로 잡혔는지 알려줄 수 있니,LIST_TASK
+이번주 일정 확인해 줄 수 있니,LIST_TASK
+이번주에 친구 만나는 일정 다 알려줘,LIST_TASK
+오월 일정이 어떻게 되는지 알려줘,LIST_TASK
+다다음달 개강총회 일정 언제인지 알려줄수있니,LIST_TASK
+다음주 일정 좀 알려줘,LIST_TASK
+다음달 추가되어있는 일정 말해줘,LIST_TASK
+올해 해외 일정 전부 알려줘,LIST_TASK
+다음주 금요일 일정을 알려줘,LIST_TASK
+내일 일정 알려주세요,LIST_TASK
+이번주 주말에 일정 확인해줘,LIST_TASK
+내일 일정 알려줄래,LIST_TASK
+구월달 팬미팅 일정 언제인지 알려줘,LIST_TASK
+휴가 일정 알려줘,LIST_TASK
+다음 달에 멘토링 일정이 있는지 확인해줘,LIST_TASK
+내일 점심 일정 알려줘,LIST_TASK
+이번 주 회사 회의 일정 알려줘,LIST_TASK
+학교 졸업식 삼월 마지막 주 일요일에 기록해줄래,ADD_MEMO
+방과후 컴퓨터수업 일정 모두 취소해줘,DELETE_TASK
+팔월 일일 내 생일 일정 추가해줘,ADD_TASK
+다다음주 화요일 일정 다 취소해줘,DELETE_TASK
+월요일 오후 네시에 일식집 가기 일정 삭제해줘,DELETE_TASK
+다음 주 토요일 점심에 드라이브 일정 추가해줘,ADD_TASK
+다음 달 십오일에 생일파티 일정 추가해줘,ADD_TASK
+내일 저녁 수영 강습 스케줄을 추가해줄 수 있니,ADD_TASK
+이번주 일요일에 소개팅 일정 추가해줘,ADD_TASK
+다음 달 여름 휴가 일정은 제주도로 추가해줘,ADD_TASK
+내일 저녁 약속 일정에서 삭제해줄래,DELETE_TASK
+다음 주 평일 오후 여덟시에 운동일정 전부 추가해줘,ADD_TASK
+팔월 구일 친구 결혼식 일정 추가해주겠니,ADD_TASK
+내일 오전 열한시에 부산행 케이티엑스 열차 출발 일정 추가해줘,ADD_TASK
+이번주 목요일 저녁 필라테스 수업 일정을 취소해줘,DELETE_TASK
+다음주 일본 출장 일정 추가해줘,ADD_TASK
+금요일 회식 일정에서 삭제해줘,DELETE_TASK
+오늘 다섯시에 택배 받기 일정 추가해줘,ADD_TASK
+오늘 오후 다섯시에 가족과 치킨먹기 일정 추가해줘,ADD_TASK
+한 시간 뒤에 회의일정 넣어줘,ADD_TASK
+이천십구년 일월 이일에 치과 일정 추가해줘,ADD_TASK
+칠월 십육일 우리팀 은정이 일정 추가해줘,ADD_TASK
+내일 밤 스터디 일정을 취소해줄 수 있니,DELETE_TASK
+다음주 금요일 오전 열한시에 회의 일정 추가해 줄 수 있니,ADD_TASK
+오늘 일정의 시간을 한 시간 후로 연기해줘,UPDATE_TASK
+기말고사 시험일정을 다음주 화요일부터 금요일까지로 설정해줄래,ADD_TASK
+오늘 다섯시에 택배 받기 일정 추가해줄 수 있니,ADD_TASK
+이번주 윤진이와 미팅 스케줄 취소해줘,DELETE_TASK
+이번달 말 학교 일정 취소해줘,DELETE_TASK
+다음 주 금요일 마사지샵 예약 일정 추가해줘,ADD_TASK
+다음 달 육일 오전 아홉시에 수강신청 일정 추가해줘,ADD_TASK
+오늘 일정 전부 취소해줘,DELETE_TASK
+내일 오전 자동차 수리 일정 추가해줘,ADD_TASK
+다음주 목요일 반차 일정을 추가해줘,ADD_TASK
+다음 달 팔일에 있는 일정 읽어줘,LIST_TASK
+유월 십일 오후 세시부터 다섯시까지 기말고사 일정 추가해줘,ADD_TASK
+오늘 오후 네시에 장보기 일정 추가해줘,ADD_TASK
+월요일 오후 여섯시에 방탄소년단 티켓팅 일정 취소해줘,DELETE_TASK
+오늘 오후 다섯시에 엄마와 저녁식사 일정 추가해줘,ADD_TASK
+내일 시험이라고 일정 등록해줘,ADD_TASK
+다음주 화요일에 홈플러스 가기 일정 추가해줘,ADD_TASK
+금요일 오후 여섯시 이후 일정들 전부 삭제해줘,DELETE_TASK
+십이월 이십칠일 뉴욕 출장 일정 추가해줘,ADD_TASK
+금요일 오후 회의 일정을 세 시까지로 바꿔줘,UPDATE_TASK

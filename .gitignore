@@ -1,6 +1,9 @@
+.env
+.env.*
+!.env.example
+.streamlit/secrets.toml
+*.sqlite3
+*.sqlite3-*
 .venv/
 venv/
 __pycache__/
-*.pyc
-.env
-*.zip
